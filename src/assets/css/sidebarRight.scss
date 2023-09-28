@@ -1,0 +1,58 @@
+$gis-primary: #003078;
+$gis-white: #ffffff;
+$gis-light-gray: #eff1f0;
+
+* {
+  list-style: none;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+  background: $gis-light-gray;
+  transition: all 0.5s ease;
+  z-index: 10;
+  // overflow-y: auto;
+}
+.Sidebar-wrapper {
+  position: relative;
+
+  .hamburger {
+    position: absolute;
+    top: 15px;
+    left: -30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #003078;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    flex-shrink: 0;
+
+    svg {
+      color: $gis-white;
+      font-size: 14px;
+    }
+  }
+}
+.sidebar__inner {
+  width: 300px;
+  height: 100vh;
+  padding: 15px;
+  overflow: auto;
+}
+
+.sidebar.active {
+  right: -300px;
+}

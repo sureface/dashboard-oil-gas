@@ -1,0 +1,211 @@
+$gis-primary: #003078;
+$gis-white: #ffffff;
+$gis-hover-white: #f8f9fa;
+
+.gis-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  min-width: 260px;
+  background: $gis-primary;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+  z-index: 10;
+
+  &.gis-sidebar--mini {
+    min-width: 70px;
+
+    .gis-sidebar__drawer {
+      transition: ease-out 0.5s;
+    }
+
+    .gis-sidebar__company_name,
+    .gis-sidebar__title,
+    .gis-sidebar__arrowDown-icon,
+    .gis-sidebar__userDetails {
+      display: none;
+    }
+    .gis-sidebar__menu-wrapper {
+      width: 70px !important;
+    }
+  }
+
+  &__drawer {
+    position: absolute !important;
+    top: 15px;
+    right: -15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #003078;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+
+    svg {
+      color: $gis-white;
+      font-size: 14px;
+    }
+  }
+
+  &__logo_details {
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  &__logo {
+    height: 50px;
+    min-width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      font-size: 30px;
+      color: $gis-white;
+    }
+  }
+  &__company_name {
+    font-size: 22px;
+    color: $gis-white;
+    text-transform: capitalize;
+  }
+  &__item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+
+    &.gis-sidebar--show {
+      .gis-sidebar__dropdown {
+        max-height: 1000px;
+        height: auto;
+        transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+      }
+    }
+    &.gis-sidebar--active {
+      &::before {
+        content: "";
+        position: absolute;
+        top: 13px;
+        left: 0;
+        height: 25px;
+        width: 3px;
+        border-top-right-radius: 3px;
+        border-bottom-right-radius: 3px;
+        background: $gis-white;
+      }
+    }
+  }
+  &__link {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    transition: color 0.5s ease;
+
+    &:hover {
+      background-color: $gis-hover-white;
+      .gis-sidebar__icon,
+      .gis-sidebar__arrowDown-icon {
+        svg {
+          color: $gis-primary;
+        }
+      }
+      .gis-sidebar__title {
+        color: $gis-primary;
+      }
+    }
+  }
+  &__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 100%;
+
+    svg {
+      font-size: 20px;
+      color: $gis-white;
+    }
+  }
+  &__title {
+    font-size: 18px;
+    text-transform: capitalize;
+    color: $gis-white;
+  }
+  &__arrowDown-icon {
+    margin-left: auto;
+    padding-right: 15px;
+
+    &.arrowDown-icon-go {
+      svg {
+        transition: all 0.3s ease-in;
+        transform: rotate(180deg);
+      }
+    }
+
+    svg {
+      color: $gis-white;
+      transition: all 0.5s ease-in;
+    }
+  }
+  &__dropdown {
+    transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+    max-height: 0;
+    // opacity: 0;
+    overflow: hidden;
+
+    &_item {
+      padding-left: 60px;
+
+      transition: color ease-in 0.3s;
+
+      &:hover {
+        background: $gis-hover-white;
+
+        .gis-sidebar__dropdown_link {
+          color: $gis-primary;
+        }
+      }
+    }
+    &_link {
+      display: block;
+      color: $gis-white;
+      height: 40px;
+      line-height: 40px;
+      text-transform: capitalize;
+    }
+  }
+  &__userInfos {
+    display: flex;
+    align-items: center;
+  }
+  &__userName {
+    color: $gis-white;
+    text-transform: capitalize;
+  }
+  &__userStatus {
+    font-size: 14px;
+    color: $gis-white;
+    text-transform: capitalize;
+  }
+  &__userPic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    overflow: hidden;
+
+    img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+  }
+}
