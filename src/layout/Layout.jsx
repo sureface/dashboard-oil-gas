@@ -7,6 +7,7 @@ import {
   faGauge,
   faMapLocationDot,
   faOilWell,
+  faPenRuler,
 } from "@fortawesome/free-solid-svg-icons";
 
 const Layout = ({ children }) => {
@@ -23,18 +24,23 @@ const Layout = ({ children }) => {
       subMenu: [
         {
           title: "usyurt gaz",
+          link: "/mines",
         },
         {
           title: "usyurt neft",
+          link: "/mines",
         },
         {
           title: "muborak gaz",
+          link: "/mines",
         },
         {
           title: "muborak neft",
+          link: "/mines",
         },
         {
           title: "sho'rtan gaz",
+          link: "/mines",
         },
       ],
     },
@@ -51,7 +57,22 @@ const Layout = ({ children }) => {
     {
       icon: faEarthEurope,
       title: "orografiya",
-      link: "/",
+      link: "/orografiya",
+    },
+    {
+      icon: faPenRuler,
+      title: "Masalani tanlash",
+      arrow: faAngleDown,
+      subMenu: [
+        {
+          title: "Bir qatlam",
+          link: "/first-layer",
+        },
+        {
+          title: "Ikki qatlam",
+          link: "/second-layer",
+        },
+      ],
     },
   ];
 

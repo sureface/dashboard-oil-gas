@@ -51,13 +51,17 @@ li {
 .gis-sidebar.gis-sidebar--mini ~ .main_wrapper__without-rightSidebar {
   padding-left: 70px;
 }
-.esri-feature-media__item-title {
+.kartateka .esri-feature-media__item-title {
   font-size: 30px;
   margin-bottom: 8px;
 }
-.esri-feature-media__item-caption {
+.kartateka .esri-feature-media__item-caption {
   font-size: 16px;
   padding-block-start: 0;
+}
+.orografiya .esri-popup__main-container {
+  max-height: 500px !important;
+  width: 500px !important;
 }
 .map-controllers {
   position: fixed;

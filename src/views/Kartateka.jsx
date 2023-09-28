@@ -333,7 +333,7 @@ const Kartateka = () => {
   }
 
   return (
-    <Layout>
+    <Layout className="kartateka">
       <div id="mapView" ref={map}></div>
 
       <div className="map-controllers">
@@ -377,151 +377,9 @@ const Kartateka = () => {
             Sho'rtan gaz
           </button>
         </div>
-        <div className="d-flex aling-items-center">
-          {/* <div>{selectedPlace ? selectedPlace : "place not selected"}</div> */}
-          weather
-        </div>
       </div>
     </Layout>
   );
 };
 
 export default Kartateka;
-
-// b2461057415807b7e05822636d190410
-
-// const sym = {
-//   type: "simple-marker", // autocasts as new PictureMarkerSymbol()
-//   color: "red",
-//   size: 14,
-// };
-// const sym1 = {
-//   type: "simple-marker", // autocasts as new PictureMarkerSymbol()
-//   color: "red",
-//   size: 14,
-// };
-
-// // the symbol used to mark stops on the route
-// const markerSymbol = {
-//   type: "point-3d",
-//   // autocasts as new PointSymbol3D()
-//   symbolLayers: [
-//     {
-//       type: "object", // autocasts as new ObjectSymbol3DLayer()
-//       size: 3,
-//       resource: {
-//         primitive: "sphere",
-//       },
-//       material: {
-//         color: [0, 255, 0],
-//       },
-//     },
-//   ],
-// };
-
-// // the symbol used to mark the paths between stops
-// const pathSymbol = {
-//   type: "line-3d", // autocasts as new LineSymbol3D()
-//   symbolLayers: [
-//     {
-//       type: "line", // autocasts as new PathSymbol3DLayer()
-//       size: 3, // If only the width is given, the height is set to the same value.
-//       material: {
-//         color: [0, 128, 255],
-//       },
-//     },
-//   ],
-// };
-
-// function addStop(lat, lon, gaz) {
-//   const routeParams = new RouteParameters({
-//     // An authorization string used to access the routing service
-//     apiKey:
-//       "AAPK5c2ff4e92c7e432aaab41b6403c8d32e2QaT4PuRnyaxnyiZ0aTU10fG7TMaU4VDpCXcD1GtryHEZMIVhhkNdyE2KKz-O0uC",
-//     stops: new FeatureSet(),
-//     outSpatialReference: {
-//       // autocasts as new SpatialReference()
-//       wkid: 3857,
-//     },
-//   });
-
-//   function weather() {
-//     // get wether info
-//     var data = null;
-
-//     const apiKey = "8a42611b629581ce0d32f401df3cef90";
-//     const url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&lang=ru`;
-//     axios
-//       .get(url)
-//       .then((res) => {
-//         data = res.data;
-//       })
-//       .catch((error) => {
-//         console.error("Error fetching weather data:", error);
-//       });
-
-//     return data;
-//   }
-
-//   // Add a marker at the location of the map click
-//   const stop = new Graphic({
-//     geometry: {
-//       type: "point",
-//       latitude: cordinate.lat, //[65.80549,38.45954]
-//       longitude: cordinate.lon,
-//     },
-//     symbol: markerSymbol,
-//   });
-//   console.log(weather());
-
-//   const stop1 = new Graphic({
-//     geometry: {
-//       type: "point",
-//       latitude: lat,
-//       longitude: lon, //[65.268902,39.170431]
-//     },
-//     symbol: gaz ? sym : sym1,
-//     popupTemplate: {
-//       title: weather()?.name,
-//       content: [
-//         {
-//           type: "text",
-//           text: weather()?.weather[0].main,
-//         },
-//         {
-//           type: "media",
-//           mediaInfos: [
-//             {
-//               title: "bodycha",
-//               type: "image",
-//               caption: "tree species",
-//               value: {
-//                 sourceURL: `http://openweathermap.org/img/wn/${
-//                   weather()?.weather[0].icon
-//                 }@2x.png`,
-//               },
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   });
-//   routeLayer.removeAll();
-//   routeLayer.add(stop);
-//   routeLayer.add(stop1);
-//   // Update the route and execute it if 2 or more stops are input
-
-//   routeParams.stops.features.push(stop);
-//   routeParams.stops.features.push(stop1);
-//   if (routeParams.stops.features.length >= 2) {
-//     route
-//       .solve(routeUrl, routeParams)
-//       .then(onRouteUpdated)
-//       .catch((error) => {
-//         // if it fails, print the error to the console and remove the recently added point
-//         routeLayer.remove(stop);
-//         routeParams.stops.features.pop();
-//         console.error(error);
-//       });
-//   }
-// }
