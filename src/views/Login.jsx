@@ -1,19 +1,38 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
+  const [signUpData, setSignUpData] = useState([]);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const data = localStorage.getItem("SIGNUP");
+    const jsonData = JSON.parse(data);
+    if (jsonData && Object.keys(jsonData).length > 0) {
+      setSignUpData(jsonData);
+      setLogin(jsonData.userName);
+      setPassword(jsonData.password);
+    } else {
+      setSignUpData([]);
+      setLogin("");
+      setPassword("");
+    }
+  }, []);
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    if (login === "admin" && password === "admin") {
+    console.log(signUpData);
+    if (login === signUpData.userName && password === signUpData.password) {
       localStorage.setItem("isLoggedIn", "true");
       navigate("/");
       setError("");
+      setLogin("");
+      setPassword("");
     } else {
       setError("login yoki parol noto'g'ri !");
     }
@@ -44,9 +63,10 @@ const Login = () => {
                           <input
                             type="text"
                             className="form-control mb-2"
-                            placeholder="Phone number or email address"
+                            placeholder="User Name"
                             required
                             onChange={(e) => setLogin(e.target.value)}
+                            value={login}
                           />
                           <div className="text-danger">
                             {error ? error : ""}
@@ -60,6 +80,7 @@ const Login = () => {
                             placeholder="Password"
                             required
                             onChange={(e) => setPassword(e.target.value)}
+                            value={password}
                           />
                           <div className="text-danger">
                             {error ? error : ""}
@@ -71,18 +92,18 @@ const Login = () => {
                             className="btn btn-primary btn-block fa-lg gradient-custom-2 mb-3"
                             type="submit"
                           >
-                            Login
+                            Kirish
                           </button>
                         </div>
                       </form>
                       <div className="d-flex align-items-center justify-content-center pb-4">
-                        <p className="mb-0 me-2">Don't have an account?</p>
-                        <button
-                          type="button"
+                        <p className="mb-0 me-2">Akountingiz yo'qmi ?</p>
+                        <Link
+                          to="/signup"
                           className="btn btn-primary gradient-custom-2 text-white"
                         >
-                          Create new
-                        </button>
+                          Yangi Yaratish
+                        </Link>
                       </div>
                     </div>
                   </div>
