@@ -22,7 +22,7 @@ const Login = () => {
   return (
     <>
       <section
-        className="h-100 gradient-form"
+        className="h-screen gradient-form"
         style={{ backgroundColor: "#eee" }}
       >
         <div className="container h-100">
@@ -86,7 +86,7 @@ const Login = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 d-flex align-items-center gradient-custom-2">
+                  <div className="col-lg-6 d-flex align-items-center b-t-b-radius gradient-custom-2">
                     <div className="text-white px-3 py-4 p-md-5 mx-md-4">
                       <h4 className="mb-4">We are more than just a company</h4>
                       <p className="small mb-0">

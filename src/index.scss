@@ -111,6 +111,16 @@ li {
 }
 // chart style end
 
+.gradient-custom-2 {
+  background: $gis-primary;
+}
+.b-t-b-radius {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.h-screen {
+  height: 100vh !important;
+}
 ::-webkit-scrollbar {
   width: 0.4rem;
   height: 0.4rem;
