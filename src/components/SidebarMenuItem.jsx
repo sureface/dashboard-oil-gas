@@ -14,6 +14,7 @@ const SidebarMenuItem = ({ item, catchItem }) => {
 
     setSelected(i);
   };
+
   return (
     <div>
       <li
@@ -24,26 +25,50 @@ const SidebarMenuItem = ({ item, catchItem }) => {
         }
         onClick={() => toggle(catchItem)}
       >
-        <Link to={item.link} className="gis-sidebar__link">
-          <div className="gis-sidebar__icon">
-            <FontAwesomeIcon icon={item.icon} />
+        {item.subMenu ? (
+          <div className="gis-sidebar__link">
+            <div className="gis-sidebar__icon">
+              <FontAwesomeIcon icon={item.icon} />
+            </div>
+            <div className="gis-sidebar__title">{item.title}</div>
+            <div
+              className={
+                selected == catchItem
+                  ? "gis-sidebar__arrowDown-icon arrowDown-icon-go"
+                  : "gis-sidebar__arrowDown-icon"
+              }
+            >
+              <FontAwesomeIcon icon={item.arrow} />
+            </div>
           </div>
-          <div className="gis-sidebar__title">{item.title}</div>
-          <div
-            className={
-              selected == catchItem
-                ? "gis-sidebar__arrowDown-icon arrowDown-icon-go"
-                : "gis-sidebar__arrowDown-icon"
-            }
-          >
-            <FontAwesomeIcon icon={item.arrow} />
-          </div>
-        </Link>
+        ) : (
+          <Link to={item.link} className="gis-sidebar__link">
+            <div className="gis-sidebar__icon">
+              <FontAwesomeIcon icon={item.icon} />
+            </div>
+            <div className="gis-sidebar__title">{item.title}</div>
+            <div
+              className={
+                selected == catchItem
+                  ? "gis-sidebar__arrowDown-icon arrowDown-icon-go"
+                  : "gis-sidebar__arrowDown-icon"
+              }
+            >
+              <FontAwesomeIcon icon={item.arrow} />
+            </div>
+          </Link>
+        )}
+
         {item.subMenu && (
           <ul className="gis-sidebar__dropdown">
             {item.subMenu.map((subItem, index) => (
               <li className="gis-sidebar__dropdown_item" key={index}>
-                <Link to={subItem.link} className="gis-sidebar__dropdown_link">
+                <Link
+                  to={
+                    subItem.link.pathname ? subItem.link.pathname : subItem.link
+                  }
+                  className="gis-sidebar__dropdown_link"
+                >
                   {subItem.title}
                 </Link>
               </li>

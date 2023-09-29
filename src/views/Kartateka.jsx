@@ -338,7 +338,7 @@ const Kartateka = () => {
 
       <div className="map-controllers">
         <h3 id="distanceDiv" className="text-white text-capitalize">
-          masofa: {leng} km
+          oraliq masofa: {leng} km
         </h3>
         <div style={{ marginTop: "60px" }}>
           <button

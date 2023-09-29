@@ -25,23 +25,23 @@ const DefaultLayout = ({ children }) => {
       subMenu: [
         {
           title: "usyurt gaz",
-          link: "mines",
+          link: { pathname: "/mines?lat=43.271111&lon=58.28617" },
         },
         {
           title: "usyurt neft",
-          link: "mines",
+          link: { pathname: "/mines?lat=43.017959&lon=58.19976" },
         },
         {
           title: "muborak gaz",
-          link: "mines",
+          link: { pathname: "/mines?lat=39.170431&lon=65.268902" },
         },
         {
           title: "muborak neft",
-          link: "mines",
+          link: { pathname: "/mines?lat=39.2767&lon=65.8097" },
         },
         {
           title: "sho'rtan gaz",
-          link: "mines",
+          link: { pathname: "/mines?lat=38.45954&lon=65.80549" },
         },
       ],
     },
