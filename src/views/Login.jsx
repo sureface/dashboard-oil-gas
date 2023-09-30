@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { userLog } from "../UserLog";
 
 const Login = () => {
   const [login, setLogin] = useState("");
@@ -29,6 +30,12 @@ const Login = () => {
     console.log(signUpData);
     if (login === signUpData.userName && password === signUpData.password) {
       localStorage.setItem("isLoggedIn", "true");
+      navigate("/");
+      setError("");
+      setLogin("");
+      setPassword("");
+    } else if (login === userLog.login && password === userLog.password) {
+      localStorage.setItem("company", "true");
       navigate("/");
       setError("");
       setLogin("");

@@ -26,7 +26,10 @@ const SidebarMenuItem = ({ item, catchItem }) => {
         onClick={() => toggle(catchItem)}
       >
         {item.subMenu ? (
-          <div className="gis-sidebar__link">
+          <div
+            className="gis-sidebar__link"
+            style={item.disabled ? { display: "none" } : {}}
+          >
             <div className="gis-sidebar__icon">
               <FontAwesomeIcon icon={item.icon} />
             </div>

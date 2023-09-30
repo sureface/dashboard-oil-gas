@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SidebarMenuItem from "./SidebarMenuItem";
 import Avatar from "../assets/avatar/avatarme.jpg";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faFire,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 
 const SidebarLeft = ({ menu }) => {
   const [drawing, setIsDrawing] = useState(false);
+
+  const [isComp, setIsComp] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const comp = JSON.parse(localStorage.getItem("company"));
+    if (comp === true) setIsComp(true);
+  }, []);
+
+  const logout = () => {
+    localStorage.clear();
+    navigate("/login");
+  };
 
   return (
     <>
@@ -24,14 +43,25 @@ const SidebarLeft = ({ menu }) => {
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">
-                  <FontAwesomeIcon icon={faGoogle} />
+                  <FontAwesomeIcon icon={isComp ? faFire : faGoogle} />
                 </a>
-                <div className="gis-sidebar__company_name">google</div>
+                <div className="gis-sidebar__company_name">
+                  {isComp ? "Muborak" : "google"}
+                </div>
               </div>
               <ul className="gis-sidebar__nav">
                 {menu.map((item, index) => (
                   <SidebarMenuItem key={index} catchItem={index} item={item} />
                 ))}
+                <div
+                  className="gis-sidebar__link cursor-pointer"
+                  onClick={logout}
+                >
+                  <div className="gis-sidebar__icon">
+                    <FontAwesomeIcon icon={faRightFromBracket} />
+                  </div>
+                  <div className="gis-sidebar__title">chiqish</div>
+                </div>
               </ul>
             </div>
 

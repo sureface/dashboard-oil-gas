@@ -27,7 +27,7 @@ const SignUp = () => {
       };
 
       localStorage.setItem("SIGNUP", JSON.stringify(data));
-      navigate("/");
+      navigate("/login");
     } else {
       setNotMatch(true);
     }

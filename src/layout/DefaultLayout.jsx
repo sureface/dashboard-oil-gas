@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import SidebarLeft from "../components/SidebarLeft";
 import {
   faAngleDown,
@@ -12,16 +12,25 @@ import {
 import SidebarRight from "../components/SidebarRight";
 
 const DefaultLayout = ({ children }) => {
+  const [isComp, setIsComp] = useState(false);
+
+  useEffect(() => {
+    const comp = JSON.parse(localStorage.getItem("company"));
+    if (comp === true) setIsComp(true);
+  }, []);
+
   const menu = [
     {
       icon: faGauge,
       title: "dashboard",
       link: "/",
+      disabled: false,
     },
     {
       icon: faOilWell,
       title: "konlar",
       arrow: faAngleDown,
+      disabled: isComp ? true : false,
       subMenu: [
         {
           title: "usyurt gaz",
@@ -49,21 +58,25 @@ const DefaultLayout = ({ children }) => {
       icon: faChartLine,
       title: "monitoring",
       link: "/monitoring",
+      disabled: false,
     },
     {
       icon: faMapLocationDot,
       title: "kartateka",
       link: "/kartateka",
+      disabled: false,
     },
     {
       icon: faEarthEurope,
       title: "orografiya",
       link: "/orografiya",
+      disabled: false,
     },
     {
       icon: faPenRuler,
       title: "Masalani tanlash",
       arrow: faAngleDown,
+      disabled: false,
       subMenu: [
         {
           title: "Bir qatlam",
