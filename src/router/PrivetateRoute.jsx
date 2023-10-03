@@ -1,10 +1,29 @@
+import { useSelector } from "react-redux";
 import { Outlet, Navigate } from "react-router-dom";
 
 const PrivetateRoute = () => {
-  const auth = localStorage.getItem("isLoggedIn");
-  const authcomp = localStorage.getItem("company");
+  const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
 
-  return auth || authcomp ? <Outlet /> : <Navigate to="/login" />;
+  function CheckAuth() {
+    if (
+      loggedInCompany &&
+      loggedInCompany.login.length > 0 &&
+      loggedInCompany.password.length > 0
+    ) {
+      return <Outlet />;
+    } else if (
+      loggedInUser &&
+      loggedInUser.login.length > 0 &&
+      loggedInUser.password.length > 0
+    ) {
+      return <Outlet />;
+    } else {
+      return <Navigate to="/login" />;
+    }
+  }
+
+  return <CheckAuth />;
 };
 
 export default PrivetateRoute;

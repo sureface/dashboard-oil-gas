@@ -10,14 +10,11 @@ import {
   faPenRuler,
 } from "@fortawesome/free-solid-svg-icons";
 import SidebarRight from "../components/SidebarRight";
+import { useSelector } from "react-redux";
 
 const DefaultLayout = ({ children }) => {
-  const [isComp, setIsComp] = useState(false);
+  const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
 
-  useEffect(() => {
-    const comp = JSON.parse(localStorage.getItem("company"));
-    if (comp === true) setIsComp(true);
-  }, []);
 
   const menu = [
     {
@@ -30,7 +27,7 @@ const DefaultLayout = ({ children }) => {
       icon: faOilWell,
       title: "konlar",
       arrow: faAngleDown,
-      disabled: isComp ? true : false,
+      disabled: loggedInCompany.login.length > 0 ? true : false,
       subMenu: [
         {
           title: "usyurt gaz",

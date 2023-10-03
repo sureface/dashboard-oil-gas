@@ -15,14 +15,10 @@ import SecondLayer from "./views/secondLayer";
 import Mines from "./views/Mines";
 import SignUp from "./views/SignUp";
 import UserInfo from "./views/UserInfo";
+import { useSelector } from "react-redux";
 
 function App() {
-  const [isComp, setIsComp] = useState(false);
-
-  useEffect(() => {
-    const comp = JSON.parse(localStorage.getItem("company"));
-    if (comp === true) setIsComp(true);
-  }, []);
+  const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
 
   return (
     <>
@@ -30,7 +26,13 @@ function App() {
         <Routes>
           <Route element={<PrivetateRoute />}>
             <Route
-              element={isComp ? <MuborakNeft /> : <DefaultMap />}
+              element={
+                loggedInCompany.login.length > 0 ? (
+                  <MuborakNeft />
+                ) : (
+                  <DefaultMap />
+                )
+              }
               path="/"
               exact
             />

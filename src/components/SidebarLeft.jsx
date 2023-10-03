@@ -2,29 +2,41 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SidebarMenuItem from "./SidebarMenuItem";
-import Avatar from "../assets/avatar/avatarme.jpg";
+import Avatar from "../assets/avatar/avatarme.png";
 import {
   faBars,
   faFire,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginCompanyReducer,
+  loginReducer,
+} from "../redux/features/auth/authSlice";
 
 const SidebarLeft = ({ menu }) => {
   const [drawing, setIsDrawing] = useState(false);
 
-  const [isComp, setIsComp] = useState(false);
+  const dispatch = useDispatch();
 
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    const comp = JSON.parse(localStorage.getItem("company"));
-    if (comp === true) setIsComp(true);
-  }, []);
+  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
+  const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
+  const signupUser = useSelector((state) => state.auth.signupUser);
 
   const logout = () => {
-    localStorage.clear();
-    navigate("/login");
+    if (loggedInCompany.login.length > 0) {
+      const data = {
+        login: "",
+        password: "",
+      };
+      dispatch(loginCompanyReducer(data));
+    } else if (loggedInUser.login.length > 0) {
+      const data = {
+        login: "",
+        password: "",
+      };
+      dispatch(loginReducer(data));
+    }
   };
 
   return (
@@ -43,10 +55,16 @@ const SidebarLeft = ({ menu }) => {
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">
-                  <FontAwesomeIcon icon={isComp ? faFire : faGoogle} />
+                  <FontAwesomeIcon
+                    icon={loggedInCompany.login.length > 0 ? faFire : faGoogle}
+                  />
                 </a>
                 <div className="gis-sidebar__company_name">
-                  {isComp ? "Muborak" : "google"}
+                  {loggedInCompany.login.length > 0
+                    ? "Muborak"
+                    : signupUser.companyName.length > 0
+                    ? signupUser.companyName
+                    : "Google"}
                 </div>
               </div>
               <ul className="gis-sidebar__nav">
@@ -70,7 +88,11 @@ const SidebarLeft = ({ menu }) => {
                 <img src={Avatar} />
               </a>
               <div className="gis-sidebar__userDetails">
-                <div className="gis-sidebar__userName">Jasur Juraev</div>
+                <div className="gis-sidebar__userName">
+                  {signupUser.userName.length > 0
+                    ? signupUser.fullName
+                    : "John Due"}
+                </div>
                 <div className="gis-sidebar__userStatus">admin</div>
               </div>
             </div>

@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { userLog } from "../UserLog";
+import {
+  loginReducer,
+  loginCompanyReducer,
+} from "../redux/features/auth/authSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState(false);
 
   const [signUpData, setSignUpData] = useState([]);
+  const signupUser = useSelector((state) => state.auth.signupUser);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    const data = localStorage.getItem("SIGNUP");
-    const jsonData = JSON.parse(data);
-    if (jsonData && Object.keys(jsonData).length > 0) {
-      setSignUpData(jsonData);
-      setLogin(jsonData.userName);
-      setPassword(jsonData.password);
+    if (signupUser && Object.keys(signupUser).length > 0) {
+      setSignUpData(signupUser);
+      setLogin(signupUser.userName);
+      setPassword(signupUser.password);
     } else {
       setSignUpData([]);
       setLogin("");
@@ -27,21 +32,33 @@ const Login = () => {
 
   const SubmitHandler = (e) => {
     e.preventDefault();
-    console.log(signUpData);
-    if (login === signUpData.userName && password === signUpData.password) {
-      localStorage.setItem("isLoggedIn", "true");
+    if (
+      signUpData.userName.length > 0 &&
+      signUpData.password.length > 0 &&
+      login === signUpData.userName &&
+      password === signUpData.password
+    ) {
+      const data = {
+        login,
+        password,
+      };
+      dispatch(loginReducer(data));
       navigate("/");
-      setError("");
+      setError(false);
       setLogin("");
       setPassword("");
     } else if (login === userLog.login && password === userLog.password) {
-      localStorage.setItem("company", "true");
+      const data = {
+        login,
+        password,
+      };
+      dispatch(loginCompanyReducer(data));
       navigate("/");
-      setError("");
+      setError(false);
       setLogin("");
       setPassword("");
     } else {
-      setError("login yoki parol noto'g'ri !");
+      setError(true);
     }
   };
 
@@ -76,7 +93,7 @@ const Login = () => {
                             value={login}
                           />
                           <div className="text-danger">
-                            {error ? error : ""}
+                            {error ? "login yoki parol noto'g'ri !" : ""}
                           </div>
                         </div>
 
@@ -90,7 +107,7 @@ const Login = () => {
                             value={password}
                           />
                           <div className="text-danger">
-                            {error ? error : ""}
+                            {error ? "login yoki parol noto'g'ri !" : ""}
                           </div>
                         </div>
 

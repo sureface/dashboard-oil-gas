@@ -11,12 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const Layout = ({ children }) => {
-  const [isComp, setIsComp] = useState(false);
-
-  useEffect(() => {
-    const comp = JSON.parse(localStorage.getItem("company"));
-    if (comp === true) setIsComp(true);
-  }, []);
+  const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
 
   const menu = [
     {
@@ -29,7 +24,7 @@ const Layout = ({ children }) => {
       icon: faOilWell,
       title: "konlar",
       arrow: faAngleDown,
-      disabled: isComp ? true : false,
+      disabled: loggedInCompany.login.length > 0 ? true : false,
       subMenu: [
         {
           title: "usyurt gaz",

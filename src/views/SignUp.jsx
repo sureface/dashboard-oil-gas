@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
+import { useDispatch } from "react-redux";
+import { signupReducer } from "../redux/features/auth/authSlice";
 const SignUp = () => {
   const [fullName, setFullName] = useState("");
   const [userName, setUserName] = useState("");
+  const [companyName, setCompanyName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+
+  const dispatch = useDispatch();
 
   const [notMatch, setNotMatch] = useState(false);
 
@@ -20,23 +24,25 @@ const SignUp = () => {
       const data = {
         fullName,
         userName,
+        companyName,
         email,
         number,
         password,
         repeatPassword,
       };
 
-      localStorage.setItem("SIGNUP", JSON.stringify(data));
+      dispatch(signupReducer(data));
       navigate("/login");
+      setFullName("");
+      setUserName("");
+      setCompanyName("");
+      setNumber("");
+      setPassword("");
+      setRepeatPassword("");
+      setEmail("");
     } else {
       setNotMatch(true);
     }
-    setFullName("");
-    setUserName("");
-    setNumber("");
-    setPassword("");
-    setRepeatPassword("");
-    setEmail("");
   };
 
   return (
@@ -84,6 +90,17 @@ const SignUp = () => {
                           type="text"
                           className="form-control"
                           required
+                          placeholder="Tashkilot Nomi ?"
+                          onChange={(e) => setCompanyName(e.target.value)}
+                          value={companyName}
+                        />
+                      </div>
+
+                      <div className="form-outline mb-4">
+                        <input
+                          type="text"
+                          className="form-control"
+                          required
                           placeholder="Email"
                           onChange={(e) => setEmail(e.target.value)}
                           value={email}
@@ -110,7 +127,7 @@ const SignUp = () => {
                           value={password}
                         />
                         <div className="text-danger">
-                          {notMatch ? "Paro'l to'g'ri kelmadi !" : ""}
+                          {notMatch ? "Paro'l Noto'g'ri Kiritildi !" : ""}
                         </div>
                       </div>
 
@@ -124,7 +141,7 @@ const SignUp = () => {
                           value={repeatPassword}
                         />
                         <div className="text-danger">
-                          {notMatch ? "Paro'l to'g'ri kelmadi !" : ""}
+                          {notMatch ? "Paro'l Noto'g'ri Kiritildi !" : ""}
                         </div>
                       </div>
 
