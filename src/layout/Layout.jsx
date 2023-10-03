@@ -9,6 +9,7 @@ import {
   faOilWell,
   faPenRuler,
 } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
 
 const Layout = ({ children }) => {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
