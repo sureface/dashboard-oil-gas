@@ -11,7 +11,7 @@ import Kartateka from "./views/Kartateka";
 import Monitoring from "./views/Monitoring";
 import Orografiya from "./views/Orografiya";
 import FirstLayer from "./views/FirstLayer";
-import SecondLayer from "./views/secondLayer";
+import SecondLayer from "./views/SecondLayer";
 import Mines from "./views/Mines";
 import SignUp from "./views/SignUp";
 import UserInfo from "./views/UserInfo";
@@ -52,8 +52,8 @@ function App() {
               }
               path="/orografiya"
             />
-            <Route element={<FirstLayer />} path="/first-layer" />
-            <Route element={<SecondLayer />} path="/second-layer" />
+            <Route element={<FirstLayer />} path="/1" />
+            <Route element={<SecondLayer />} path="/s1" />
             <Route element={<Mines />} path="/mines" />
             <Route element={<UserInfo />} path="/user-info" />
           </Route>
