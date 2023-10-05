@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+// import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SidebarMenuItem from "./SidebarMenuItem";
 import Avatar from "../assets/avatar/avatarme.png";
-import {
-  faBars,
-  faFire,
-  faRightFromBracket,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginCompanyReducer,
@@ -15,6 +11,7 @@ import {
   loginSuperUser,
 } from "../redux/features/auth/authSlice";
 import gisBg1 from "../assets/bgImg/gis-bg1.png";
+import Logo1 from "../assets/logo/logo5.png";
 
 const SidebarLeft = ({ menu }) => {
   const [drawing, setIsDrawing] = useState(false);
@@ -66,9 +63,10 @@ const SidebarLeft = ({ menu }) => {
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">
-                  <FontAwesomeIcon
+                  {/* <FontAwesomeIcon
                     icon={loggedInCompany.login.length > 0 ? faFire : faGoogle}
-                  />
+                  /> */}
+                  <img src={Logo1} alt="err" style={{ width: "40px" }} />
                 </a>
                 <div className="gis-sidebar__company_name">
                   {loggedInCompany.login.length > 0

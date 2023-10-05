@@ -8,6 +8,7 @@ import {
 } from "../redux/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import gisBg4 from "../assets/bgImg/gis-bg4.png";
+import Logo from "../assets/img/logoBlue.png";
 
 const Login = () => {
   const [login, setLogin] = useState("");
@@ -88,8 +89,13 @@ const Login = () => {
                   <div className="col-lg-6">
                     <div className="card-body p-md-5 mx-md-4">
                       <div className="text-center">
-                        <h1>Neft Gaz</h1>
-                        <h4 className="mt-1 mb-5 pb-1">
+                        <img
+                          src={Logo}
+                          alt="err"
+                          style={{ width: "50px", marginBottom: "5px" }}
+                        />
+                        <h2 className="text-main">Neft Gaz</h2>
+                        <h4 className="mt-1 mb-5 pb-1 text-main">
                           We are The Lotus Team
                         </h4>
                       </div>
