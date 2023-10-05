@@ -29,6 +29,9 @@ const DefaultMap = () => {
         ]) => {
           esriConfig.apiKey =
             "AAPK6c828a943be04f099788653fe34e553cmg3-f8tJr_TYm-UdRrf70zrhLRZOZ9JOaR0UVeG7cGRabHlkOQ2-_JasvGvWk--7";
+          esriConfig = {
+            locale: "ru",
+          };
 
           const locations = [
             {
@@ -164,6 +167,12 @@ const DefaultMap = () => {
               view.graphics.add(marker);
             });
           });
+          return () => {
+            // Clean up and destroy the map and view when the component unmounts
+            if (view) {
+              view.container = null;
+            }
+          };
         }
       )
       .catch((error) => {

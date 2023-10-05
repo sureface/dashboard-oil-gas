@@ -66,14 +66,22 @@ const SidebarMenuItem = ({ item, catchItem }) => {
           <ul className="gis-sidebar__dropdown">
             {item.subMenu.map((subItem, index) => (
               <li className="gis-sidebar__dropdown_item" key={index}>
-                <Link
-                  to={
-                    subItem.link.pathname ? subItem.link.pathname : subItem.link
-                  }
-                  className="gis-sidebar__dropdown_link"
-                >
-                  {subItem.title}
-                </Link>
+                {subItem.test ? (
+                  <div className="gis-sidebar__dropdown_link">
+                    {subItem.title}
+                  </div>
+                ) : (
+                  <Link
+                    to={
+                      subItem.link.pathname
+                        ? subItem.link.pathname
+                        : subItem.link
+                    }
+                    className="gis-sidebar__dropdown_link"
+                  >
+                    {subItem.title}
+                  </Link>
+                )}
               </li>
             ))}
           </ul>

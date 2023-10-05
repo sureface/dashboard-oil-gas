@@ -15,30 +15,43 @@ import SecondLayer from "./views/secondLayer";
 import Mines from "./views/Mines";
 import SignUp from "./views/SignUp";
 import UserInfo from "./views/UserInfo";
+import OrografiyaMuborak from "./views/OrografiyaMuborak";
 import { useSelector } from "react-redux";
 
 function App() {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
+  const loggedInsuperUser = useSelector(
+    (state) => state.auth.loggedInsuperUser
+  );
+
+  function Logchacker() {
+    if (loggedInCompany.login.length > 0) {
+      return <MuborakNeft />;
+    } else if (loggedInsuperUser.login.length > 0) {
+      return <DefaultMap />;
+    } else {
+      return <DefaultMap />;
+    }
+  }
 
   return (
     <>
       <Router>
         <Routes>
           <Route element={<PrivetateRoute />}>
+            <Route element={<Logchacker />} path="/" exact />
+            <Route element={<Kartateka />} path="/kartateka" />
+            <Route element={<Monitoring />} path="/monitoring" />
             <Route
               element={
                 loggedInCompany.login.length > 0 ? (
-                  <MuborakNeft />
+                  <OrografiyaMuborak />
                 ) : (
-                  <DefaultMap />
+                  <Orografiya />
                 )
               }
-              path="/"
-              exact
+              path="/orografiya"
             />
-            <Route element={<Kartateka />} path="/kartateka" />
-            <Route element={<Monitoring />} path="/monitoring" />
-            <Route element={<Orografiya />} path="/orografiya" />
             <Route element={<FirstLayer />} path="/first-layer" />
             <Route element={<SecondLayer />} path="/second-layer" />
             <Route element={<Mines />} path="/mines" />

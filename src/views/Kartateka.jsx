@@ -8,11 +8,13 @@ import FeatureSet from "@arcgis/core/rest/support/FeatureSet";
 import * as route from "@arcgis/core/rest/route";
 import Layout from "../layout/Layout";
 import axios from "axios";
+import { useSelector } from "react-redux";
 
 let leng = 0;
 
 const Kartateka = () => {
   const map = useRef(null);
+  const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
   const [cordinate, setCordinate] = useState({
     lat: 0,
     lon: 0,
@@ -336,13 +338,29 @@ const Kartateka = () => {
     <Layout className="kartateka">
       <div id="mapView" ref={map}></div>
 
-      <div className="map-controllers">
-        <h3 id="distanceDiv" className="text-white text-capitalize">
+      <div
+        className="map-controllers"
+        style={{
+          top: loggedInCompany.login.length > 0 ? 0 : "50%",
+          transform:
+            loggedInCompany.login.length > 0
+              ? "translateY(0)"
+              : "translateY(-50%)",
+          height: loggedInCompany.login.length > 0 ? "auto" : "80%",
+        }}
+      >
+        <h3 id="distanceDiv" className="text-white text-capitalize text-center">
           oraliq masofa: {leng} km
         </h3>
-        <div style={{ marginTop: "60px" }}>
+        <div
+          style={{ marginTop: loggedInCompany.login.length > 0 ? 0 : "60px" }}
+        >
           <button
-            style={{ width: "100%", marginTop: "10px" }}
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              display: loggedInCompany.login.length > 0 ? "none" : "block",
+            }}
             className="map-btns"
             onClick={() => addStop(39.170431, 65.268902, true)}
           >
@@ -356,21 +374,33 @@ const Kartateka = () => {
             Muborak neft
           </button>
           <button
-            style={{ width: "100%", marginTop: "10px" }}
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              display: loggedInCompany.login.length > 0 ? "none" : "block",
+            }}
             className="map-btns"
             onClick={() => addStop(43.271111, 58.28617, true)}
           >
             Ustyurt gaz
           </button>
           <button
-            style={{ width: "100%", marginTop: "10px" }}
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              display: loggedInCompany.login.length > 0 ? "none" : "block",
+            }}
             className="map-btns"
             onClick={() => addStop(43.017959, 58.19976, false)}
           >
             Ustyurt neft
           </button>
           <button
-            style={{ width: "100%", marginTop: "10px" }}
+            style={{
+              width: "100%",
+              marginTop: "10px",
+              display: loggedInCompany.login.length > 0 ? "none" : "block",
+            }}
             className="map-btns"
             onClick={() => addStop(38.45954, 65.80549, true)}
           >

@@ -15,7 +15,6 @@ import { useSelector } from "react-redux";
 const DefaultLayout = ({ children }) => {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
 
-
   const menu = [
     {
       icon: faGauge,
@@ -78,10 +77,12 @@ const DefaultLayout = ({ children }) => {
         {
           title: "Bir qatlam",
           link: "/first-layer",
+          test: true,
         },
         {
           title: "Ikki qatlam",
           link: "/second-layer",
+          test: true,
         },
       ],
     },

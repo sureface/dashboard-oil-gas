@@ -12,7 +12,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   loginCompanyReducer,
   loginReducer,
+  loginSuperUser,
 } from "../redux/features/auth/authSlice";
+import gisBg1 from "../assets/bgImg/gis-bg1.png";
 
 const SidebarLeft = ({ menu }) => {
   const [drawing, setIsDrawing] = useState(false);
@@ -22,6 +24,9 @@ const SidebarLeft = ({ menu }) => {
   const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
   const signupUser = useSelector((state) => state.auth.signupUser);
+  const loggedInsuperUser = useSelector(
+    (state) => state.auth.loggedInsuperUser
+  );
 
   const logout = () => {
     if (loggedInCompany.login.length > 0) {
@@ -36,6 +41,12 @@ const SidebarLeft = ({ menu }) => {
         password: "",
       };
       dispatch(loginReducer(data));
+    } else if (loggedInsuperUser.login.length > 0) {
+      const data = {
+        login: "",
+        password: "",
+      };
+      dispatch(loginSuperUser(data));
     }
   };
 
@@ -46,12 +57,12 @@ const SidebarLeft = ({ menu }) => {
       >
         <div className="gis-sidebar__menu-wrapper w-100 h-100 position-relative">
           <div
-            className="gis-sidebar__drawer"
+            className="gis-sidebar__drawer z-1"
             onClick={() => setIsDrawing(!drawing)}
           >
             <FontAwesomeIcon icon={faBars} />
           </div>
-          <div className="gis-sidebar__menu-wrapper w-100 h-100 d-flex flex-column justify-content-between">
+          <div className="gis-sidebar__menu-wrapper w-100 h-100 d-flex flex-column justify-content-between z-1">
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">
@@ -96,6 +107,9 @@ const SidebarLeft = ({ menu }) => {
                 <div className="gis-sidebar__userStatus">admin</div>
               </div>
             </div>
+          </div>
+          <div className="gis-sidebar__bgImg z-n1">
+            <img src={gisBg1} alt="err" />
           </div>
         </div>
       </div>

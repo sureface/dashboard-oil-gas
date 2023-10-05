@@ -12,6 +12,21 @@ $gis-hover-white: #f8f9fa;
   transition: all 0.5s cubic-bezier(0, 1, 0, 1);
   z-index: 10;
 
+  &__bgImg {
+    position: absolute;
+    bottom: 10%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 200px;
+
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
   &.gis-sidebar--mini {
     min-width: 70px;
 

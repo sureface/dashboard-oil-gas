@@ -30,43 +30,521 @@ ChartJS.register(
 );
 
 export const LineChartSimple = () => {
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+    "2034",
+    "2035",
+    "2036",
+    "2037",
+    "2038",
+    "2039",
+    "2040",
+  ];
+
+  const data1 = [
+    "20.85",
+    "20.11",
+    "19.03",
+    "18.06",
+    "17.41",
+    "16.81",
+    "16.42",
+    "16.08",
+    "15.79",
+    "15.20",
+    "14.61",
+    "14.03",
+    "13.44",
+    "12.85",
+    "12.26",
+    "11.67",
+    "11.08",
+    "10.49",
+    "9.90",
+    "9.31",
+    "8.75",
+    "8.24",
+    "7.76",
+    "7.31",
+    "6.89",
+    "6.50",
+    "6.14",
+    "5.80",
+    "5.48",
+    "5.18",
+    "4.91",
+    "4.65",
+    "4.40",
+    "4.18",
+    "3.97",
+    "3.77",
+    "3.59",
+  ];
+
+  const data2 = [
+    "18.35",
+    "17.61",
+    "16.53",
+    "15.56",
+    "14.91",
+    "14.31",
+    "13.92",
+    "13.58",
+    "13.29",
+    "12.70",
+    "12.11",
+    "11.53",
+    "10.94",
+    "10.35",
+    "9.76",
+    "9.17",
+    "8.58",
+    "7.99",
+    "7.40",
+    "6.81",
+    "6.35",
+    "5.94",
+    "5.56",
+    "5.21",
+    "4.89",
+    "4.70",
+    "4.34",
+    "4.00",
+    "3.68",
+    "3.38",
+    "3.11",
+    "2.85",
+    "2.60",
+    "2.38",
+    "2.17",
+    "1.97",
+    "1.79",
+  ];
+
+  const data3 = [
+    "15.66",
+    "15.02",
+    "14.08",
+    "13.25",
+    "12.70",
+    "12.19",
+    "11.86",
+    "11.57",
+    "11.32",
+    "10.82",
+    "10.32",
+    "9.82",
+    "9.32",
+    "8.82",
+    "8.32",
+    "7.82",
+    "7.32",
+    "6.82",
+    "6.32",
+    "5.82",
+    "5.44",
+    "5.09",
+    "4.77",
+    "4.47",
+    "4.20",
+    "4.04",
+    "3.73",
+    "3.44",
+    "3.17",
+    "2.91",
+    "2.67",
+    "2.45",
+    "2.25",
+    "2.05",
+    "1.87",
+    "1.70",
+    "1.54",
+  ];
+
+  const barData = [
+    "1",
+    "1",
+    "3",
+    "3",
+    "3",
+    "4",
+    "5",
+    "4",
+    "3",
+    "4",
+    "4",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+  ];
+
+  // bottom modal data top chart data
+
+  const ModalLabels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+    "2034",
+    "2035",
+    "2036",
+    "2037",
+    "2038",
+    "2039",
+    "2040",
+  ];
+
+  const modalData1 = [
+    "20.85",
+    "20.11",
+    "19.03",
+    "18.06",
+    "17.41",
+    "16.81",
+    "16.42",
+    "16.08",
+    "15.79",
+    "15.20",
+    "14.61",
+    "14.03",
+    "13.44",
+    "12.85",
+    "12.26",
+    "11.67",
+    "11.08",
+    "10.49",
+    "9.90",
+    "9.31",
+    "8.75",
+    "8.24",
+    "7.76",
+    "7.31",
+    "6.89",
+    "6.50",
+    "6.14",
+    "5.80",
+    "5.48",
+    "5.18",
+    "4.91",
+    "4.65",
+    "4.40",
+    "4.18",
+    "3.97",
+    "3.77",
+    "3.59",
+  ];
+
+  const modalData2 = [
+    "18.35",
+    "17.61",
+    "16.53",
+    "15.56",
+    "14.91",
+    "14.31",
+    "13.92",
+    "13.58",
+    "13.29",
+    "12.70",
+    "12.11",
+    "11.53",
+    "10.94",
+    "10.35",
+    "9.76",
+    "9.17",
+    "8.58",
+    "7.99",
+    "7.40",
+    "6.81",
+    "6.35",
+    "5.94",
+    "5.56",
+    "5.21",
+    "4.89",
+    "4.70",
+    "4.34",
+    "4.00",
+    "3.68",
+    "3.38",
+    "3.11",
+    "2.85",
+    "2.60",
+    "2.38",
+    "2.17",
+    "1.97",
+    "1.79",
+  ];
+
+  const modalData3 = [
+    "15.66",
+    "15.02",
+    "14.08",
+    "13.25",
+    "12.70",
+    "12.19",
+    "11.86",
+    "11.57",
+    "11.32",
+    "10.82",
+    "10.32",
+    "9.82",
+    "9.32",
+    "8.82",
+    "8.32",
+    "7.82",
+    "7.32",
+    "6.82",
+    "6.32",
+    "5.82",
+    "5.44",
+    "5.09",
+    "4.77",
+    "4.47",
+    "4.20",
+    "4.04",
+    "3.73",
+    "3.44",
+    "3.17",
+    "2.91",
+    "2.67",
+    "2.45",
+    "2.25",
+    "2.05",
+    "1.87",
+    "1.70",
+    "1.54",
+  ];
+
+  const modalbBarData = [
+    "1",
+    "1",
+    "3",
+    "3",
+    "3",
+    "4",
+    "5",
+    "4",
+    "3",
+    "4",
+    "4",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+    "5",
+  ];
+
+  // prepering data for chart
+
+  const lineDataset1 = {
+    label: "пластовое давление",
+    data: data1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Забойное давление",
+    data: data2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset3 = {
+    label: "Устевое давление",
+    data: data3,
+    backgroundColor: "rgb(128, 100, 162)",
+    borderColor: "rgb(128, 100, 162)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "число скважин",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 5, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  // bottim for modal top for chart
+
+  const modalLineDataset1 = {
+    label: "пластовое давление",
+    data: modalData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const modalLineDataset2 = {
+    label: "Забойное давление",
+    data: modalData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const modalLineDataset3 = {
+    label: "Устевое давление",
+    data: modalData3,
+    backgroundColor: "rgb(128, 100, 162)",
+    borderColor: "rgb(128, 100, 162)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const modalBarDataset = {
+    label: "число скважин",
+    data: modalbBarData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 5, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, lineDataset3, barDataset],
+  };
+
+  const dataMixModalChart = {
+    labels: ModalLabels,
     datasets: [
-      {
-        label: "Sales",
-        data: [120, 150, 180, 200, 220, 250],
-        borderColor: "blue",
-        fill: false,
-      },
-      {
-        label: "Sales",
-        data: [100, 120, 140, 190, 180, 200],
-        borderColor: "blue",
-        fill: false,
-      },
+      modalLineDataset1,
+      modalLineDataset2,
+      modalLineDataset3,
+      modalBarDataset,
     ],
   };
-  const data1 = {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [120, 150, 180, 200, 220, 250],
-        borderColor: "blue",
-        fill: false,
-      },
-      {
-        label: "Sales",
-        data: [100, 120, 140, 190, 180, 200],
-        borderColor: "blue",
-        fill: false,
-      },
-    ],
-  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
   };
 
   const [showModal1, setShowModal1] = useState(false);
@@ -88,7 +566,7 @@ export const LineChartSimple = () => {
             <FontAwesomeIcon icon={faExpand} />
           </div>
         </div>
-        <Line data={data} options={options} />
+        <Bar data={dataMixChart} options={options} />
       </div>
 
       {showModal1 && (
@@ -105,7 +583,7 @@ export const LineChartSimple = () => {
               </div>
               <div className="modal-body">
                 <div className="chart-container-lg">
-                  <Line data={data1} options={options} />
+                  <Bar data={dataMixModalChart} options={options} />
                 </div>
               </div>
             </div>
@@ -117,44 +595,313 @@ export const LineChartSimple = () => {
 };
 
 // multple line chart
-export const MultpleLineChart = () => {
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-      {
-        label: "Expenses",
-        data: [5, 10, 2, 8, 1, 6],
-        borderColor: "rgb(255, 99, 132)",
-        tension: 0.1,
-      },
-    ],
+export const LineChartSimple1 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+    "2034",
+    "2035",
+    "2036",
+    "2037",
+    "2038",
+    "2039",
+    "2040",
+  ];
+
+  const data1 = [
+    "4200",
+    "9000",
+    "16300",
+    "23900",
+    "29534",
+    "35134",
+    "40234",
+    "43434",
+    "45434",
+    "49160",
+    "52832",
+    "56450",
+    "60019",
+    "63538",
+    "67013",
+    "70451",
+    "73856",
+    "77240",
+    "80612",
+    "83990",
+    "87163",
+    "90172",
+    "93062",
+    "95904",
+    "98531",
+    "100960",
+    "103205",
+    "105281",
+    "107199",
+    "108972",
+    "110612",
+    "112127",
+    "113528",
+    "114822",
+    "116019",
+    "117125",
+    "118148",
+  ];
+
+  const barData = [
+    "10000",
+    "10000",
+    "30000",
+    "30000",
+    "30000",
+    "40000",
+    "50000",
+    "40000",
+    "30000",
+    "40000",
+    "40000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+  ];
+
+  // bottom modal data top chart data
+
+  const ModalLabels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+    "2034",
+    "2035",
+    "2036",
+    "2037",
+    "2038",
+    "2039",
+    "2040",
+  ];
+
+  const modalData1 = [
+    "4200",
+    "9000",
+    "16300",
+    "23900",
+    "29534",
+    "35134",
+    "40234",
+    "43434",
+    "45434",
+    "49160",
+    "52832",
+    "56450",
+    "60019",
+    "63538",
+    "67013",
+    "70451",
+    "73856",
+    "77240",
+    "80612",
+    "83990",
+    "87163",
+    "90172",
+    "93062",
+    "95904",
+    "98531",
+    "100960",
+    "103205",
+    "105281",
+    "107199",
+    "108972",
+    "110612",
+    "112127",
+    "113528",
+    "114822",
+    "116019",
+    "117125",
+    "118148",
+  ];
+
+  const modalbBarData = [
+    "10000",
+    "10000",
+    "30000",
+    "30000",
+    "30000",
+    "40000",
+    "50000",
+    "40000",
+    "30000",
+    "40000",
+    "40000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+    "50000",
+  ];
+
+  // prepering data for chart
+
+  const lineDataset1 = {
+    label: "накопленная добыча конденсата",
+    data: data1,
+    backgroundColor: "#F79646",
+    borderColor: "#F79646",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
   };
-  const data1 = {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0.1,
-      },
-      {
-        label: "Expenses",
-        data: [5, 10, 2, 8, 1, 6],
-        borderColor: "rgb(255, 99, 132)",
-        tension: 0.1,
-      },
-    ],
+
+  const barDataset = {
+    label: "n скв",
+    data: barData,
+    backgroundColor: "#C0504D",
+    borderColor: "#C0504D",
+    borderWidth: 1,
+    barThickness: 5, // Adjust the width of the bars here
+    type: "bar",
   };
+
+  // bottim for modal top for chart
+
+  const modalLineDataset1 = {
+    label: "накопленная добыча конденсата",
+    data: modalData1,
+    backgroundColor: "#F79646",
+    borderColor: "#F79646",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const modalBarDataset = {
+    label: "n скв",
+    data: modalbBarData,
+    backgroundColor: "#C0504D",
+    borderColor: "#C0504D",
+    borderWidth: 1,
+    barThickness: 5, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, barDataset],
+  };
+
+  const dataMixModalChart = {
+    labels: ModalLabels,
+    datasets: [modalLineDataset1, modalBarDataset],
+  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
   };
 
   const [showModal1, setShowModal1] = useState(false);
@@ -176,7 +923,7 @@ export const MultpleLineChart = () => {
             <FontAwesomeIcon icon={faExpand} />
           </div>
         </div>
-        <Line data={data} options={options} />
+        <Bar data={dataMixChart} options={options} />
       </div>
 
       {showModal1 && (
@@ -193,7 +940,7 @@ export const MultpleLineChart = () => {
               </div>
               <div className="modal-body">
                 <div className="chart-container-lg">
-                  <Line data={data1} options={options} />
+                  <Bar data={dataMixModalChart} options={options} />
                 </div>
               </div>
             </div>
@@ -205,33 +952,265 @@ export const MultpleLineChart = () => {
 };
 
 // Stepped line chart
-export const SteppedLineChart = () => {
-  const data = {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0,
-      },
-    ],
+export const LineChartSimple2 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+    "2034",
+    "2035",
+    "2036",
+    "2037",
+    "2038",
+    "2039",
+    "2040",
+  ];
+
+  const lineData = [
+    "42000",
+    "48000",
+    "73000",
+    "76000",
+    "56340",
+    "56000",
+    "51000",
+    "32000",
+    "20000",
+    "37260",
+    "36720",
+    "36180",
+    "35690",
+    "35190",
+    "34760",
+    "34380",
+    "34050",
+    "33840",
+    "33720",
+    "33780",
+    "31730",
+    "30090",
+    "28900",
+    "28420",
+    "26270",
+    "24290",
+    "22450",
+    "20750",
+    "19180",
+    "17730",
+    "16390",
+    "15150",
+    "14010",
+    "12950",
+    "11970",
+    "11060",
+    "10230",
+  ];
+  const lineData1 = [
+    "4200",
+    "9000",
+    "16300",
+    "23900",
+    "29534",
+    "35134",
+    "40234",
+    "43434",
+    "45434",
+    "49160",
+    "52832",
+    "56450",
+    "60019",
+    "63538",
+    "67013",
+    "70451",
+    "73856",
+    "77240",
+    "80612",
+    "83990",
+    "87163",
+    "90172",
+    "93062",
+    "95904",
+    "98531",
+    "100960",
+    "103205",
+    "105281",
+    "107199",
+    "108972",
+    "110612",
+    "112127",
+    "113528",
+    "114822",
+    "116019",
+    "117125",
+    "118148",
+  ];
+
+  // bottom for modal top for chart
+
+  const modalLineData = [
+    "42000",
+    "48000",
+    "73000",
+    "76000",
+    "56340",
+    "56000",
+    "51000",
+    "32000",
+    "20000",
+    "37260",
+    "36720",
+    "36180",
+    "35690",
+    "35190",
+    "34760",
+    "34380",
+    "34050",
+    "33840",
+    "33720",
+    "33780",
+    "31730",
+    "30090",
+    "28900",
+    "28420",
+    "26270",
+    "24290",
+    "22450",
+    "20750",
+    "19180",
+    "17730",
+    "16390",
+    "15150",
+    "14010",
+    "12950",
+    "11970",
+    "11060",
+    "10230",
+  ];
+  const modalLineData1 = [
+    "4200",
+    "9000",
+    "16300",
+    "23900",
+    "29534",
+    "35134",
+    "40234",
+    "43434",
+    "45434",
+    "49160",
+    "52832",
+    "56450",
+    "60019",
+    "63538",
+    "67013",
+    "70451",
+    "73856",
+    "77240",
+    "80612",
+    "83990",
+    "87163",
+    "90172",
+    "93062",
+    "95904",
+    "98531",
+    "100960",
+    "103205",
+    "105281",
+    "107199",
+    "108972",
+    "110612",
+    "112127",
+    "113528",
+    "114822",
+    "116019",
+    "117125",
+    "118148",
+  ];
+
+  const lineDataset1 = {
+    label: "годовая",
+    data: lineData,
+    backgroundColor: "#8064A2",
+    borderColor: "#8064A2",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
   };
-  const data1 = {
-    labels: ["January", "February", "March", "April", "May", "June"],
-    datasets: [
-      {
-        label: "Sales",
-        data: [12, 19, 3, 5, 2, 3],
-        borderColor: "rgb(75, 192, 192)",
-        tension: 0,
-      },
-    ],
+
+  const lineDataset2 = {
+    label: "накопленная",
+    data: lineData1,
+    backgroundColor: "#F79646",
+    borderColor: "#F79646",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
   };
+
+  const modalLineDataset1 = {
+    label: "годовая",
+    data: modalLineData,
+    backgroundColor: "#8064A2",
+    borderColor: "#8064A2",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const modalLineDataset2 = {
+    label: "накопленная",
+    data: modalLineData1,
+    backgroundColor: "#F79646",
+    borderColor: "#F79646",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2],
+  };
+
+  const modalDataMixChart = {
+    labels: labels,
+    datasets: [modalLineDataset1, modalLineDataset2],
+  };
+
   const options = {
     responsive: true,
     maintainAspectRatio: false,
-    stepped: true,
+    scales: {
+      y: {
+        beginAtZero: true,
+      },
+    },
   };
 
   const [showModal1, setShowModal1] = useState(false);
@@ -253,7 +1232,7 @@ export const SteppedLineChart = () => {
             <FontAwesomeIcon icon={faExpand} />
           </div>
         </div>
-        <Line data={data} options={options} />
+        <Line data={dataMixChart} options={options} />
       </div>
 
       {showModal1 && (
@@ -270,7 +1249,7 @@ export const SteppedLineChart = () => {
               </div>
               <div className="modal-body">
                 <div className="chart-container-lg">
-                  <Line data={data1} options={options} />
+                  <Line data={modalDataMixChart} options={options} />
                 </div>
               </div>
             </div>
@@ -360,6 +1339,7 @@ export const DrawChartFromExcel = (data) => {
   return <div>Excel fayl yuklang</div>;
 };
 
+// top not used yet !^^^!
 //  statisc excel  LineChart Chart
 
 export const ExampleSChart1 = () => {
@@ -602,7 +1582,7 @@ export const ExampleSChart1 = () => {
     backgroundColor: "rgb(155, 187, 89)",
     borderColor: "rgb(155, 187, 89)",
     borderWidth: 1,
-    barThickness: 10, // Adjust the width of the bars here
+    barThickness: 5, // Adjust the width of the bars here
     type: "bar",
   };
 
@@ -766,7 +1746,7 @@ export const ExampleSChart2 = () => {
     backgroundColor: "#C0504D",
     borderColor: "#C0504D",
     borderWidth: 1,
-    barThickness: 10, // Adjust the width of the bars here
+    barThickness: 5, // Adjust the width of the bars here
     type: "bar",
   };
 
@@ -953,3 +1933,5 @@ export const ExampleSChart3 = () => {
     </div>
   );
 };
+
+//  for right sidebar static charts

@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { userLog } from "../UserLog";
+import { superUser, userLog } from "../UserLog";
 import {
   loginReducer,
   loginCompanyReducer,
+  loginSuperUser,
 } from "../redux/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
+import gisBg4 from "../assets/bgImg/gis-bg4.png";
 
 const Login = () => {
   const [login, setLogin] = useState("");
@@ -53,6 +55,16 @@ const Login = () => {
         password,
       };
       dispatch(loginCompanyReducer(data));
+      navigate("/");
+      setError(false);
+      setLogin("");
+      setPassword("");
+    } else if (login === superUser.login && password === superUser.password) {
+      const data = {
+        login,
+        password,
+      };
+      dispatch(loginSuperUser(data));
       navigate("/");
       setError(false);
       setLogin("");
@@ -131,8 +143,8 @@ const Login = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="col-lg-6 d-flex align-items-center b-t-b-radius gradient-custom-2">
-                    <div className="text-white px-3 py-4 p-md-5 mx-md-4">
+                  <div className="col-lg-6 d-flex align-items-center b-t-b-radius gradient-custom-2 position-relative">
+                    <div className="text-white px-3 py-4 p-md-5 mx-md-4 z-1">
                       <h4 className="mb-4">We are more than just a company</h4>
                       <p className="small mb-0">
                         Lorem ipsum dolor sit amet, consectetur adipisicing
@@ -142,6 +154,11 @@ const Login = () => {
                         ea commodo consequat.
                       </p>
                     </div>
+                    <img
+                      src={gisBg4}
+                      alt="err"
+                      className="position-absolute w-100 h-200px z-0 bottom-0 start-50 translate-middle-x object-fit-contain"
+                    />
                   </div>
                 </div>
               </div>

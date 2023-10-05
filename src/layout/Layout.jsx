@@ -76,10 +76,12 @@ const Layout = ({ children }) => {
         {
           title: "Bir qatlam",
           link: "/first-layer",
+          test: true
         },
         {
           title: "Ikki qatlam",
           link: "/second-layer",
+          test: true
         },
       ],
     },

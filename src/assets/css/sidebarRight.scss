@@ -15,7 +15,7 @@ $gis-light-gray: #eff1f0;
   position: fixed;
   top: 0;
   right: 0;
-  width: 300px;
+  width: 400px;
   height: 100vh;
   background: $gis-light-gray;
   transition: all 0.5s ease;
@@ -47,12 +47,12 @@ $gis-light-gray: #eff1f0;
   }
 }
 .sidebar__inner {
-  width: 300px;
+  width: 400px;
   height: 100vh;
   padding: 15px;
   overflow: auto;
 }
 
 .sidebar.active {
-  right: -300px;
+  right: -400px;
 }

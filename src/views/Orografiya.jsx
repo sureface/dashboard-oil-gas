@@ -156,6 +156,12 @@ const Orografiya = () => {
               view.graphics.add(marker);
             });
           });
+          return () => {
+            // Clean up and destroy the map and view when the component unmounts
+            if (view) {
+              view.container = null;
+            }
+          };
         }
       )
       .catch((error) => {

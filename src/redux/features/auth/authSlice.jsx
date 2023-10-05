@@ -9,6 +9,10 @@ const initialState = {
     login: "",
     password: "",
   },
+  loggedInsuperUser: {
+    login: "",
+    password: "",
+  },
   signupUser: {
     fullName: "",
     userName: "",
@@ -26,6 +30,9 @@ export const authSlice = createSlice({
     loginReducer: (state, action) => {
       state.loggedInUser = action.payload;
     },
+    loginSuperUser: (state, action) => {
+      state.loggedInsuperUser = action.payload;
+    },
     signupReducer: (state, action) => {
       state.signupUser = action.payload;
     },
@@ -35,7 +42,11 @@ export const authSlice = createSlice({
   },
 });
 
-export const { loginReducer, signupReducer, loginCompanyReducer } =
-  authSlice.actions;
+export const {
+  loginReducer,
+  signupReducer,
+  loginCompanyReducer,
+  loginSuperUser,
+} = authSlice.actions;
 
 export default authSlice.reducer;

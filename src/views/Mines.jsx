@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import Layout from "../layout/Layout";
+import DefaultLayout from "../layout/DefaultLayout"
 import { useLocation } from "react-router-dom";
 import { loadModules } from "esri-loader";
 
@@ -189,9 +189,9 @@ const Mines = () => {
   }, [lat, lon]);
 
   return (
-    <Layout>
+    <DefaultLayout>
       <div id="mapView" ref={mapRef}></div>
-    </Layout>
+    </DefaultLayout>
   );
 };
 

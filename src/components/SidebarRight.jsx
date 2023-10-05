@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { LineChartSimple, MultpleLineChart, SteppedLineChart } from "./Chart";
+import { LineChartSimple, LineChartSimple1, LineChartSimple2 } from "./Chart";
 
 const SidebarRight = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,8 +14,8 @@ const SidebarRight = () => {
         </div>
         <div className="sidebar__inner">
           <LineChartSimple />
-          <MultpleLineChart />
-          <SteppedLineChart />
+          <LineChartSimple1 />
+          <LineChartSimple2 />
         </div>
       </div>
     </div>
