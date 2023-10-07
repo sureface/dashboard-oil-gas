@@ -4,7 +4,7 @@ import {
   faAngleDown,
   faChartLine,
   faEarthEurope,
-  faGauge,
+  faHome,
   faMapLocationDot,
   faOilWell,
   faPenRuler,
@@ -17,8 +17,8 @@ const DefaultLayout = ({ children }) => {
 
   const menu = [
     {
-      icon: faGauge,
-      title: "dashboard",
+      icon: faHome,
+      title: "Bosh Sahifa",
       link: "/",
       disabled: false,
     },

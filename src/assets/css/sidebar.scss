@@ -43,6 +43,31 @@ $gis-hover-white: #f8f9fa;
     .gis-sidebar__menu-wrapper {
       width: 70px !important;
     }
+    .gis-sidebar__item:hover {
+      overflow: unset;
+      transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+
+      .gis-sidebar__dropdown {
+        left: 70px;
+      }
+    }
+
+    .gis-sidebar__dropdown {
+      position: absolute;
+      top: 0;
+      left: -150px;
+      width: 140px;
+      max-height: 1000px;
+      height: auto;
+      z-index: -1;
+
+      background-color: $gis-primary;
+      overflow: unset;
+
+      .gis-sidebar__dropdown_item {
+        padding: 5px 10px;
+      }
+    }
   }
 
   &__drawer {
@@ -139,6 +164,7 @@ $gis-hover-white: #f8f9fa;
     justify-content: center;
     width: 70px;
     height: 100%;
+    z-index: 1;
 
     svg {
       font-size: 20px;
@@ -169,7 +195,6 @@ $gis-hover-white: #f8f9fa;
   &__dropdown {
     transition: all 0.5s cubic-bezier(0, 1, 0, 1);
     max-height: 0;
-    // opacity: 0;
     overflow: hidden;
 
     &_item {

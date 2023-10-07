@@ -47,8 +47,12 @@ const SignUp = () => {
 
   return (
     <section
-      className="h-screen gradient-form"
-      style={{ backgroundColor: "#eee" }}
+      className="gradient-form"
+      style={{
+        backgroundColor: "#eee",
+        paddingTop: "50px",
+        paddingBottom: "50px",
+      }}
     >
       <div className="container  h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
@@ -79,7 +83,7 @@ const SignUp = () => {
                           type="text"
                           className="form-control"
                           required
-                          placeholder="Foydalanuvchi NikName"
+                          placeholder="Foydalanish Ismi"
                           onChange={(e) => setUserName(e.target.value)}
                           value={userName}
                         />
@@ -90,7 +94,7 @@ const SignUp = () => {
                           type="text"
                           className="form-control"
                           required
-                          placeholder="Tashkilot Nomi ?"
+                          placeholder="Tashkilot Nomi"
                           onChange={(e) => setCompanyName(e.target.value)}
                           value={companyName}
                         />
@@ -112,7 +116,7 @@ const SignUp = () => {
                           type="number"
                           className="form-control"
                           required
-                          placeholder="Phone Number"
+                          placeholder="Telefon Raqam"
                           onChange={(e) => setNumber(e.target.value)}
                           value={number}
                         />
@@ -168,13 +172,12 @@ const SignUp = () => {
                 </div>
                 <div className="col-lg-6 d-flex align-items-center gradient-custom-2 b-t-b-radius">
                   <div className="text-white px-3 py-4  mx-md-4">
-                    <h4 className="mb-4">We are more than just a company</h4>
-                    <p className="small mb-0">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-                      sed do eiusmod tempor incididunt ut labore et dolore magna
-                      aliqua. Ut enim ad minim veniam, quis nostrud lorem50
-                      exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                      consequat.
+                    <h4 className="mb-4 text-capitalize">
+                      Biz bilan ishingiz osson !
+                    </h4>
+                    <p className="small mb-0 text-capitalize">
+                      biz sizga yanada ko'proq qulayliklar taklif etamiz.
+                      kanpaniyangizni online boshqaring
                     </p>
                   </div>
                 </div>

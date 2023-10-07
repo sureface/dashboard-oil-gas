@@ -4,7 +4,7 @@ import {
   faAngleDown,
   faChartLine,
   faEarthEurope,
-  faGauge,
+  faHome,
   faMapLocationDot,
   faOilWell,
   faPenRuler,
@@ -16,8 +16,8 @@ const Layout = ({ children }) => {
 
   const menu = [
     {
-      icon: faGauge,
-      title: "dashboard",
+      icon: faHome,
+      title: "Bosh Sahifa",
       link: "/",
       disabled: false,
     },
@@ -76,12 +76,12 @@ const Layout = ({ children }) => {
         {
           title: "Bir qatlam",
           link: "/first-layer",
-          test: true
+          test: true,
         },
         {
           title: "Ikki qatlam",
           link: "/second-layer",
-          test: true
+          test: true,
         },
       ],
     },

@@ -15,6 +15,8 @@ const DefaultMap = () => {
       "esri/widgets/Search",
       "esri/widgets/Home",
       "esri/widgets/Locate",
+      "esri/widgets/BasemapToggle",
+      "esri/widgets/BasemapGallery",
     ])
       .then(
         ([
@@ -26,6 +28,8 @@ const DefaultMap = () => {
           Search,
           Home,
           Locate,
+          BasemapToggle,
+          BasemapGallery,
         ]) => {
           esriConfig.apiKey =
             "AAPK6c828a943be04f099788653fe34e553cmg3-f8tJr_TYm-UdRrf70zrhLRZOZ9JOaR0UVeG7cGRabHlkOQ2-_JasvGvWk--7";
@@ -108,9 +112,26 @@ const DefaultMap = () => {
               view: view,
             });
 
+            const basemapToggle = new BasemapToggle({
+              view: view,
+              nextBasemap: "osm",
+            });
+
+            view.ui.add(basemapToggle, "bottom-right");
+
             view.ui.add(searchWidget, {
               position: "top-right",
             });
+
+            // const basemapGallery = new BasemapGallery({
+            //   view: view,
+            //   source: {
+            //     query: {
+            //       title: '"Streets" AND owner:esri',
+            //     },
+            //   },
+            // });
+            // view.ui.add(basemapGallery, "top-right"); // Add to the view
 
             // Move the search widget 20 pixels to the left
             const searchWidgetContainer = view.ui.find(searchWidget);

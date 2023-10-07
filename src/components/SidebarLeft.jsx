@@ -63,17 +63,14 @@ const SidebarLeft = ({ menu }) => {
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">
-                  {/* <FontAwesomeIcon
-                    icon={loggedInCompany.login.length > 0 ? faFire : faGoogle}
-                  /> */}
-                  <img src={Logo1} alt="err" style={{ width: "40px" }} />
+                  <img src={Logo1} alt="err" style={{ width: "35px" }} />
                 </a>
                 <div className="gis-sidebar__company_name">
                   {loggedInCompany.login.length > 0
                     ? "Muborak"
                     : signupUser.companyName.length > 0
                     ? signupUser.companyName
-                    : "Google"}
+                    : "Neft Va Gaz"}
                 </div>
               </div>
               <ul className="gis-sidebar__nav">
