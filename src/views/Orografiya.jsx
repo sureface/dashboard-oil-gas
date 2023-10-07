@@ -155,8 +155,8 @@ const Orografiya = () => {
                           value: {
                             sourceURL: location?.sourceURL.ground2
                               ? location?.sourceURL.ground2
-                              : location?.sourceURL.layer1
-                              ? location?.sourceURL.layer1
+                              : location?.sourceURL.layer2
+                              ? location?.sourceURL.layer2
                               : location?.sourceURL.layergif1,
                           },
                         },
