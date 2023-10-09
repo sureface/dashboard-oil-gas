@@ -7,6 +7,7 @@ import RouteParameters from "@arcgis/core/rest/support/RouteParameters";
 import FeatureSet from "@arcgis/core/rest/support/FeatureSet";
 import * as route from "@arcgis/core/rest/route";
 import Layout from "../layout/Layout";
+import BasemapToggle from "@arcgis/core/widgets/BasemapGallery";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
@@ -68,6 +69,13 @@ const Kartateka = () => {
     center: [65.08086, 41.86843],
     zoom: 6,
   });
+
+  const basemapToggle = new BasemapToggle({
+    view: view,
+    nextBasemap: "osm",
+  });
+
+  view.ui.add(basemapToggle, "bottom-left");
 
   // the symbol used to mark stops on the route
   const markerSymbol = {

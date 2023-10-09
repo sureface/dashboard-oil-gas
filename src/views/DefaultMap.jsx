@@ -16,7 +16,6 @@ const DefaultMap = () => {
       "esri/widgets/Home",
       "esri/widgets/Locate",
       "esri/widgets/BasemapToggle",
-      "esri/widgets/BasemapGallery",
     ])
       .then(
         ([
@@ -29,7 +28,6 @@ const DefaultMap = () => {
           Home,
           Locate,
           BasemapToggle,
-          BasemapGallery,
         ]) => {
           esriConfig.apiKey =
             "AAPK6c828a943be04f099788653fe34e553cmg3-f8tJr_TYm-UdRrf70zrhLRZOZ9JOaR0UVeG7cGRabHlkOQ2-_JasvGvWk--7";
