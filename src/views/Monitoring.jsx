@@ -8,6 +8,12 @@ import {
   ExampleSChart1,
   ExampleSChart2,
   ExampleSChart3,
+  ExampleSChart4,
+  ExampleSChart5,
+  ExampleSChart6,
+  ExampleSChart7,
+  ExampleSChart8,
+  ExampleSChart9,
 } from "../components/Chart";
 import TableResult from "../components/TableResult";
 import data1a1 from "../assets/img/data1-1.png";
@@ -178,6 +184,12 @@ const Monitoring = () => {
         <ExampleSChart1 />
         <ExampleSChart2 />
         <ExampleSChart3 />
+        <ExampleSChart4 />
+        <ExampleSChart5 />
+        <ExampleSChart6 />
+        <ExampleSChart7 />
+        <ExampleSChart8 />
+        <ExampleSChart9 />
         <h3 className="mb-3 text-center text-capitalize text-main">
           hisoblash natijalari
         </h3>

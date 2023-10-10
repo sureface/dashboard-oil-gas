@@ -15,7 +15,7 @@ const DefaultMap = () => {
       "esri/widgets/Search",
       "esri/widgets/Home",
       "esri/widgets/Locate",
-      "esri/widgets/BasemapToggle",
+       
     ])
       .then(
         ([
