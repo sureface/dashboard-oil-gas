@@ -6,6 +6,13 @@ import * as XLSX from "xlsx";
 import {
   DrawChartFromExcel,
   ExampleSChart1,
+  ExampleSChart10,
+  ExampleSChart11,
+  ExampleSChart12,
+  ExampleSChart13,
+  ExampleSChart14,
+  ExampleSChart15,
+  ExampleSChart16,
   ExampleSChart2,
   ExampleSChart3,
   ExampleSChart4,
@@ -31,6 +38,7 @@ import data3a3 from "../assets/img/data3-3.png";
 import data4a1 from "../assets/img/data4-1.png";
 import data4a2 from "../assets/img/data4-2.png";
 import data4a3 from "../assets/img/data4-3.png";
+import TitleCenter from "../components/TitleCenter";
 
 const Monitoring = () => {
   const [selectedFile, setSelectedFile] = useState(null);
@@ -181,15 +189,38 @@ const Monitoring = () => {
           statistik ko'rsatkich
         </h3>
         <DrawChartFromExcel data={selectedFile} localData={localData} />
+        <TitleCenter title="Давление, МПа" />
         <ExampleSChart1 />
+        <TitleCenter title="Накопленная добыча конденсата" />
         <ExampleSChart2 />
+        <TitleCenter title="Дебит по конденсату тыс. тонн" />
         <ExampleSChart3 />
+        <TitleCenter title="Определение коэффициентов 'а и b'" />
         <ExampleSChart4 />
+        <TitleCenter title="Устевое давление, МПа" />
         <ExampleSChart5 />
+        <TitleCenter title="Пластовое давление, МПа" />
         <ExampleSChart6 />
+        <TitleCenter title="Накопленная добыча газа млн.м3" />
         <ExampleSChart7 />
+        <TitleCenter title="Накопленная добыча газа %" />
+        <ExampleSChart10 />
+        <TitleCenter title="Годовая добыча газа, млн.м3" />
         <ExampleSChart8 />
+        <TitleCenter title="Среднесуточный дебит скважин тыс.м3/сут" />
         <ExampleSChart9 />
+        <TitleCenter title="Среднесуточный дебит скважин тыс.м3/сут" />
+        <ExampleSChart11 />
+        <TitleCenter title="Устевое давление, МПа" />
+        <ExampleSChart12 />
+        <TitleCenter title="Накопленная добыча газа млн.м3" />
+        <ExampleSChart13 />
+        <TitleCenter title="Годовая добыча газа, млн.м3" />
+        <ExampleSChart14 />
+        <TitleCenter title="Пластовое давление, МПа" />
+        <ExampleSChart15 />
+        <TitleCenter title="Накопленная добыча конденсата, тыс. т." />
+        <ExampleSChart16 />
         <h3 className="mb-3 text-center text-capitalize text-main">
           hisoblash natijalari
         </h3>

@@ -561,7 +561,7 @@ export const LineChartSimple = () => {
     <div>
       <div className="chart-container mb-5">
         <div className="d-flex align-items-center justify-content-between w-100 text-capitalize">
-          <div>chart description</div>
+          <div>Давление, МПа</div>
           <div onClick={handleModalOpen1} className="cursor-pointer">
             <FontAwesomeIcon icon={faExpand} />
           </div>
@@ -574,7 +574,7 @@ export const LineChartSimple = () => {
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content gis-chart-lg">
               <div className="modal-header">
-                <h5 className="modal-title">Chart title</h5>
+                <h5 className="modal-title">Давление, МПа</h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -918,7 +918,7 @@ export const LineChartSimple1 = () => {
     <div>
       <div className="chart-container mb-5">
         <div className="d-flex align-items-center justify-content-between w-100 text-capitalize">
-          <div>chart description</div>
+          <div>Накопленная добыча конденсата</div>
           <div onClick={handleModalOpen1} className="cursor-pointer">
             <FontAwesomeIcon icon={faExpand} />
           </div>
@@ -931,7 +931,7 @@ export const LineChartSimple1 = () => {
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content gis-chart-lg">
               <div className="modal-header">
-                <h5 className="modal-title">Chart title</h5>
+                <h5 className="modal-title">Накопленная добыча конденсата</h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -1227,7 +1227,7 @@ export const LineChartSimple2 = () => {
     <div>
       <div className="chart-container mb-5">
         <div className="d-flex align-items-center justify-content-between w-100 text-capitalize">
-          <div>chart description</div>
+          <div>Дебит по конденсату тыс. тонн</div>
           <div onClick={handleModalOpen1} className="cursor-pointer">
             <FontAwesomeIcon icon={faExpand} />
           </div>
@@ -1240,7 +1240,7 @@ export const LineChartSimple2 = () => {
           <div className="modal-dialog modal-dialog-centered" role="document">
             <div className="modal-content gis-chart-lg">
               <div className="modal-header">
-                <h5 className="modal-title">Chart title</h5>
+                <h5 className="modal-title">Дебит по конденсату тыс. тонн</h5>
                 <button
                   type="button"
                   className="btn-close"
@@ -1262,62 +1262,55 @@ export const LineChartSimple2 = () => {
 
 // excel file
 export const DrawChartFromExcel = (data) => {
+  console.log(data);
   if (data.data !== null) {
     const chartData = data.data;
 
-    function removeEmptyArrays(array) {
-      return array.filter((item) => {
-        if (Array.isArray(item)) {
-          const filteredItem = removeEmptyArrays(item);
-          return filteredItem.length > 0;
-        }
-        return Boolean(item);
-      });
-    }
+    const labels = chartData.slice(1).map((row) => row[0].toString());
 
-    const cleanArray = removeEmptyArrays(chartData);
-
-    const cleanArrayL2 = [];
-
-    for (let i = 0; i < cleanArray.length; i++) {
-      let data = cleanArray[i].filter(Boolean);
-      cleanArrayL2.push(data);
-    }
-
-    const getRandomColor = () => {
-      const letters = "0123456789ABCDEF";
-      let color = "#";
-      for (let i = 0; i < 6; i++) {
-        color += letters[Math.floor(Math.random() * 16)];
-      }
-      return color;
-    };
-
-    const labels = cleanArrayL2.slice(1).map((row) => row[0].toString());
-
-    const barDataset = {
-      label: "Bar Chart", //row[0].toString()
-      data: cleanArrayL2.slice(1).map((row) => row[1]),
-      backgroundColor: getRandomColor(),
-      borderColor: "rgba(75, 192, 192, 1)",
-      borderWidth: 1,
-      barThickness: 20, // Adjust the width of the bars here
-      type: "bar",
-    };
-
-    const lineDataset = {
-      label: "Line Chart", //row[0].toString()
-      data: cleanArrayL2.slice(1).map((row) => row[2]),
-      backgroundColor: getRandomColor(),
-      borderColor: "rgba(75, 192, 192, 1)",
+    const lineDataset1 = {
+      label: chartData[0][1], //row[0].toString()
+      data: chartData.slice(1).map((row) => row[1]),
+      backgroundColor: "rgba(155,187,89)",
+      borderColor: "rgba(155,187,89)",
       borderWidth: 2,
       fill: false,
       type: "line",
     };
 
-    const dataMixChart = {
+    const lineDataset2 = {
+      label: chartData[0][2], //row[0].toString()
+      data: chartData.slice(1).map((row) => row[2]),
+      backgroundColor: "rgba(128,100,162)",
+      borderColor: "rgba(128,100,162)",
+      borderWidth: 2,
+      fill: false,
+      type: "line",
+    };
+
+    const barDataset = {
+      label: chartData[0][3],
+      data: chartData.slice(1).map((row) => row[3]),
+      backgroundColor: "rgb(192,80,77)",
+      borderColor: "rgb(192,80,77)",
+      borderWidth: 1,
+      barThickness: 10, // Adjust the width of the bars here
+      type: "bar",
+    };
+
+    const barDataset1 = {
+      label: chartData[0][4],
+      data: chartData.slice(1).map((row) => row[4]),
+      backgroundColor: "rgb(79,129,189)",
+      borderColor: "rgb(79,129,189)",
+      borderWidth: 1,
+      barThickness: 10, // Adjust the width of the bars here
+      type: "bar",
+    };
+
+    const dataMixedChart = {
       labels: labels,
-      datasets: [barDataset, lineDataset],
+      datasets: [lineDataset1, lineDataset2, barDataset, barDataset1],
     };
 
     const options = {
@@ -1332,7 +1325,7 @@ export const DrawChartFromExcel = (data) => {
 
     return (
       <div className="excelArray">
-        <Bar data={dataMixChart} options={options} />
+        <Bar data={dataMixedChart} options={options} />
       </div>
     );
   }
@@ -2536,6 +2529,191 @@ export const ExampleSChart7 = () => {
     </div>
   );
 };
+export const ExampleSChart10 = () => {
+  const labels = [
+    "2014",
+    "2015",
+    "2016",
+    "2017",
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
+    "2024",
+    "2025",
+    "2026",
+    "2027",
+    "2028",
+    "2029",
+    "2030",
+    "2031",
+    "2032",
+    "2033",
+    "2034",
+    "2035",
+    "2036",
+    "2037",
+    "2038",
+    "2039",
+    "2040",
+  ];
+
+  const lineData1 = [
+    "32",
+    "35",
+    "37",
+    "40",
+    "43",
+    "46",
+    "48",
+    "51",
+    "54",
+    "57",
+    "59",
+    "62",
+    "64",
+    "66",
+    "68",
+    "70",
+    "71",
+    "73",
+    "75",
+    "76",
+    "77",
+    "78",
+    "80",
+    "81",
+    "82",
+    "82",
+    "83",
+  ];
+
+  const lineData2 = [
+    "29",
+    "31",
+    "33",
+    "34",
+    "36",
+    "37",
+    "39",
+    "41",
+    "42",
+    "43",
+    "45",
+    "46",
+    "48",
+    "49",
+    "50",
+    "51",
+    "53",
+    "54",
+    "55",
+    "56",
+    "57",
+    "58",
+    "59",
+    "60",
+    "61",
+    "62",
+    "63",
+  ];
+
+  const barData = [
+    "24",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+    "30",
+  ];
+
+  const lineDataset1 = {
+    label: "Накопленная добыча газа расчетный, %",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Накопленная добыча газа проектный, %",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин расчетный",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 10, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
 export const ExampleSChart8 = () => {
   const labels = [
     "2014",
@@ -2874,6 +3052,851 @@ export const ExampleSChart9 = () => {
   const dataMixChart = {
     labels: labels,
     datasets: [lineDataset1, lineDataset2, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart11 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "524",
+    "514",
+    "489",
+    "326",
+    "215",
+    "118",
+    "79",
+    "74",
+    "68",
+    "157",
+  ];
+
+  const lineData2 = [
+    "22,2",
+    "220",
+    "315",
+    "352",
+    "405",
+    "163",
+    "163",
+    "163",
+    "163",
+    "217",
+  ];
+
+  const barData = [
+    "40",
+    "40",
+    "140",
+    "140",
+    "140",
+    "170",
+    "200",
+    "170",
+    "140",
+    "170",
+  ];
+  const barData1 = [
+    "",
+    "40",
+    "40",
+    "40",
+    "40",
+    "170",
+    "170",
+    "170",
+    "170",
+    "170",
+  ];
+
+  const lineDataset1 = {
+    label: "Среднесуточный дебит скважин тыс.м3/сут фактический",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Среднесуточный дебит скважин тыс.м3/сут проектный",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart12 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "16.1",
+    "15.4",
+    "14.5",
+    "13.7",
+    "13.1",
+    "12.6",
+    "12.3",
+    "12.0",
+    "11.8",
+    "10.8",
+  ];
+
+  const lineData2 = [
+    "2,5",
+    "15.7",
+    "14.1",
+    "13.1",
+    "12.1",
+    "12.0",
+    "11.8",
+    "11.0",
+    "10.1",
+    "8.8",
+  ];
+
+  const barData = ["1", "1", "3", "3", "3", "4", "5", "4", "3", "4"];
+  const barData1 = ["", "1", "1", "1", "1", "4", "4", "4", "4", "4"];
+
+  const lineDataset1 = {
+    label: "Устевое давление фактический, МПа",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Устевое давление проектный, МПа",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart13 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "161",
+    "349",
+    "625",
+    "872",
+    "1036",
+    "1190",
+    "1288",
+    "1375",
+    "1449",
+    "1599",
+  ];
+
+  const lineData2 = [
+    "1,2",
+    "140",
+    "372",
+    "604",
+    "836",
+    "981",
+    "1126",
+    "1271",
+    "1416",
+    "1526",
+  ];
+
+  const barData = [
+    "100",
+    "60",
+    "350",
+    "350",
+    "350",
+    "440",
+    "600",
+    "440",
+    "350",
+    "440",
+  ];
+  const barData1 = [
+    "",
+    "100",
+    "100",
+    "100",
+    "100",
+    "440",
+    "440",
+    "440",
+    "440",
+    "440",
+  ];
+
+  const lineDataset1 = {
+    label: "Накопленная добыча газа фактический, млн. м3",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Накопленная добыча газа проектный, млн. м3",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart14 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "161",
+    "188",
+    "276",
+    "247",
+    "164",
+    "154",
+    "98",
+    "87",
+    "74",
+    "150",
+  ];
+
+  const lineData2 = [
+    "2,2",
+    "140",
+    "232",
+    "232",
+    "232",
+    "145",
+    "145",
+    "145",
+    "145",
+    "110",
+  ];
+
+  const barData = ["40", "40", "60", "60", "60", "70", "100", "70", "60", "70"];
+  const barData1 = ["", "40", "40", "40", "40", "70", "70", "70", "70", "70"];
+
+  const lineDataset1 = {
+    label: "Годовая добыча газа фактический, млн. м3",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Годовая добыча газа пректный, млн. м3",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart15 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "23,5",
+    "22.95",
+    "21.08",
+    "19.81",
+    "18.53",
+    "16.68",
+    "15.81",
+    "14.96",
+    "14.12",
+    "13.8",
+  ];
+
+  const lineData2 = [
+    "20.85",
+    "20.11",
+    "19.03",
+    "18.06",
+    "17.41",
+    "16.81",
+    "16.42",
+    "16.08",
+    "15.79",
+    "15.2",
+  ];
+
+  const barData = ["2", "2", "5", "5", "5", "7", "9", "7", "5", "7"];
+  const barData1 = ["", "2", "2", "2", "2", "7", "7", "7", "7", "7"];
+
+  const lineDataset1 = {
+    label: "Пластовое давление проектный, МПа",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Пластовое давление фактический, МПа",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart16 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "4.2",
+    "9",
+    "16.3",
+    "23.9",
+    "29.5",
+    "35.1",
+    "40.2",
+    "43.4",
+    "45.4",
+    "49.1",
+  ];
+
+  const lineData2 = [
+    "4,11",
+    "4.4",
+    "11.7",
+    "18.8",
+    "25.7",
+    "31.5",
+    "37.2",
+    "42.8",
+    "48.3",
+    "53.7",
+  ];
+
+  const barData = ["4", "4", "12", "12", "12", "17", "20", "17", "12", "17"];
+  const barData1 = ["", "4", "4", "4", "4", "17", "17", "17", "17", "17"];
+
+  const lineDataset1 = {
+    label: "Накопленная добыча конденсата фактический, тыс. т.",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Накопленная добыча конденсата проектный, тыс. т.",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
+  };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+    scales: {
+      x: {
+        position: "bottom",
+      },
+      y: {
+        beginAtZero: true,
+        position: "left",
+        ticks: {
+          align: "start",
+        },
+      },
+    },
+    plugins: {
+      legend: {
+        display: true,
+      },
+    },
+  };
+
+  return (
+    <div className="excelArray">
+      <Bar data={dataMixChart} options={options} />
+    </div>
+  );
+};
+export const ExampleSChart17 = () => {
+  const labels = [
+    "2004",
+    "2005",
+    "2006",
+    "2007",
+    "2008",
+    "2009",
+    "2010",
+    "2011",
+    "2012",
+    "2013",
+  ];
+
+  const lineData1 = [
+    "4.2",
+    "4.8",
+    "7.3",
+    "7.6",
+    "5.6",
+    "5.6",
+    "5.1",
+    "3.2",
+    "2",
+    "3.7",
+  ];
+
+  const lineData2 = [];
+
+  const barData = ["4", "4", "12", "12", "12", "17", "20", "17", "12", "17"];
+  const barData1 = ["", "4", "4", "4", "4", "17", "17", "17", "17", "17"];
+
+  const lineDataset1 = {
+    label: "Накопленная добыча конденсата фактический, тыс. т.",
+    data: lineData1,
+    backgroundColor: "rgb(79, 129, 189)",
+    borderColor: "rgb(79, 129, 189)",
+    borderWidth: 2,
+    fill: false,
+    type: "line",
+  };
+
+  const lineDataset2 = {
+    label: "Накопленная добыча конденсата проектный, тыс. т.",
+    data: lineData2,
+    backgroundColor: "rgb(192, 80, 77)",
+    borderColor: "rgb(192, 80, 77)",
+    borderWidth: 2,
+    tension: 0.1,
+    fill: false,
+    type: "line",
+  };
+
+  const barDataset = {
+    label: "Фонд скважин фактический",
+    data: barData,
+    backgroundColor: "rgb(155, 187, 89)",
+    borderColor: "rgb(155, 187, 89)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+
+  const barDataset1 = {
+    label: "Фонд скважин проектный",
+    data: barData1,
+    backgroundColor: "rgb(0, 0, 255)",
+    borderColor: "rgb(0, 0, 255)",
+    borderWidth: 1,
+    barThickness: 20, // Adjust the width of the bars here
+    type: "bar",
+  };
+  const dataMixChart = {
+    labels: labels,
+    datasets: [lineDataset1, lineDataset2, barDataset1, barDataset],
   };
 
   const options = {
