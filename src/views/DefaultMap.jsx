@@ -145,14 +145,14 @@ const DefaultMap = () => {
             const neft = {
               type: "picture-marker",
               url: symbol_oli,
-              width: 36,
-              height: 36,
+              width: 26,
+              height: 26,
             };
             const gaz = {
               type: "picture-marker",
               url: symbol_gas,
-              width: 36,
-              height: 36,
+              width: 26,
+              height: 26,
             };
 
             locations.forEach((location) => {

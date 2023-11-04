@@ -65,14 +65,14 @@ const Kartateka = () => {
   const sym = {
     type: "picture-marker",
     url: symbol_oli,
-    width: 36,
-    height: 36,
+    width: 26,
+    height: 26,
   };
   const sym1 = {
     type: "picture-marker",
     url: symbol_gas,
-    width: 36,
-    height: 36,
+    width: 26,
+    height: 26,
   };
 
   const routeUrl =

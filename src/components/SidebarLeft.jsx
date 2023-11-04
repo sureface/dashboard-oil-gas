@@ -100,7 +100,7 @@ const SidebarLeft = ({ menu }) => {
                 <div className="gis-sidebar__userName">
                   {signupUser.userName.length > 0
                     ? signupUser.fullName
-                    : "John Due"}
+                    : "Xamid Olimjon"}
                 </div>
                 <div className="gis-sidebar__userStatus">admin</div>
               </div>
