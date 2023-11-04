@@ -3,7 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import SidebarMenuItem from "./SidebarMenuItem";
 import Avatar from "../assets/avatar/avatarme.png";
-import { faBars, faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBarsStaggered,
+  faRightFromBracket,
+} from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginCompanyReducer,
@@ -57,7 +60,7 @@ const SidebarLeft = ({ menu }) => {
             className="gis-sidebar__drawer z-1"
             onClick={() => setIsDrawing(!drawing)}
           >
-            <FontAwesomeIcon icon={faBars} />
+            <FontAwesomeIcon icon={faBarsStaggered} />
           </div>
           <div className="gis-sidebar__menu-wrapper w-100 h-100 d-flex flex-column justify-content-between z-1">
             <div>

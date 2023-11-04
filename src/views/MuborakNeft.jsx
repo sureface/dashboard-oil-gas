@@ -2,6 +2,9 @@ import React, { useEffect, useRef } from "react";
 import { loadModules } from "esri-loader";
 import DefaultLayout from "../layout/DefaultLayout";
 
+import symbol_oli from "../assets/symbols/36.png";
+import symbol_gas from "../assets/symbols/36f.png";
+
 const MuborakNeft = () => {
   const lat = "39.2767";
   const lon = "65.8097";
@@ -44,6 +47,7 @@ const MuborakNeft = () => {
               title: "<b>Ustyurt gaz koni</b>",
               sourceURL:
                 "https://www.gazeta.uz/media/img/2022/05/Bh3XwK16526799246699_b.jpg",
+              detect: false,
             },
             {
               name: "Ustyurt neft",
@@ -54,6 +58,7 @@ const MuborakNeft = () => {
               title: "<b>Ustyurt neft</b>",
               sourceURL:
                 "https://www.gazeta.uz/media/img/2022/05/Bh3XwK16526799246699_b.jpg",
+              detect: true,
             },
             {
               name: "Muborak gaz koni",
@@ -63,6 +68,7 @@ const MuborakNeft = () => {
               title: "<b>Muborak gaz</b>",
               sourceURL:
                 "https://static.zarnews.uz/crop/3/c/720__80_3c2cd2e139519c9e69c3ed8ed902566b.jpg?img=self&v=1588986023",
+              detect: false,
             },
             {
               name: "Muborak Neft",
@@ -72,6 +78,7 @@ const MuborakNeft = () => {
               title: "<b>Muborak neft</b>",
               sourceURL:
                 "https://www.gazeta.uz/media/img/2022/05/Bh3XwK16526799246699_b.jpg",
+              detect: true,
             },
             {
               name: "Sho'rtan gaz koni",
@@ -81,6 +88,7 @@ const MuborakNeft = () => {
               title: "<b>Sho'rtan gaz</b>",
               sourceURL:
                 "https://storage.kun.uz/source/8/rZqfu16DvcBvzXXL48Y2zzJR5C0MCV6e.jpeg",
+              detect: false,
             },
           ];
 
@@ -142,6 +150,19 @@ const MuborakNeft = () => {
               position: "top-left",
             });
 
+            const neft = {
+              type: "picture-marker",
+              url: symbol_oli,
+              width: 36,
+              height: 36,
+            };
+            const gaz = {
+              type: "picture-marker",
+              url: symbol_gas,
+              width: 36,
+              height: 36,
+            };
+
             if (matchingLocation) {
               const point = new Point({
                 longitude: matchingLocation.longitude,
@@ -150,11 +171,7 @@ const MuborakNeft = () => {
 
               const marker = new Graphic({
                 geometry: point,
-                symbol: {
-                  type: "simple-marker",
-                  color: "blue",
-                  size: "10px",
-                },
+                symbol: matchingLocation.detect ? neft : gaz,
                 attributes: matchingLocation,
                 popupTemplate: {
                   title: matchingLocation.name,

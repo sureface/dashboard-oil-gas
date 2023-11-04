@@ -11,6 +11,28 @@ import BasemapToggle from "@arcgis/core/widgets/BasemapGallery";
 import axios from "axios";
 import { useSelector } from "react-redux";
 
+import clearSky from "../assets/weather/clear-sky.png";
+import cloudsSky from "../assets/weather/clouds.png";
+import ashesSky from "../assets/weather/ashes.png";
+import drizzleSky from "../assets/weather/drizzle.png";
+import dustSky from "../assets/weather/dust.png";
+import fogSky from "../assets/weather/fog.png";
+import hazeSky from "../assets/weather/haze.png";
+import mistSky from "../assets/weather/mist.png";
+import rainSky from "../assets/weather/rain.png";
+import sandSky from "../assets/weather/sand.png";
+import smokeSky from "../assets/weather/smoke.png";
+import snowSky from "../assets/weather/snow.png";
+import squallSky from "../assets/weather/squall.png";
+import thunderstormSky from "../assets/weather/thunderstorm.png";
+import tornadoSky from "../assets/weather/tornado.png";
+
+import symbol_oli from "../assets/symbols/36.png";
+import symbol_gas from "../assets/symbols/36f.png";
+
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 let leng = 0;
 
 const Kartateka = () => {
@@ -41,14 +63,16 @@ const Kartateka = () => {
     }
   }, []);
   const sym = {
-    type: "simple-marker", // autocasts as new PictureMarkerSymbol()
-    color: "red",
-    size: 14,
+    type: "picture-marker",
+    url: symbol_oli,
+    width: 36,
+    height: 36,
   };
   const sym1 = {
-    type: "simple-marker", // autocasts as new PictureMarkerSymbol()
-    color: "red",
-    size: 14,
+    type: "picture-marker",
+    url: symbol_gas,
+    width: 36,
+    height: 36,
   };
 
   const routeUrl =
@@ -93,11 +117,6 @@ const Kartateka = () => {
         },
       },
     ],
-  };
-  const simpleLineSymbol = {
-    type: "simple-line",
-    color: [0, 0, 0], // Orange
-    width: 2,
   };
 
   // the symbol used to mark the paths between stops
@@ -216,6 +235,59 @@ const Kartateka = () => {
           break;
       }
 
+      let weather_icon;
+
+      switch (weatherData.weather[0].main) {
+        case "Clear":
+          weather_icon = clearSky;
+          break;
+        case "Clouds":
+          weather_icon = cloudsSky;
+          break;
+        case "Rain":
+          weather_icon = rainSky;
+          break;
+        case "Drizzle":
+          weather_icon = drizzleSky;
+          break;
+        case "Thunderstorm":
+          weather_icon = thunderstormSky;
+          break;
+        case "Snow":
+          weather_icon = snowSky;
+          break;
+        case "Mist":
+          weather_icon = mistSky;
+          break;
+        case "Fog":
+          weather_icon = fogSky;
+          break;
+        case "Haze":
+          weather_icon = hazeSky;
+          break;
+        case "Smoke":
+          weather_icon = smokeSky;
+          break;
+        case "Dust":
+          weather_icon = dustSky;
+          break;
+        case "Sand":
+          weather_icon = sandSky;
+          break;
+        case "Ash":
+          weather_icon = ashesSky;
+          break;
+        case "Squall":
+          weather_icon = squallSky;
+          break;
+        case "Tornado":
+          weather_icon = tornadoSky;
+          break;
+        default:
+          weather_icon = `http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`;
+          break;
+      }
+
       const routeParams = new RouteParameters({
         // An authorization string used to access the routing service
         apiKey:
@@ -227,75 +299,96 @@ const Kartateka = () => {
         },
       });
 
-      const stop = new Graphic({
-        geometry: {
-          type: "point",
-          latitude: cordinate.lat, //[65.80549,38.45954]
-          longitude: cordinate.lon,
+      const infotamtions = [
+        {
+          text: "<b>Nomi:</b><ul><li>Ustyurt</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
         },
-        symbol: markerSymbol,
-      });
+        {
+          text: "<b>Nomi:</b><ul><li>Ustyurt</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
+        },
+        {
+          text: "<b>Nomi:</b><ul><li>Muborak</li></ul><b>Joylashuv</b>:<ul> <li><i>39.170431</i></li><li><i>65.268902</i></li></ul><b>Ma'lumot:</b><ul><li> Muborak shahri yaqinidagi Janubiy va Shimoliy Muborak konlari. Janubiy Muborak gaz-kondensat koni Muborak shahridan 15–20 km jan.-sharkda joylashgan. Kon strukturasi 1955-yilda L. G. Cherkashina va N. I. Kamoliddinovlarning seysmik tadqiqotlari natijasida aniqlangan. Konning gazliligi kuyi boʻrga mansub 12- va 13-gorizontlar bilan bogʻliq. 12mahsuldor gorizont 1160–1470 m chuqurlikda joylashgan va qumtosh va alevrolitlardan tashkil topgan. Umumiy qalinligi 62–67 m, samarali qalinligi 16–27 m, ochiq gʻovakliligi 18—22%, samarali gʻovakliligi 12—18%, oʻtkazuvchanligi 125— 578 millidarsini tashkil etadi. Uyumning uz. 12,6 km, eni 4,3 km va qalinligi 130 m. Gaz zichligi 0,640 (xavoga nisbatan), tarkibidagi metan 85— 93%, SO2 gazi 0,1 — 1,5%, azot va nodirgazlar 1,8—5%. Kondensatning zichligi 0,74; qovushokligi 1,03 santipuz, tarkibidagi oltingugurt 0,03%. Gaz tarkibida erigan kondensat miqdori 95 sm³/m3. 13-gorizont 1230–1450 m chuqurlikda joylashgan boʻlib, asosan, qumtosh, gravelit, gil va qisman mergeldan tuzilgan. Umumiy kalinligi 80 m gacha, samarali qalinligi 30 m, ochiq gʻovakliligi 16—24%, samarali gʻovakliligi 12—18%, oʻtkazuvchanligi 298 millidarsi. Uyumning uz. 10 km, eni 3,75 km, qalinligi 82 m. Boshlangʻich qatlam bosimi 133 atm, temperaturasi 65°. Gazning zichligi 0,63 (havoga nisbatan) va tarkibidagi metan 84,8—92,7%, ogʻir uglevodorodlar 7—8%, azot va nodir gazlar 2—5,8%, kondensat miqdori 80,6 sm³/m3. 12—13-gorizontlardagi kondensat fizikkimyoviy xossalari boʻyicha bir xil.</li></ul><b>",
+        },
+        {
+          text: "<b>Nomi:</b><ul><li>Muborak</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
+        },
+        {
+          text: "<b>Nomi:</b><ul><li>Sho'rtan</li></ul><b>Joylashuv</b>:<ul> <li><i>38.45954</i></li><li><i>65.80549</i></li></ul><b>Ma'lumot:</b><ul><li>Qashqadaryo viloyatidagi kon. Qarshi shahridan 40 km jan.sharqda. 1974-yilda ochilgan. Chorjoʻy tektonik pogʻonasiga tegishli Beshkent egilmasida braxiantiklinal koʻrinishidagi Shoʻrtan strukturasida joylashgan. Yuqori yura davrining kelloveyoksford yotqiziqlari mahsuldor hisoblanadi. Gazkondensat 15NR, 15R va 15PR gorizontlarida ochilgan. Gorizontlar kulrang ohaktoshlardan hamda zichlashgan, darzli, dolomitlashgan ohaktoshlardan iborat, qalinligi 316–542 m. Gazli qismining foydali qalinligi 118 m. Gaz uyumidan yuqorida joylashgan qalinligi 341–546 m boʻlgan kimerijtiton tuz jinslari regional qopqoq vazifasini oʻtaydi. Mahsuldor qatlam 2735–3170 m chuqurlikda yotadi. Suv tarkibi xlorkaltsiyli, minerallashganligi 122,1 — 129,0 g/l. 1999-yilgacha olingan tabiiy gaz miqdori 245,2 mlrd. m³, gaz kondensati 12,4 mln. t. Kondagi gazda etan miqdori yuqori, gazni qayta ishlab, bu qimmatbaho elementni ajratib olish maqsadga muvofiq. Etan polimer, kauchuk, boʻyoq va doridarmonlar olishda asosiy xom ashyo hisoblanadi. Shoʻrtan gazidan ajratib olingan etanni qayta ishlab, polietilen olish maqsadida Shoʻrtan gazkimyo majmuasi bunyod etildi</li></ul><b>",
+        },
+      ];
 
-      const stop1 = new Graphic({
-        geometry: {
-          type: "point",
-          latitude: lat,
-          longitude: lon, //[65.268902,39.170431]
-        },
-        symbol: gaz ? sym : sym1,
-        popupTemplate: {
-          title: weatherData?.name,
-          content: [
-            {
-              type: "text",
-              text: formattedDate,
-            },
-            {
-              type: "media",
-              mediaInfos: [
-                {
-                  title:
-                    Math.round((weatherData?.main.temp - 273.15).toFixed(2)) +
-                    " &#176;C",
-                  type: "image",
-                  caption:
-                    Math.round(
-                      (weatherData?.main.temp_min - 273.15).toFixed(2)
-                    ) +
-                    " &#176;C" +
-                    " / " +
-                    Math.round(
-                      (weatherData?.main.temp_max - 273.15).toFixed(2)
-                    ) +
-                    " &#176;C" +
-                    ` ${translatedWeatherStatus}`,
-                  value: {
-                    sourceURL: `http://openweathermap.org/img/wn/${weatherData?.weather[0].icon}@2x.png`,
+      infotamtions.forEach((info) => {
+        const stop = new Graphic({
+          geometry: {
+            type: "point",
+            latitude: cordinate.lat, //[65.80549,38.45954]
+            longitude: cordinate.lon,
+          },
+          symbol: markerSymbol,
+        });
+
+        const stop1 = new Graphic({
+          geometry: {
+            type: "point",
+            latitude: lat,
+            longitude: lon,
+          },
+          symbol: gaz ? sym1 : sym,
+          popupTemplate: {
+            title: weatherData?.name,
+            content: [
+              {
+                type: "text",
+                text: formattedDate + "<br /><br />" + info.text,
+              },
+              {
+                type: "media",
+                mediaInfos: [
+                  {
+                    title:
+                      Math.round((weatherData?.main.temp - 273.15).toFixed(2)) +
+                      " &#176;C",
+                    type: "image",
+                    caption:
+                      Math.round(
+                        (weatherData?.main.temp_min - 273.15).toFixed(2)
+                      ) +
+                      " &#176;C" +
+                      " / " +
+                      Math.round(
+                        (weatherData?.main.temp_max - 273.15).toFixed(2)
+                      ) +
+                      " &#176;C" +
+                      ` ${translatedWeatherStatus}`,
+                    value: {
+                      sourceURL: weather_icon,
+                    },
                   },
-                },
-              ],
-            },
-          ],
-        },
-      });
-      routeLayer.removeAll();
-      routeLayer.add(stop);
-      routeLayer.add(stop1);
-      // Update the route and execute it if 2 or more stops are input
+                ],
+              },
+            ],
+          },
+        });
 
-      routeParams.stops.features.push(stop);
-      routeParams.stops.features.push(stop1);
-      if (routeParams.stops.features.length >= 2) {
-        route
-          .solve(routeUrl, routeParams)
-          .then(onRouteUpdated)
-          .catch((error) => {
-            // if it fails, print the error to the console and remove the recently added point
-            routeLayer.remove(stop);
-            routeParams.stops.features.pop();
-            console.error(error);
-          });
-      }
+        routeLayer.removeAll();
+        routeLayer.add(stop);
+        routeLayer.add(stop1);
+        // Update the route and execute it if 2 or more stops are input
+
+        routeParams.stops.features.push(stop);
+        routeParams.stops.features.push(stop1);
+        if (routeParams.stops.features.length >= 2) {
+          route
+            .solve(routeUrl, routeParams)
+            .then(onRouteUpdated)
+            .catch((error) => {
+              // if it fails, print the error to the console and remove the recently added point
+              routeLayer.remove(stop);
+              routeParams.stops.features.pop();
+              console.error(error);
+            });
+        }
+      });
     });
   }
 
@@ -343,8 +436,8 @@ const Kartateka = () => {
   }
 
   return (
-    <Layout className="kartateka">
-      <div id="mapView" ref={map}></div>
+    <Layout>
+      <div id="mapView" className="kartateka" ref={map}></div>
 
       <div
         className="map-controllers"
@@ -357,63 +450,71 @@ const Kartateka = () => {
           height: loggedInCompany.login.length > 0 ? "auto" : "80%",
         }}
       >
-        <h3 id="distanceDiv" className="text-white text-capitalize text-center">
-          oraliq masofa: {leng} km
-        </h3>
-        <div
-          style={{ marginTop: loggedInCompany.login.length > 0 ? 0 : "60px" }}
-        >
-          <button
-            style={{
-              width: "100%",
-              marginTop: "10px",
-              display: loggedInCompany.login.length > 0 ? "none" : "block",
-            }}
-            className="map-btns"
-            onClick={() => addStop(39.170431, 65.268902, true)}
+        <div className="map-controllers_inner">
+          <div className="map-controllers_drawer">
+            <FontAwesomeIcon icon={faChevronLeft} />
+          </div>
+          <h4
+            id="distanceDiv"
+            className="text-white text-capitalize text-center"
           >
-            Muborak gaz
-          </button>
-          <button
-            style={{ width: "100%", marginTop: "10px" }}
-            className="map-btns"
-            onClick={() => addStop(39.2767, 65.8097, false)}
+            oraliq masofa: {leng} km
+          </h4>
+          <div
+            style={{ marginTop: loggedInCompany.login.length > 0 ? 0 : "60px" }}
           >
-            Muborak neft
-          </button>
-          <button
-            style={{
-              width: "100%",
-              marginTop: "10px",
-              display: loggedInCompany.login.length > 0 ? "none" : "block",
-            }}
-            className="map-btns"
-            onClick={() => addStop(43.271111, 58.28617, true)}
-          >
-            Ustyurt gaz
-          </button>
-          <button
-            style={{
-              width: "100%",
-              marginTop: "10px",
-              display: loggedInCompany.login.length > 0 ? "none" : "block",
-            }}
-            className="map-btns"
-            onClick={() => addStop(43.017959, 58.19976, false)}
-          >
-            Ustyurt neft
-          </button>
-          <button
-            style={{
-              width: "100%",
-              marginTop: "10px",
-              display: loggedInCompany.login.length > 0 ? "none" : "block",
-            }}
-            className="map-btns"
-            onClick={() => addStop(38.45954, 65.80549, true)}
-          >
-            Sho'rtan gaz
-          </button>
+            <button
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                display: loggedInCompany.login.length > 0 ? "none" : "block",
+              }}
+              className="map-btns"
+              onClick={() => addStop(39.170431, 65.268902, true)}
+            >
+              Muborak gaz
+            </button>
+            <button
+              style={{ width: "100%", marginTop: "10px" }}
+              className="map-btns"
+              onClick={() => addStop(39.2767, 65.8097, false)}
+            >
+              Muborak neft
+            </button>
+            <button
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                display: loggedInCompany.login.length > 0 ? "none" : "block",
+              }}
+              className="map-btns"
+              onClick={() => addStop(43.271111, 58.28617, true)}
+            >
+              Ustyurt gaz
+            </button>
+            <button
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                display: loggedInCompany.login.length > 0 ? "none" : "block",
+              }}
+              className="map-btns"
+              onClick={() => addStop(43.017959, 58.19976, false)}
+            >
+              Ustyurt neft
+            </button>
+            <button
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                display: loggedInCompany.login.length > 0 ? "none" : "block",
+              }}
+              className="map-btns"
+              onClick={() => addStop(38.45954, 65.80549, true)}
+            >
+              Sho'rtan gaz
+            </button>
+          </div>
         </div>
       </div>
     </Layout>

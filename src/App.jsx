@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Login from "./views/Login";
 import PrivetateRoute from "./router/PrivetateRoute";
 import "./assets/css/sidebar.scss";
 import "./assets/css/sidebarRight.scss";
 import "./assets/css/monitoring.scss";
+import "./assets/css/arcgisOverride.scss";
 import DefaultMap from "./views/DefaultMap";
 import MuborakNeft from "./views/MuborakNeft";
 import Kartateka from "./views/Kartateka";

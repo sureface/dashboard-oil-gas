@@ -3,6 +3,9 @@ import Layout from "../layout/Layout";
 import { loadModules } from "esri-loader";
 import ground1 from "../assets/img/ground1.jpg";
 
+import symbol_oli from "../assets/symbols/36.png";
+import symbol_gas from "../assets/symbols/36f.png";
+
 const OrografiyaMuborak = () => {
   const mapRef = useRef(null);
 
@@ -39,6 +42,7 @@ const OrografiyaMuborak = () => {
               text: "<b>Nomi:</b><ul><li>Muborak</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
               title: "<b>Muborak neft</b>",
               sourceURL: ground1,
+              detect: true,
             },
           ];
 
@@ -86,6 +90,19 @@ const OrografiyaMuborak = () => {
               position: "top-left",
             });
 
+            const neft = {
+              type: "picture-marker",
+              url: symbol_oli,
+              width: 36,
+              height: 36,
+            };
+            const gaz = {
+              type: "picture-marker",
+              url: symbol_gas,
+              width: 36,
+              height: 36,
+            };
+
             locations.forEach((location) => {
               const point = new Point({
                 longitude: location.longitude,
@@ -94,11 +111,7 @@ const OrografiyaMuborak = () => {
 
               const marker = new Graphic({
                 geometry: point,
-                symbol: {
-                  type: "simple-marker",
-                  color: "blue",
-                  size: "10px",
-                },
+                symbol: location.detect ? neft : gaz,
                 attributes: location,
                 popupTemplate: {
                   title: location?.name,

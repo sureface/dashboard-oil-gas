@@ -1,0 +1,45 @@
+.kartateka {
+  .esri-feature-media__item-title {
+    font-size: 26px;
+    font-weight: 700;
+  }
+  .esri-feature-media__container {
+    position: relative;
+    flex-flow: row;
+  }
+  .esri-feature-media__item-container {
+    flex: 0 1 100%;
+  }
+  .esri-feature-media__pagination {
+    display: none;
+  }
+  .esri-feature-media__item-caption {
+    position: absolute;
+    left: 50%;
+    bottom: 10%;
+    transform: translate(-50%);
+    font-size: 16px;
+    padding-block-start: 0;
+  }
+  .esri-feature-media__item-navigation {
+    flex: 0 3 100%;
+  }
+  .esri-feature-media__item {
+    align-items: center;
+    height: 300px;
+
+    img {
+      width: 200px;
+      height: auto;
+      flex-shrink: 0;
+      margin-bottom: 35px;
+    }
+  }
+  .esri-popup__content {
+    overflow: visible;
+  }
+  .esri-feature__content-element.esri-feature__text {
+    overflow-y: auto;
+    height: 320px;
+  }
+}
