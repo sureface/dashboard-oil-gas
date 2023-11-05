@@ -2,8 +2,8 @@ import React, { useEffect, useRef } from "react";
 import { loadModules } from "esri-loader";
 import DefaultLayout from "../layout/DefaultLayout";
 
-import symbol_oli from "../assets/symbols/36.png";
-import symbol_gas from "../assets/symbols/36f.png";
+import symbol_oli from "../assets/symbols/100.png";
+import symbol_gas from "../assets/symbols/100f.png";
 
 const MuborakNeft = () => {
   const lat = "39.2767";
@@ -41,8 +41,8 @@ const MuborakNeft = () => {
           const locations = [
             {
               name: "Ustyurt gaz koni",
-              longitude: 58.28617,
-              latitude: 43.271111,
+              longitude: 58.267436402119394,
+              latitude: 43.17725361104273,
               text: "<b>Nomi:</b><ul><li>Ustyurt</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
               title: "<b>Ustyurt gaz koni</b>",
               sourceURL:

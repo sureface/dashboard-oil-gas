@@ -38,8 +38,8 @@
   .esri-popup__content {
     overflow: visible;
   }
-  .esri-feature__content-element.esri-feature__text {
-    overflow-y: auto;
-    height: 320px;
-  }
+}
+.esri-feature__content-element.esri-feature__text {
+  overflow-y: auto;
+  height: 320px;
 }

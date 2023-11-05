@@ -27,8 +27,8 @@ import squallSky from "../assets/weather/squall.png";
 import thunderstormSky from "../assets/weather/thunderstorm.png";
 import tornadoSky from "../assets/weather/tornado.png";
 
-import symbol_oli from "../assets/symbols/36.png";
-import symbol_gas from "../assets/symbols/36f.png";
+import symbol_oli from "../assets/symbols/100.png";
+import symbol_gas from "../assets/symbols/100f.png";
 
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -313,7 +313,7 @@ const Kartateka = () => {
           text: "<b>Nomi:</b><ul><li>Muborak</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
         },
         {
-          text: "<b>Nomi:</b><ul><li>Sho'rtan</li></ul><b>Joylashuv</b>:<ul> <li><i>38.45954</i></li><li><i>65.80549</i></li></ul><b>Ma'lumot:</b><ul><li>Qashqadaryo viloyatidagi kon. Qarshi shahridan 40 km jan.sharqda. 1974-yilda ochilgan. Chorjoʻy tektonik pogʻonasiga tegishli Beshkent egilmasida braxiantiklinal koʻrinishidagi Shoʻrtan strukturasida joylashgan. Yuqori yura davrining kelloveyoksford yotqiziqlari mahsuldor hisoblanadi. Gazkondensat 15NR, 15R va 15PR gorizontlarida ochilgan. Gorizontlar kulrang ohaktoshlardan hamda zichlashgan, darzli, dolomitlashgan ohaktoshlardan iborat, qalinligi 316–542 m. Gazli qismining foydali qalinligi 118 m. Gaz uyumidan yuqorida joylashgan qalinligi 341–546 m boʻlgan kimerijtiton tuz jinslari regional qopqoq vazifasini oʻtaydi. Mahsuldor qatlam 2735–3170 m chuqurlikda yotadi. Suv tarkibi xlorkaltsiyli, minerallashganligi 122,1 — 129,0 g/l. 1999-yilgacha olingan tabiiy gaz miqdori 245,2 mlrd. m³, gaz kondensati 12,4 mln. t. Kondagi gazda etan miqdori yuqori, gazni qayta ishlab, bu qimmatbaho elementni ajratib olish maqsadga muvofiq. Etan polimer, kauchuk, boʻyoq va doridarmonlar olishda asosiy xom ashyo hisoblanadi. Shoʻrtan gazidan ajratib olingan etanni qayta ishlab, polietilen olish maqsadida Shoʻrtan gazkimyo majmuasi bunyod etildi</li></ul><b>",
+          text: "<b>Nomi:</b><ul><li>Sho'rtan</li></ul><b>Joylashuv</b>:<ul> <li><i>38.45954</i></li><li><i>65.80549</i></li></ul><b>Ma'lumot:</b><ul><li>Shoʻrtan gaz-kimyo majmuasi — Oʻzbekistondagi eng yirik gaz sanoati korxonalaridan biri. 'Oʻzbekneftgaz' milliy xolding kompaniyasi tarkibiga kiruvchi unitar shoʻba korxona. Qashqadaryo viloyatining Gʻuzor tumanidagi Shoʻrtan shaharchasida joylashgan. 150 ga dan ortiq maydonni egallaydi. Mahalliy konlardan olinadigan gazni qayta ishlab, organik sintez, polietilen, yoqilgʻi gazi, suyultirilgan gaz, gaz kondensati, donador oltingugurt, polietilen tagliklar, polietilen plenkalar ishlab chiqaradi.Mamlakatning eng yirik soliq toʻlovchi 20 ta korxonasidan biri (2020) </li></ul><b>",
         },
       ];
 
@@ -488,7 +488,9 @@ const Kartateka = () => {
                 display: loggedInCompany.login.length > 0 ? "none" : "block",
               }}
               className="map-btns"
-              onClick={() => addStop(43.271111, 58.28617, true)}
+              onClick={() =>
+                addStop(43.17725361104273, 58.267436402119394, true)
+              }
             >
               Ustyurt gaz
             </button>

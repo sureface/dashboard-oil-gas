@@ -96,7 +96,7 @@ const Login = () => {
                         />
                         <h2 className="text-main">Neft Gaz</h2>
                         <h4 className="mt-1 mb-5 pb-1 text-main">
-                          We are The Lotus Team
+                          Boshqaruv tizimiga hush kelibsiz
                         </h4>
                       </div>
 
@@ -105,7 +105,7 @@ const Login = () => {
                           <input
                             type="text"
                             className="form-control mb-2"
-                            placeholder="User Name"
+                            placeholder="Foydalanuvchining ismi"
                             required
                             onChange={(e) => setLogin(e.target.value)}
                             value={login}
@@ -119,7 +119,7 @@ const Login = () => {
                           <input
                             type="password"
                             className="form-control"
-                            placeholder="Password"
+                            placeholder="Paro'l"
                             required
                             onChange={(e) => setPassword(e.target.value)}
                             value={password}
