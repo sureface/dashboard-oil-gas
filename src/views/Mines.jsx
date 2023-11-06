@@ -41,6 +41,15 @@ const Mines = () => {
 
           const locations = [
             {
+              name: "Shimoliy Berdaq gaz koni",
+              longitude: 59.0254244,
+              latitude: 43.7879853,
+              text: "<div style='text-align: end'><strong> <i>43.21043, 56.96536 </i></strong></div><div style='text-align: center'><strong> Ma'lumot: </strong></div><ul><li> «Shimoliy Berdaq» koni 115-sonli quduqda burg‘ulashdan keyin sanoat miqyosida olingan tabiiy gaz oqimi parametrlari bilan tanishdi. Mazkur uchastkada burg‘ulash ishlari 2021 yil dekabrda boshlanib, 28 mart kuni yakunlangan. Ayni paytda 2750 metr chuqurlikdan kuniga 150 ming kub metr gaz olinmoqda.</li></ul><b></b>",
+              title: "<b>Shimoliy Berdaq gaz koni</b>",
+              sourceURL: berdaq,
+              detect: false,
+            },
+            {
               name: "Ustyurt gaz koni",
               longitude: 58.267436402119394,
               latitude: 43.17725361104273,
@@ -55,7 +64,6 @@ const Mines = () => {
               longitude: 58.19976,
               latitude: 43.017959,
               text: "<b>Nomi:</b><ul><li>Ustyurt</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
-
               title: "<b>Ustyurt neft</b>",
               sourceURL:
                 "https://www.gazeta.uz/media/img/2022/05/Bh3XwK16526799246699_b.jpg",

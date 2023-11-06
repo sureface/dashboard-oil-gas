@@ -73,7 +73,7 @@ const SidebarLeft = ({ menu }) => {
                     ? "Muborak"
                     : signupUser.companyName.length > 0
                     ? signupUser.companyName
-                    : "Neft Va Gaz"}
+                    : "Oʻzbekneftgaz"}
                 </div>
               </div>
               <ul className="gis-sidebar__nav">
@@ -102,7 +102,9 @@ const SidebarLeft = ({ menu }) => {
                     ? signupUser.fullName
                     : "Xamid Olimjon"}
                 </div>
-                <div className="gis-sidebar__userStatus">admin</div>
+                <div className="gis-sidebar__userStatus">
+                  tizim adminstratori
+                </div>
               </div>
             </div>
           </div>

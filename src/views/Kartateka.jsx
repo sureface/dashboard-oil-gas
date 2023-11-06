@@ -301,6 +301,9 @@ const Kartateka = () => {
 
       const infotamtions = [
         {
+          text: "<div style='text-align: end'><strong> <i>43.21043, 56.96536 </i></strong></div><div style='text-align: center'><strong> Ma'lumot: </strong></div><ul><li> «Shimoliy Berdaq» koni 115-sonli quduqda burg‘ulashdan keyin sanoat miqyosida olingan tabiiy gaz oqimi parametrlari bilan tanishdi. Mazkur uchastkada burg‘ulash ishlari 2021 yil dekabrda boshlanib, 28 mart kuni yakunlangan. Ayni paytda 2750 metr chuqurlikdan kuniga 150 ming kub metr gaz olinmoqda.</li></ul><b></b>",
+        },
+        {
           text: "<b>Nomi:</b><ul><li>Ustyurt</li></ul><b>Joylashuv</b>:<ul> <li><i>43.21043</i></li><li><i>56.96536</i></li></ul><b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
         },
         {
@@ -463,6 +466,17 @@ const Kartateka = () => {
           <div
             style={{ marginTop: loggedInCompany.login.length > 0 ? 0 : "60px" }}
           >
+            <button
+              style={{
+                width: "100%",
+                marginTop: "10px",
+                display: loggedInCompany.login.length > 0 ? "none" : "block",
+              }}
+              className="map-btns"
+              onClick={() => addStop(43.7879853, 59.0254244, true)}
+            >
+              Shimoliy Berdaq
+            </button>
             <button
               style={{
                 width: "100%",

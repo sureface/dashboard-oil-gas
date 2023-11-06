@@ -209,7 +209,7 @@ li {
   height: 0.4rem;
 }
 ::-webkit-scrollbar-thumb {
-  background-color: #686868;
+  background-color: #003078;
   border-radius: 15px;
 }
 .z-index--1 {
@@ -217,4 +217,10 @@ li {
 }
 .h-200px {
   height: 200px !important;
+}
+.login_description {
+  text-indent: 1rem;
+}
+.login_subname {
+  font-size: 1.2rem;
 }

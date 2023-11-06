@@ -225,9 +225,10 @@ $gis-hover-white: #f8f9fa;
   &__userName {
     color: $gis-white;
     text-transform: capitalize;
+    font-size: 1.2rem;
   }
   &__userStatus {
-    font-size: 14px;
+    font-size: 0.75rem;
     color: $gis-white;
     text-transform: capitalize;
   }

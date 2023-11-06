@@ -94,10 +94,10 @@ const Login = () => {
                           alt="err"
                           style={{ width: "50px", marginBottom: "5px" }}
                         />
-                        <h2 className="text-main">Neft Gaz</h2>
-                        <h4 className="mt-1 mb-5 pb-1 text-main">
-                          Boshqaruv tizimiga hush kelibsiz
-                        </h4>
+                        <h2 className="text-main mb-2">Oʻzbekneftgaz</h2>
+                        <h5 className="login_subname mt-1 mb-3 pb-1 text-main">
+                          Tizimga xush kelibsiz
+                        </h5>
                       </div>
 
                       <form onSubmit={SubmitHandler}>
@@ -151,13 +151,16 @@ const Login = () => {
                   </div>
                   <div className="col-lg-6 d-flex align-items-center b-t-b-radius gradient-custom-2 position-relative">
                     <div className="text-white px-3 py-4 p-md-5 mx-md-4 z-1">
-                      <h4 className="mb-4">We are more than just a company</h4>
-                      <p className="small mb-0">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit, sed do eiusmod tempor incididunt ut labore et
-                        dolore magna aliqua. Ut enim ad minim veniam, quis
-                        nostrud exercitation ullamco laboris nisi ut aliquip ex
-                        ea commodo consequat.
+                      <h3 className="mb-3 text-center">
+                        Bizning asosiy maqsadimiz!
+                      </h3>
+                      <p className="small mb-0 login_description">
+                        Neft va gaz sanoatiga zamonaviy raqamli
+                        texnologiyalarini joriy etish orqali, raqamli
+                        boshqaruvni yo'lga qo'yish, neft va gaz qazib olish
+                        samaradorligini oshirish, masofiy boshqaruv tizimini
+                        rivojlanitirish va ishlab chiqarish samaradoligini
+                        yuqori darajada ko'tarishdan iborat.
                       </p>
                     </div>
                     <img
