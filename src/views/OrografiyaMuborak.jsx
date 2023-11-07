@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import Layout from "../layout/Layout";
 import { loadModules } from "esri-loader";
-import ground1 from "../assets/img/ground1.jpg";
+import ground1 from "../assets/img/muborak_neft.jpg";
 
 import symbol_oli from "../assets/symbols/100.png";
 import symbol_gas from "../assets/symbols/100f.png";
