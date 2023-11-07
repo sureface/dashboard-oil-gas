@@ -62,7 +62,7 @@ const SidebarLeft = ({ menu }) => {
           >
             <FontAwesomeIcon icon={faBarsStaggered} />
           </div>
-          <div className="gis-sidebar__menu-wrapper w-100 h-100 d-flex flex-column justify-content-between z-1">
+          <div className="gis-sidebar__menu-wrapper overflow-auto w-100 h-100 d-flex flex-column justify-content-between z-1">
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">

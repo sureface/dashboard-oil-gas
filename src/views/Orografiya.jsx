@@ -31,6 +31,7 @@ const Orografiya = () => {
       "esri/widgets/Search",
       "esri/widgets/Home",
       "esri/widgets/Locate",
+      "esri/widgets/BasemapGallery",
     ])
       .then(
         ([
@@ -42,6 +43,7 @@ const Orografiya = () => {
           Search,
           Home,
           Locate,
+          BasemapGallery,
         ]) => {
           esriConfig.apiKey =
             "AAPK6c828a943be04f099788653fe34e553cmg3-f8tJr_TYm-UdRrf70zrhLRZOZ9JOaR0UVeG7cGRabHlkOQ2-_JasvGvWk--7";
@@ -123,6 +125,13 @@ const Orografiya = () => {
             const locateWidget = new Locate({
               view: view,
             });
+
+            const gallaryBox = new BasemapGallery({
+              view: view,
+              nextBasemap: "osm",
+            });
+
+            view.ui.add(gallaryBox, "bottom-left");
 
             view.ui.add(searchWidget, {
               position: "top-right",
