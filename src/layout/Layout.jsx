@@ -28,6 +28,10 @@ const Layout = ({ children }) => {
       disabled: loggedInCompany.login.length > 0 ? true : false,
       subMenu: [
         {
+          title: "Shimoliy Berdaq",
+          link: { pathname: "/mines?lat=43.7879853&lon=59.0254244" },
+        },
+        {
           title: "usyurt gaz",
           link: { pathname: "/mines?lat=43.271111&lon=58.28617" },
         },

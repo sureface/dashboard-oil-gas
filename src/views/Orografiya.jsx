@@ -13,6 +13,7 @@ import jsx3 from "../assets/img/jsx3.jpg";
 import jsx4 from "../assets/img/jsx4.jpg";
 import jsx5 from "../assets/img/jsx5.png";
 import jsx6 from "../assets/img/jsx6.jpg";
+import berdaq from "../assets/img/berdaq.jpg";
 
 import symbol_oli from "../assets/symbols/100.png";
 import symbol_gas from "../assets/symbols/100f.png";
@@ -47,6 +48,15 @@ const Orografiya = () => {
 
           const locations = [
             {
+              name: "Shimoliy Berdaq gaz koni",
+              longitude: 59.0254244,
+              latitude: 43.7879853,
+              text: "<b>Nomi:</b><ul><li>Shimoliy Berdaq</li></ul><b>Joylashuv</b>:<ul> <li><i>43.7879853</i></li><li><i>59.0254244</i></li></ul><b>Ma'lumot:</b><ul><li> «Shimoliy Berdaq» koni 115-sonli quduqda burg‘ulashdan keyin sanoat miqyosida olingan tabiiy gaz oqimi parametrlari bilan tanishdi. Mazkur uchastkada burg‘ulash ishlari 2021 yil dekabrda boshlanib, 28 mart kuni yakunlangan. Ayni paytda 2750 metr chuqurlikdan kuniga 150 ming kub metr gaz olinmoqda.</li></ul><b>",
+              title: "<b>Shimoliy Berdaq gaz koni</b>",
+              sourceURL: [berdaq],
+              detect: false,
+            },
+            {
               name: "Ustyurt gaz koni",
               longitude: 58.267436402119394,
               latitude: 43.17725361104273,
@@ -56,8 +66,8 @@ const Orografiya = () => {
             },
             {
               name: "Ustyurt neft",
-              longitude: 58.19976,
-              latitude: 43.017959,
+              longitude: 58.2607507,
+              latitude: 43.1775166,
               text: "<b>Ma'lumot:</b><ul><li> Ustyurt (qozoqcha: Үстірт, qoraqalpoqcha: Ústirt) — Oʻzbekistonning shimoli-gʻarbi (Qoraqalpogʻiston) va Qozogʻiston hududlaridagi plato. Sharqda Orol dengizi va Amudaryo deltasi, gʻarbda Mangʻishloq yarim orol va Qoraboʻgʻozgoʻl qoʻltigʻi, shimolida Kaspiyboʻyi pasttekisligi oraligʻida joylashgan. Maydoni 200 ming km². Oʻrtacha balandligi 150–250 m, eng baland joyi (370 m) janubi-gʻarbida. Ustyurtning atrofi 60–150 m li tik jarlik (chink)lardan iborat. Chinklar har xil chuqurlikdagi jar va soylar bilan kesilgan. Ustyurtning shimoliy chinklari shimoliy gʻarbda Oʻlikqoʻltiq shoʻrligidan boshlanib, shimolida Katta Boʻrsiq qumligiga borib taqaladi. Platoning baland sharqiy chegarasi Orol dengizining avvalgi qirgʻogʻi va Amudaryo deltasidan, janubiy chinklari Qoraqum choʻli va Oʻzboy oʻzani, gʻarbiy chinklari esa Koraboʻgʻozgoʻl qoʻltigʻining gʻarbiy sohili, Qorniyoriq botigʻi, Qaydak shoʻrligi orqali oʻtadi.</li></ul><b>",
               sourceURL: [ground2],
               detect: true,
