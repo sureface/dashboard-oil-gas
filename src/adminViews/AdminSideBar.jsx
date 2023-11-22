@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import SidebarMenuItem from "./SidebarMenuItem";
+import SidebarMenuItem from "../components/SidebarMenuItem";
 import Avatar from "../assets/avatar/avatarme.png";
 import {
   faBarsStaggered,
@@ -15,8 +15,7 @@ import {
 } from "../redux/features/auth/authSlice";
 import gisBg1 from "../assets/bgImg/gis-bg1.png";
 import Logo1 from "../assets/logo/logo5.png";
-
-const SidebarLeft = ({ menu }) => {
+const AdminSideBar = ({ menu }) => {
   const [drawing, setIsDrawing] = useState(false);
 
   const dispatch = useDispatch();
@@ -73,7 +72,7 @@ const SidebarLeft = ({ menu }) => {
                     ? "Muborak"
                     : signupUser.companyName.length > 0
                     ? signupUser.companyName
-                    : "Oʻzbekneftgaz"}
+                    : "Vazirlik"}
                 </div>
               </div>
               <ul className="gis-sidebar__nav">
@@ -117,4 +116,4 @@ const SidebarLeft = ({ menu }) => {
   );
 };
 
-export default SidebarLeft;
+export default AdminSideBar;

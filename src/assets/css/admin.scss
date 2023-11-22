@@ -1,0 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+$gis-primary: #003078;
+$gis-white: #ffffff;
+* {
+  font-family: "Poppins" sans-serif !important;
+}
+.custom-accordion-container {
+  .accordion-item {
+    border-radius: 0 !important;
+  }
+  .accordion-button {
+    justify-content: space-between;
+    background: $gis-primary;
+    border-radius: 0 !important;
+    color: $gis-white;
+
+    &:focus {
+      border-color: none;
+      box-shadow: none;
+      outline: none;
+    }
+    &::after {
+      display: none;
+    }
+  }
+}

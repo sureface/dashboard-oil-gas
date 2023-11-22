@@ -4,7 +4,9 @@ import { superUser, userLog } from "../UserLog";
 import {
   loginReducer,
   loginCompanyReducer,
-  loginSuperUser,
+  loginCompanyWebReducer,
+  loginSuperUserReducer,
+  loginSuperUserWebReducer,
 } from "../redux/features/auth/authSlice";
 import { useDispatch, useSelector } from "react-redux";
 import gisBg4 from "../assets/bgImg/gis-bg4.png";
@@ -22,6 +24,7 @@ const Login = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log(import.meta.env.VITE_SUPER_ADMIN);
     if (signupUser && Object.keys(signupUser).length > 0) {
       setSignUpData(signupUser);
       setLogin(signupUser.userName);
@@ -50,7 +53,36 @@ const Login = () => {
       setError(false);
       setLogin("");
       setPassword("");
-    } else if (login === userLog.login && password === userLog.password) {
+    } else if (
+      login === import.meta.env.VITE_SUPER_ADMIN &&
+      password === import.meta.env.VITE_SUPER_ADMIN
+    ) {
+      const data = {
+        login,
+        password,
+      };
+      dispatch(loginSuperUserReducer(data));
+      navigate("/");
+      setError(false);
+      setLogin("");
+      setPassword("");
+    } else if (
+      login === import.meta.env.VITE_SUPER_ADMIN_WEB &&
+      password === import.meta.env.VITE_SUPER_ADMIN_WEB
+    ) {
+      const data = {
+        login,
+        password,
+      };
+      dispatch(loginSuperUserWebReducer(data));
+      navigate("/");
+      setError(false);
+      setLogin("");
+      setPassword("");
+    } else if (
+      login === import.meta.env.VITE_ADMIN &&
+      password === import.meta.env.VITE_ADMIN
+    ) {
       const data = {
         login,
         password,
@@ -60,12 +92,15 @@ const Login = () => {
       setError(false);
       setLogin("");
       setPassword("");
-    } else if (login === superUser.login && password === superUser.password) {
+    } else if (
+      login === import.meta.env.VITE_ADMIN_WEB &&
+      password === import.meta.env.VITE_ADMIN_WEB
+    ) {
       const data = {
         login,
         password,
       };
-      dispatch(loginSuperUser(data));
+      dispatch(loginCompanyWebReducer(data));
       navigate("/");
       setError(false);
       setLogin("");

@@ -7,6 +7,7 @@ const PrivetateRoute = () => {
   const loggedInsuperUser = useSelector(
     (state) => state.auth.loggedInsuperUser
   );
+  const loggedInsuperUserWeb = useSelector((state) => state.auth.loggedInsuperUserWeb)
 
   function CheckAuth() {
     if (
@@ -22,6 +23,11 @@ const PrivetateRoute = () => {
     } else if (
       loggedInsuperUser.login.length > 0 &&
       loggedInsuperUser.password.length > 0
+    ) {
+      return <Outlet />;
+    } else if (
+      loggedInsuperUserWeb.login.length > 0 &&
+      loggedInsuperUserWeb.password.length > 0
     ) {
       return <Outlet />;
     } else {

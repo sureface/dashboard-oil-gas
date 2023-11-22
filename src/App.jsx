@@ -6,6 +6,7 @@ import "./assets/css/sidebar.scss";
 import "./assets/css/sidebarRight.scss";
 import "./assets/css/monitoring.scss";
 import "./assets/css/arcgisOverride.scss";
+import "./assets/css/admin.scss";
 import DefaultMap from "./views/DefaultMap";
 import MuborakNeft from "./views/MuborakNeft";
 import Kartateka from "./views/Kartateka";
@@ -18,17 +19,24 @@ import SignUp from "./views/SignUp";
 import UserInfo from "./views/UserInfo";
 import OrografiyaMuborak from "./views/OrografiyaMuborak";
 import { useSelector } from "react-redux";
+import SuperAdminDefaultView from "./adminViews/SuperAdminDefaultView";
+import BarchaKonlar from "./adminViews/BarchaKonlar";
 
 function App() {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
   const loggedInsuperUser = useSelector(
     (state) => state.auth.loggedInsuperUser
   );
+  const loggedInsuperUserWeb = useSelector(
+    (state) => state.auth.loggedInsuperUserWeb
+  );
 
   function Logchacker() {
     if (loggedInCompany.login.length > 0) {
       return <MuborakNeft />;
     } else if (loggedInsuperUser.login.length > 0) {
+      return <SuperAdminDefaultView />;
+    } else if (loggedInsuperUserWeb.login.length > 0) {
       return <DefaultMap />;
     } else {
       return <DefaultMap />;
@@ -41,6 +49,7 @@ function App() {
         <Routes>
           <Route element={<PrivetateRoute />}>
             <Route element={<Logchacker />} path="/" exact />
+            <Route element={<BarchaKonlar />} path="/barcha-konlar" />
             <Route element={<Kartateka />} path="/kartateka" />
             <Route element={<Monitoring />} path="/monitoring" />
             <Route

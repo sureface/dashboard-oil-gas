@@ -94,7 +94,7 @@ const Layout = ({ children }) => {
   return (
     <>
       <SidebarLeft menu={menu} />
-      <main className="main_wrapper__without-rightSidebar ">{children}</main>
+      <main className="main_wrapper__without-rightSidebar">{children}</main>
     </>
   );
 };
