@@ -1,12 +1,50 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 $gis-primary: #003078;
 $gis-white: #ffffff;
+$gis-green: #2bb673;
+$gis-gray: #d5d5d5;
 * {
   font-family: "Poppins" sans-serif !important;
 }
 .custom-accordion-container {
   .accordion-item {
     border-radius: 0 !important;
+
+    .uploaded-image {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      &__wrapper {
+        position: relative;
+        width: 150px;
+        height: 150px;
+
+        img {
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+        .uploaded-image__cancel {
+          position: absolute;
+          top: 3px;
+          right: 3px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 20px;
+          height: 20px;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.7);
+        }
+      }
+    }
+    .accordion-save__btn {
+      border: none;
+      padding: 7px 15px;
+      color: $gis-white;
+      background: $gis-green;
+    }
   }
   .accordion-button {
     justify-content: space-between;
@@ -23,4 +61,25 @@ $gis-white: #ffffff;
       display: none;
     }
   }
+}
+.cursor-pointer {
+  cursor: pointer !important;
+}
+tr th:last-child,
+tr td:last-child {
+  text-align: end;
+}
+tr th:last-child {
+  padding-right: 44px;
+}
+table {
+  border-collapse: separate;
+  border-spacing: 0 15px;
+}
+thead tr th {
+  background-color: $gis-gray !important;
+}
+tbody tr td {
+  background-color: $gis-primary !important;
+  color: $gis-white !important;
 }

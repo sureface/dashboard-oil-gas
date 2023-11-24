@@ -21,6 +21,7 @@ import OrografiyaMuborak from "./views/OrografiyaMuborak";
 import { useSelector } from "react-redux";
 import SuperAdminDefaultView from "./adminViews/SuperAdminDefaultView";
 import BarchaKonlar from "./adminViews/BarchaKonlar";
+import AdminPermission from "./adminViews/AdminPermission";
 
 function App() {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
@@ -50,6 +51,7 @@ function App() {
           <Route element={<PrivetateRoute />}>
             <Route element={<Logchacker />} path="/" exact />
             <Route element={<BarchaKonlar />} path="/barcha-konlar" />
+            <Route element={<AdminPermission />} path="/permission" />
             <Route element={<Kartateka />} path="/kartateka" />
             <Route element={<Monitoring />} path="/monitoring" />
             <Route
