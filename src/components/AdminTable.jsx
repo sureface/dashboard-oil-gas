@@ -3,11 +3,12 @@ import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Table } from "react-bootstrap";
 
-const AdminTable = ({ data, onDelete, onEdit }) => {
+const AdminTable = ({ data, onDelete, onEdit, users }) => {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
     setTableData(data);
+    updateModal(data);
   }, [data]);
 
   const handleShow = (id) => {
@@ -20,6 +21,10 @@ const AdminTable = ({ data, onDelete, onEdit }) => {
 
   const handleEdit = (id, newRole, newDescription) => {
     onEdit(id, newRole, newDescription);
+  };
+
+  const updateModal = (data) => {
+    users(data);
   };
 
   return (

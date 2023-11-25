@@ -7,8 +7,15 @@ const AdminPermission = () => {
   const [showModal, setShowModal] = useState(false);
   const [role, setRole] = useState("");
   const [description, setDescription] = useState("");
-  const [data, setData] = useState([]);
+  const [data, setData] = useState([
+    {
+      id: 1,
+      role: "SuperAdmin",
+      description: "Bu admin hamma narsani ozgartira oladi !",
+    },
+  ]);
   const [incrementId, setIncrementId] = useState(1);
+  const [allUsers, setAllUsers] = useState(null);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -18,7 +25,8 @@ const AdminPermission = () => {
     setShowModal(false);
   };
 
-  const handleSave = () => {
+  const handleSave = (e) => {
+    e.preventDefault();
     setData([...data, { id: incrementId, role, description }]);
     setRole("");
     setDescription("");
@@ -31,7 +39,29 @@ const AdminPermission = () => {
   };
 
   const handleEdit = (id, newRole, newDescription) => {
-    setData(data.map(item => (item.id === id ? { ...item, role: newRole, description: newDescription } : item)));
+    setData(
+      data.map((item) =>
+        item.id === id
+          ? { ...item, role: newRole, description: newDescription }
+          : item
+      )
+    );
+  };
+
+  const getAllUsers = (users) => {
+    if (users.length > 0) {
+      setAllUsers([...users]);
+    }
+  };
+
+  const ruleOptions = () => {
+    if (allUsers !== null) {
+      return allUsers.map((item, index) => (
+        <option key={index} value={index}>
+          {item.role}
+        </option>
+      ));
+    }
   };
 
   return (
@@ -43,7 +73,12 @@ const AdminPermission = () => {
           </Button>
         </div>
         {data.length > 0 ? (
-          <AdminTable data={data} onDelete={handleDelete} onEdit={handleEdit} />
+          <AdminTable
+            data={data}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+            users={getAllUsers}
+          />
         ) : (
           ""
         )}
@@ -52,8 +87,8 @@ const AdminPermission = () => {
             <Modal.Title>Add New Item</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form>
-              <Form.Group controlId="formRole">
+            <Form onSubmit={handleSave}>
+              <Form.Group controlId="formRole" className="mb-3">
                 <Form.Label>Role</Form.Label>
                 <Form.Control
                   type="text"
@@ -62,7 +97,7 @@ const AdminPermission = () => {
                   required
                 />
               </Form.Group>
-              <Form.Group controlId="formDescription">
+              <Form.Group controlId="formDescription" className="mb-3">
                 <Form.Label>Description</Form.Label>
                 <Form.Control
                   as="textarea"
@@ -72,16 +107,33 @@ const AdminPermission = () => {
                   required
                 />
               </Form.Group>
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <Form.Group>
+                    <Form.Label>Boysindirish</Form.Label>
+                    <Form.Select aria-label="Boysindirish">
+                      <option disabled>Tanlang</option>
+                      {ruleOptions()}
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <Form.Group>
+                    <Form.Label>Boysinish</Form.Label>
+                    <Form.Select aria-label="Boysinish">
+                      <option disabled>Tanlang</option>
+                      {ruleOptions()}
+                    </Form.Select>
+                  </Form.Group>
+                </div>
+              </div>
+              <div className="d-flex align-items-center justify-content-end">
+                <Button variant="primary" type="submit">
+                  Save
+                </Button>
+              </div>
             </Form>
           </Modal.Body>
-          <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
-              Close
-            </Button>
-            <Button variant="primary" onClick={handleSave}>
-              Save
-            </Button>
-          </Modal.Footer>
         </Modal>
       </div>
     </AdminLayout>
