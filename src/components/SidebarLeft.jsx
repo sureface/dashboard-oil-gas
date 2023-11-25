@@ -9,9 +9,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
 import {
-  loginCompanyReducer,
-  loginReducer,
   loginSuperUserReducer,
+  loginSuperUserWebReducer,
+  loginCompanyReducer,
+  loginCompanyWebReducer,
+  loginWorkersReducer,
 } from "../redux/features/auth/authSlice";
 import gisBg1 from "../assets/bgImg/gis-bg1.png";
 import Logo1 from "../assets/logo/logo5.png";
@@ -21,12 +23,17 @@ const SidebarLeft = ({ menu }) => {
 
   const dispatch = useDispatch();
 
-  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
-  const signupUser = useSelector((state) => state.auth.signupUser);
+  const loggedInCompanyWeb = useSelector(
+    (state) => state.auth.loggedInCompanyWeb
+  );
   const loggedInsuperUser = useSelector(
     (state) => state.auth.loggedInsuperUser
   );
+  const loggedInsuperUserWeb = useSelector(
+    (state) => state.auth.loggedInsuperUserWeb
+  );
+  const loggedInWorkers = useSelector((state) => state.auth.loggedInWorkers);
 
   const logout = () => {
     if (loggedInCompany.login.length > 0) {
@@ -35,18 +42,30 @@ const SidebarLeft = ({ menu }) => {
         password: "",
       };
       dispatch(loginCompanyReducer(data));
-    } else if (loggedInUser.login.length > 0) {
+    } else if (loggedInCompanyWeb.login.length > 0) {
       const data = {
         login: "",
         password: "",
       };
-      dispatch(loginReducer(data));
+      dispatch(loginCompanyWebReducer(data));
     } else if (loggedInsuperUser.login.length > 0) {
       const data = {
         login: "",
         password: "",
       };
       dispatch(loginSuperUserReducer(data));
+    } else if (loggedInsuperUserWeb.login.length > 0) {
+      const data = {
+        login: "",
+        password: "",
+      };
+      dispatch(loginSuperUserWebReducer(data));
+    } else if (loggedInWorkers.login.length > 0) {
+      const data = {
+        login: "",
+        password: "",
+      };
+      dispatch(loginWorkersReducer(data));
     }
   };
 
@@ -62,7 +81,7 @@ const SidebarLeft = ({ menu }) => {
           >
             <FontAwesomeIcon icon={faBarsStaggered} />
           </div>
-          <div className="gis-sidebar__menu-wrapper overflow-auto w-100 h-100 d-flex flex-column justify-content-between z-1">
+          <div className="gis-sidebar__menu-wrapper menu__overflow overflow-auto w-100 h-100 d-flex flex-column justify-content-between z-1">
             <div>
               <div className="gis-sidebar__logo_details">
                 <a href="#" target="_blank" className="gis-sidebar__logo">
@@ -71,8 +90,6 @@ const SidebarLeft = ({ menu }) => {
                 <div className="gis-sidebar__company_name">
                   {loggedInCompany.login.length > 0
                     ? "Muborak"
-                    : signupUser.companyName.length > 0
-                    ? signupUser.companyName
                     : "Oʻzbekneftgaz"}
                 </div>
               </div>
@@ -97,11 +114,7 @@ const SidebarLeft = ({ menu }) => {
                 <img src={Avatar} />
               </a>
               <div className="gis-sidebar__userDetails">
-                <div className="gis-sidebar__userName">
-                  {signupUser.userName.length > 0
-                    ? signupUser.fullName
-                    : "Xamid Olimjon"}
-                </div>
+                <div className="gis-sidebar__userName">Xamid Olimjon</div>
                 <div className="gis-sidebar__userStatus">
                   tizim adminstratori
                 </div>

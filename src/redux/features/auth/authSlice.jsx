@@ -1,10 +1,6 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
 
 const initialState = {
-  loggedInUser: {
-    login: "",
-    password: "",
-  },
   loggedInCompany: {
     login: "",
     password: "",
@@ -18,6 +14,10 @@ const initialState = {
     password: "",
   },
   loggedInsuperUserWeb: {
+    login: "",
+    password: "",
+  },
+  loggedInWorkers: {
     login: "",
     password: "",
   },
@@ -35,9 +35,6 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    loginReducer: (state, action) => {
-      state.loggedInUser = action.payload;
-    },
     loginSuperUserReducer: (state, action) => {
       state.loggedInsuperUser = action.payload;
     },
@@ -53,16 +50,19 @@ export const authSlice = createSlice({
     loginCompanyWebReducer: (state, action) => {
       state.loggedInCompanyWeb = action.payload;
     },
+    loginWorkersReducer: (state, action) => {
+      state.loggedInWorkers = action.payload;
+    },
   },
 });
 
 export const {
-  loginReducer,
   signupReducer,
   loginCompanyReducer,
   loginCompanyWebReducer,
   loginSuperUserReducer,
   loginSuperUserWebReducer,
+  loginWorkersReducer,
 } = authSlice.actions;
 
 export default authSlice.reducer;

@@ -42,6 +42,10 @@ $gis-hover-white: #f8f9fa;
     }
     .gis-sidebar__menu-wrapper {
       width: 70px !important;
+
+      .menu__overflow {
+        overflow: visible !important;
+      }
     }
     .gis-sidebar__item:hover {
       overflow: unset;

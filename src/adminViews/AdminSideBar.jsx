@@ -10,7 +10,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginCompanyReducer,
-  loginReducer,
   loginSuperUserReducer,
 } from "../redux/features/auth/authSlice";
 import gisBg1 from "../assets/bgImg/gis-bg1.png";
@@ -20,9 +19,7 @@ const AdminSideBar = ({ menu }) => {
 
   const dispatch = useDispatch();
 
-  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
-  const signupUser = useSelector((state) => state.auth.signupUser);
   const loggedInsuperUser = useSelector(
     (state) => state.auth.loggedInsuperUser
   );
@@ -34,12 +31,6 @@ const AdminSideBar = ({ menu }) => {
         password: "",
       };
       dispatch(loginCompanyReducer(data));
-    } else if (loggedInUser.login.length > 0) {
-      const data = {
-        login: "",
-        password: "",
-      };
-      dispatch(loginReducer(data));
     } else if (loggedInsuperUser.login.length > 0) {
       const data = {
         login: "",
@@ -68,11 +59,7 @@ const AdminSideBar = ({ menu }) => {
                   <img src={Logo1} alt="err" style={{ width: "35px" }} />
                 </a>
                 <div className="gis-sidebar__company_name">
-                  {loggedInCompany.login.length > 0
-                    ? "Muborak"
-                    : signupUser.companyName.length > 0
-                    ? signupUser.companyName
-                    : "Vazirlik"}
+                  {loggedInCompany.login.length > 0 ? "Muborak" : "Vazirlik"}
                 </div>
               </div>
               <ul className="gis-sidebar__nav">
@@ -96,11 +83,7 @@ const AdminSideBar = ({ menu }) => {
                 <img src={Avatar} />
               </a>
               <div className="gis-sidebar__userDetails">
-                <div className="gis-sidebar__userName">
-                  {signupUser.userName.length > 0
-                    ? signupUser.fullName
-                    : "Xamid Olimjon"}
-                </div>
+                <div className="gis-sidebar__userName">Xamid Olimjon</div>
                 <div className="gis-sidebar__userStatus">
                   tizim adminstratori
                 </div>

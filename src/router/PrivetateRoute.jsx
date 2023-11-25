@@ -3,11 +3,15 @@ import { Outlet, Navigate } from "react-router-dom";
 
 const PrivetateRoute = () => {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
-  const loggedInUser = useSelector((state) => state.auth.loggedInUser);
+  const loggedInCompanyWeb = useSelector(
+    (state) => state.auth.loggedInCompanyWeb
+  );
   const loggedInsuperUser = useSelector(
     (state) => state.auth.loggedInsuperUser
   );
-  const loggedInsuperUserWeb = useSelector((state) => state.auth.loggedInsuperUserWeb)
+  const loggedInsuperUserWeb = useSelector(
+    (state) => state.auth.loggedInsuperUserWeb
+  );
 
   function CheckAuth() {
     if (
@@ -16,8 +20,8 @@ const PrivetateRoute = () => {
     ) {
       return <Outlet />;
     } else if (
-      loggedInUser.login.length > 0 &&
-      loggedInUser.password.length > 0
+      loggedInCompanyWeb.login.length > 0 &&
+      loggedInCompanyWeb.password.length > 0
     ) {
       return <Outlet />;
     } else if (

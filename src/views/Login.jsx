@@ -1,14 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { superUser, userLog } from "../UserLog";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
-  loginReducer,
+  superAdmin,
+  superAdminWeb,
+  admin,
+  adminWeb,
+  workers,
+} from "../UserLog";
+import {
+  loginWorkersReducer,
   loginCompanyReducer,
   loginCompanyWebReducer,
   loginSuperUserReducer,
   loginSuperUserWebReducer,
 } from "../redux/features/auth/authSlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import gisBg4 from "../assets/bgImg/gis-bg4.png";
 import Logo from "../assets/img/logoBlue.png";
 
@@ -17,46 +23,12 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState(false);
 
-  const [signUpData, setSignUpData] = useState([]);
-  const signupUser = useSelector((state) => state.auth.signupUser);
-
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    console.log(import.meta.env.VITE_SUPER_ADMIN);
-    if (signupUser && Object.keys(signupUser).length > 0) {
-      setSignUpData(signupUser);
-      setLogin(signupUser.userName);
-      setPassword(signupUser.password);
-    } else {
-      setSignUpData([]);
-      setLogin("");
-      setPassword("");
-    }
-  }, []);
-
   const SubmitHandler = (e) => {
     e.preventDefault();
-    if (
-      signUpData.userName.length > 0 &&
-      signUpData.password.length > 0 &&
-      login === signUpData.userName &&
-      password === signUpData.password
-    ) {
-      const data = {
-        login,
-        password,
-      };
-      dispatch(loginReducer(data));
-      navigate("/");
-      setError(false);
-      setLogin("");
-      setPassword("");
-    } else if (
-      login === import.meta.env.VITE_SUPER_ADMIN &&
-      password === import.meta.env.VITE_SUPER_ADMIN
-    ) {
+    if (login === superAdmin.login && password === superAdmin.password) {
       const data = {
         login,
         password,
@@ -67,8 +39,8 @@ const Login = () => {
       setLogin("");
       setPassword("");
     } else if (
-      login === import.meta.env.VITE_SUPER_ADMIN_WEB &&
-      password === import.meta.env.VITE_SUPER_ADMIN_WEB
+      login === superAdminWeb.login &&
+      password === superAdminWeb.password
     ) {
       const data = {
         login,
@@ -79,10 +51,7 @@ const Login = () => {
       setError(false);
       setLogin("");
       setPassword("");
-    } else if (
-      login === import.meta.env.VITE_ADMIN &&
-      password === import.meta.env.VITE_ADMIN
-    ) {
+    } else if (login === admin.login && password === admin.password) {
       const data = {
         login,
         password,
@@ -92,15 +61,22 @@ const Login = () => {
       setError(false);
       setLogin("");
       setPassword("");
-    } else if (
-      login === import.meta.env.VITE_ADMIN_WEB &&
-      password === import.meta.env.VITE_ADMIN_WEB
-    ) {
+    } else if (login === adminWeb.login && password === adminWeb.password) {
       const data = {
         login,
         password,
       };
       dispatch(loginCompanyWebReducer(data));
+      navigate("/");
+      setError(false);
+      setLogin("");
+      setPassword("");
+    } else if (login === workers.login && password === workers.password) {
+      const data = {
+        login,
+        password,
+      };
+      dispatch(loginWorkersReducer(data));
       navigate("/");
       setError(false);
       setLogin("");
@@ -173,15 +149,6 @@ const Login = () => {
                           </button>
                         </div>
                       </form>
-                      <div className="d-flex align-items-center justify-content-center pb-4">
-                        <p className="mb-0 me-2">Akountingiz yo'qmi ?</p>
-                        <Link
-                          to="/signup"
-                          className="btn btn-primary gradient-custom-2 text-white"
-                        >
-                          Yangi Yaratish
-                        </Link>
-                      </div>
                     </div>
                   </div>
                   <div className="col-lg-6 d-flex align-items-center b-t-b-radius gradient-custom-2 position-relative">
