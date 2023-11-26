@@ -80,7 +80,7 @@ const AdminPermission = () => {
             Yangi Foydalanuvchi Qo'shish
           </Button>
         </div>
-        {data.length > 0 ? (
+        {data.length >= 0 ? (
           <AdminTable
             data={data}
             onDelete={handleDelete}
@@ -88,7 +88,9 @@ const AdminPermission = () => {
             users={getAllUsers}
           />
         ) : (
-          ""
+          <span className="text-center h-2">
+            Foydalanuvchi Hali Qo'shilmagan
+          </span>
         )}
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
