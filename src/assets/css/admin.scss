@@ -73,8 +73,8 @@ tr th:last-child {
   padding-right: 44px;
 }
 table {
-  border-collapse: separate;
-  border-spacing: 0 15px;
+  border-collapse: collapse;
+  border-color: $gis-white;
 }
 thead tr th {
   background-color: $gis-gray !important;
@@ -82,4 +82,9 @@ thead tr th {
 tbody tr td {
   background-color: $gis-primary !important;
   color: $gis-white !important;
+  border: 1px solid $gis-white;
+  vertical-align: middle;
+}
+.text-blue {
+  color: $gis-primary;
 }

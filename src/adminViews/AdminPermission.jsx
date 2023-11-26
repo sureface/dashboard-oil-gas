@@ -12,11 +12,32 @@ const AdminPermission = () => {
       id: 1,
       role: "SuperAdmin",
       description: "Bu admin hamma narsani ozgartira oladi !",
+      adminLogin: "superAdmin",
+      adminPassword: "superAdmin",
     },
   ]);
   const [incrementId, setIncrementId] = useState(2);
   const [allUsers, setAllUsers] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
+  const [adminPassword, setadminPassword] = useState("");
+  const [adminLogin, setadminLogin] = useState("");
+  // permissions
+  const [permissions, setPermissions] = useState({
+    konlar: false,
+    monitoring: false,
+    kartateka: false,
+    orografiya: false,
+    masalaniTanlash: false,
+  });
+
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    console.log(name, checked);
+    setPermissions((prevPermissions) => ({
+      ...prevPermissions,
+      [name]: checked,
+    }));
+  };
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -26,6 +47,15 @@ const AdminPermission = () => {
     setShowModal(false);
     setRole("");
     setDescription("");
+    setadminLogin("");
+    setadminPassword("");
+    setPermissions({
+      konlar: false,
+      monitoring: false,
+      kartateka: false,
+      orografiya: false,
+      masalaniTanlash: false,
+    });
   };
 
   const handleSave = (e) => {
@@ -33,27 +63,65 @@ const AdminPermission = () => {
 
     if (selectedId !== null) {
       const updatedData = data.map((item) =>
-        item.id === selectedId ? { ...item, role, description } : item
+        item.id === selectedId
+          ? {
+              ...item,
+              role,
+              description,
+              adminLogin,
+              adminPassword,
+              permissions,
+            }
+          : item
       );
       setData(updatedData);
     } else {
-      setData([...data, { id: incrementId, role, description }]);
+      setData([
+        ...data,
+        {
+          id: incrementId,
+          role,
+          description,
+          adminLogin,
+          adminPassword,
+          permissions,
+        },
+      ]);
       setIncrementId(incrementId + 1);
     }
     setRole("");
     setDescription("");
     setShowModal(false);
+    setadminLogin("");
+    setadminPassword("");
+    setPermissions({
+      konlar: false,
+      monitoring: false,
+      kartateka: false,
+      orografiya: false,
+      masalaniTanlash: false,
+    });
   };
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
   };
 
-  const handleEdit = (id, role, description) => {
+  const handleEdit = (
+    id,
+    role,
+    description,
+    adminLogin,
+    adminPassword,
+    permissions
+  ) => {
     setSelectedId(id);
     setRole(role);
     setDescription(description);
     setShowModal(true);
+    setadminLogin(adminLogin);
+    setadminPassword(adminPassword);
+    setPermissions(permissions);
   };
 
   const getAllUsers = (users) => {
@@ -94,12 +162,14 @@ const AdminPermission = () => {
         )}
         <Modal show={showModal} onHide={handleCloseModal}>
           <Modal.Header closeButton>
-            <Modal.Title>Add New Item</Modal.Title>
+            <Modal.Title className="text-blue">
+              Yangi Foydalanuvchi Qo'shing
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <Form onSubmit={handleSave}>
               <Form.Group controlId="formRole" className="mb-3">
-                <Form.Label>Role</Form.Label>
+                <Form.Label>Foydalanuvchi Ijrosi</Form.Label>
                 <Form.Control
                   type="text"
                   value={role}
@@ -108,7 +178,7 @@ const AdminPermission = () => {
                 />
               </Form.Group>
               <Form.Group controlId="formDescription" className="mb-3">
-                <Form.Label>Description</Form.Label>
+                <Form.Label>Foydalanuvchi haqida qisqa malumot</Form.Label>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -117,6 +187,7 @@ const AdminPermission = () => {
                   required
                 />
               </Form.Group>
+              <hr className="mb-3" />
               <div className="row">
                 <div className="col-md-6 mb-3">
                   <Form.Group>
@@ -137,9 +208,86 @@ const AdminPermission = () => {
                   </Form.Group>
                 </div>
               </div>
+              <div className="row">
+                <div className="col-md-6 mb-3">
+                  <Form.Group>
+                    <Form.Label>Foydalanuvchi Login</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={adminLogin}
+                      onChange={(e) => setadminLogin(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                </div>
+                <div className="col-md-6 mb-3">
+                  <Form.Group>
+                    <Form.Label>Foydalanuvchi Paro'li</Form.Label>
+                    <Form.Control
+                      type="text"
+                      value={adminPassword}
+                      onChange={(e) => setadminPassword(e.target.value)}
+                      required
+                    />
+                  </Form.Group>
+                </div>
+              </div>
+              <hr className="mb-3" />
+              <Form.Group controlId="formCheckboxes" className="mb-3">
+                <Form.Label className="d-flex aling-items-center justfy-centent-center text-blue">
+                  Bo'limlarni Ko'rish uchun Ruhsatlar
+                </Form.Label>
+                <div className="d-flex align-items-center flex-wrap">
+                  <Form.Check
+                    type="checkbox"
+                    id="permission1"
+                    name="permission1"
+                    label="Konlar"
+                    className="me-3"
+                    checked={permissions.permission1}
+                    onChange={handleCheckboxChange}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    id="permission2"
+                    name="permission2"
+                    label="Monitoring"
+                    className="me-3"
+                    checked={permissions.permission2}
+                    onChange={handleCheckboxChange}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    id="permission3"
+                    name="permission3"
+                    label="Kartateka"
+                    className="me-3"
+                    checked={permissions.permission3}
+                    onChange={handleCheckboxChange}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    id="permission4"
+                    name="permission4"
+                    label="Orografiya"
+                    className="me-3"
+                    checked={permissions.permission4}
+                    onChange={handleCheckboxChange}
+                  />
+                  <Form.Check
+                    type="checkbox"
+                    id="permission5"
+                    name="permission5"
+                    label="MasalaniTanlash"
+                    className="me-3"
+                    checked={permissions.permission5}
+                    onChange={handleCheckboxChange}
+                  />
+                </div>
+              </Form.Group>
               <div className="d-flex align-items-center justify-content-end">
                 <Button variant="primary" type="submit">
-                  Save
+                  Qo'shish
                 </Button>
               </div>
             </Form>

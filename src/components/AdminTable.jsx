@@ -28,17 +28,26 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
 
   const handleEdit = (id) => {
     const selectedItem = tableData.find((item) => item.id === id);
-    onEdit(id, selectedItem.role, selectedItem.description);
+    onEdit(
+      id,
+      selectedItem.role,
+      selectedItem.description,
+      selectedItem.adminLogin,
+      selectedItem.adminPassword,
+      selectedItem.permissions
+    );
   };
 
   return (
     <div className="container-fluid">
-      <Table>
+      <Table border={1} >
         <thead>
           <tr>
             <th>№</th>
             <th>Role</th>
             <th>Description</th>
+            <th>Login</th>
+            <th>Password</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -49,6 +58,8 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
                 <td>{item.id}</td>
                 <td>{item.role}</td>
                 <td>{item.description}</td>
+                <td>{item.adminLogin}</td>
+                <td>{item.adminPassword}</td>
                 <td>
                   <span
                     className="cursor-pointer p-2"
