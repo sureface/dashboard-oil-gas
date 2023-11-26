@@ -16,6 +16,7 @@ const AdminPermission = () => {
   ]);
   const [incrementId, setIncrementId] = useState(1);
   const [allUsers, setAllUsers] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
   const handleShowModal = () => {
     setShowModal(true);
@@ -27,7 +28,16 @@ const AdminPermission = () => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    setData([...data, { id: incrementId, role, description }]);
+
+    if (selectedId !== null) {
+      const updatedData = data.map((item) =>
+        item.id === selectedId ? { ...item, role, description } : item
+      );
+      setData(updatedData);
+    } else {
+      setData([...data, { id: incrementId, role, description }]);
+      setIncrementId(incrementId + 1);
+    }
     setRole("");
     setDescription("");
     setShowModal(false);
@@ -38,14 +48,11 @@ const AdminPermission = () => {
     setData(data.filter((item) => item.id !== id));
   };
 
-  const handleEdit = (id, newRole, newDescription) => {
-    setData(
-      data.map((item) =>
-        item.id === id
-          ? { ...item, role: newRole, description: newDescription }
-          : item
-      )
-    );
+  const handleEdit = (id, role, description) => {
+    setSelectedId(id);
+    setRole(role);
+    setDescription(description);
+    setShowModal(true);
   };
 
   const getAllUsers = (users) => {

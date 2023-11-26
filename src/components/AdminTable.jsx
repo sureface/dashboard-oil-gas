@@ -7,9 +7,12 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
   const [tableData, setTableData] = useState([]);
 
   useEffect(() => {
+    console.log(tableData);
     setTableData(data);
     updateModal(data);
   }, [data]);
+
+  // console.log(tableData);
 
   const handleShow = (id) => {
     // Handle show action
@@ -19,12 +22,13 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
     onDelete(id);
   };
 
-  const handleEdit = (id, newRole, newDescription) => {
-    onEdit(id, newRole, newDescription);
-  };
-
   const updateModal = (data) => {
     users(data);
+  };
+
+  const handleEdit = (id) => {
+    const selectedItem = tableData.find((item) => item.id === id);
+    onEdit(id, selectedItem.role, selectedItem.description);
   };
 
   return (
@@ -57,7 +61,7 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
                     onClick={() => handleEdit(item.id)}
                   >
                     <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
-                  </span>{" "}
+                  </span>
                   <span
                     className="cursor-pointer p-2"
                     onClick={() => handleDelete(item.id)}
