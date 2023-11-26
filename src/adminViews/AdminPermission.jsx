@@ -14,7 +14,7 @@ const AdminPermission = () => {
       description: "Bu admin hamma narsani ozgartira oladi !",
     },
   ]);
-  const [incrementId, setIncrementId] = useState(1);
+  const [incrementId, setIncrementId] = useState(2);
   const [allUsers, setAllUsers] = useState(null);
   const [selectedId, setSelectedId] = useState(null);
 
@@ -24,6 +24,8 @@ const AdminPermission = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
+    setRole("");
+    setDescription("");
   };
 
   const handleSave = (e) => {
@@ -41,7 +43,6 @@ const AdminPermission = () => {
     setRole("");
     setDescription("");
     setShowModal(false);
-    setIncrementId(incrementId + 1);
   };
 
   const handleDelete = (id) => {
