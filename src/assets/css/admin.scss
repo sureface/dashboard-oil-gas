@@ -88,3 +88,49 @@ tbody tr td {
 .text-blue {
   color: $gis-primary;
 }
+.fs-20 {
+  font-size: 20px;
+}
+.kon {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 48, 120, 1) 0%,
+    rgba(9, 139, 230, 1) 100%,
+    rgba(0, 196, 242, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
+
+  svg {
+    font-size: 35px;
+    color: $gis-white;
+    filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0.5));
+  }
+  &__name {
+    color: $gis-white;
+    font-size: 20px;
+    font-weight: 600px;
+    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
+    user-select: none;
+  }
+  .adminDashboardChart {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: linear-gradient(
+      90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgb(5, 38, 87) 0%,
+      rgb(22, 119, 188) 100%,
+      rgbrgb(5, 130, 158) 0%,
+      rgbargb(4, 150, 180) 100%
+    );
+  }
+}

@@ -1,3 +1,4 @@
+import React, { useRef, useEffect } from "react";
 import { faExpand } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -12,9 +13,10 @@ import {
   BarElement,
   LineController,
   BarController,
+  Filler,
 } from "chart.js";
 import { useState } from "react";
-import { Line, Bar, Chart } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 
 ChartJS.register(
   ArcElement,
@@ -26,7 +28,8 @@ ChartJS.register(
   LineElement,
   BarElement,
   LineController,
-  BarController
+  BarController,
+  Filler
 );
 
 export const LineChartSimple = () => {
@@ -3929,3 +3932,6 @@ export const ExampleSChart17 = () => {
 };
 
 //  for right sidebar static charts
+
+// admin Chart
+
