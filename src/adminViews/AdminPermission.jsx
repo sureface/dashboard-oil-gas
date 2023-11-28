@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import AdminLayout from "../layout/AdminLayout";
 import AdminTable from "../components/AdminTable";
+import { useDispatch } from "react-redux";
+import { allUsersReducer } from "../redux/features/auth/permissionSlice";
 
 const AdminPermission = () => {
   const [showModal, setShowModal] = useState(false);
@@ -14,6 +16,13 @@ const AdminPermission = () => {
       description: "Bu admin hamma narsani ozgartira oladi !",
       adminLogin: "superAdmin",
       adminPassword: "superAdmin",
+      permissions: {
+        konlar: true,
+        monitoring: true,
+        kartateka: true,
+        orografiya: true,
+        masalaniTanlash: true,
+      }
     },
   ]);
   const [incrementId, setIncrementId] = useState(2);
@@ -29,6 +38,10 @@ const AdminPermission = () => {
     orografiya: false,
     masalaniTanlash: false,
   });
+
+  const dispatch = useDispatch()
+
+  dispatch(allUsersReducer(data))
 
   const handleCheckboxChange = (e) => {
     const { name, checked } = e.target;
@@ -65,13 +78,13 @@ const AdminPermission = () => {
       const updatedData = data.map((item) =>
         item.id === selectedId
           ? {
-              ...item,
-              role,
-              description,
-              adminLogin,
-              adminPassword,
-              permissions,
-            }
+            ...item,
+            role,
+            description,
+            adminLogin,
+            adminPassword,
+            permissions,
+          }
           : item
       );
       setData(updatedData);
@@ -87,6 +100,17 @@ const AdminPermission = () => {
           permissions,
         },
       ]);
+      dispatch(
+        ...data,
+        {
+          id: incrementId,
+          role,
+          description,
+          adminLogin,
+          adminPassword,
+          permissions,
+        }
+      )
       setIncrementId(incrementId + 1);
     }
     setRole("");
@@ -105,6 +129,7 @@ const AdminPermission = () => {
 
   const handleDelete = (id) => {
     setData(data.filter((item) => item.id !== id));
+    dispatch(data)
   };
 
   const handleEdit = (
@@ -240,8 +265,8 @@ const AdminPermission = () => {
                 <div className="d-flex align-items-center flex-wrap">
                   <Form.Check
                     type="checkbox"
-                    id="permission1"
-                    name="permission1"
+                    id="Konlar"
+                    name="Konlar"
                     label="Konlar"
                     className="me-3"
                     checked={permissions.permission1}
@@ -249,8 +274,8 @@ const AdminPermission = () => {
                   />
                   <Form.Check
                     type="checkbox"
-                    id="permission2"
-                    name="permission2"
+                    id="Monitoring"
+                    name="Monitoring"
                     label="Monitoring"
                     className="me-3"
                     checked={permissions.permission2}
@@ -258,8 +283,8 @@ const AdminPermission = () => {
                   />
                   <Form.Check
                     type="checkbox"
-                    id="permission3"
-                    name="permission3"
+                    id="Kartateka"
+                    name="Kartateka"
                     label="Kartateka"
                     className="me-3"
                     checked={permissions.permission3}
@@ -267,8 +292,8 @@ const AdminPermission = () => {
                   />
                   <Form.Check
                     type="checkbox"
-                    id="permission4"
-                    name="permission4"
+                    id="Orografiya"
+                    name="Orografiya"
                     label="Orografiya"
                     className="me-3"
                     checked={permissions.permission4}
@@ -276,8 +301,8 @@ const AdminPermission = () => {
                   />
                   <Form.Check
                     type="checkbox"
-                    id="permission5"
-                    name="permission5"
+                    id="MasalaniTanlash"
+                    name="MasalaniTanlash"
                     label="MasalaniTanlash"
                     className="me-3"
                     checked={permissions.permission5}

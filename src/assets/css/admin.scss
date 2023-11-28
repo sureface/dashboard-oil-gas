@@ -3,9 +3,11 @@ $gis-primary: #003078;
 $gis-white: #ffffff;
 $gis-green: #2bb673;
 $gis-gray: #d5d5d5;
+
 * {
   font-family: "Poppins" sans-serif !important;
 }
+
 .custom-accordion-container {
   .accordion-item {
     border-radius: 0 !important;
@@ -15,6 +17,7 @@ $gis-gray: #d5d5d5;
       align-items: center;
       flex-wrap: wrap;
       gap: 10px;
+
       &__wrapper {
         position: relative;
         width: 150px;
@@ -25,6 +28,7 @@ $gis-gray: #d5d5d5;
           width: 100%;
           height: 100%;
         }
+
         .uploaded-image__cancel {
           position: absolute;
           top: 3px;
@@ -39,6 +43,7 @@ $gis-gray: #d5d5d5;
         }
       }
     }
+
     .accordion-save__btn {
       border: none;
       padding: 7px 15px;
@@ -46,6 +51,7 @@ $gis-gray: #d5d5d5;
       background: $gis-green;
     }
   }
+
   .accordion-button {
     justify-content: space-between;
     background: $gis-primary;
@@ -57,80 +63,85 @@ $gis-gray: #d5d5d5;
       box-shadow: none;
       outline: none;
     }
+
     &::after {
       display: none;
     }
   }
 }
+
 .cursor-pointer {
   cursor: pointer !important;
 }
+
 tr th:last-child,
 tr td:last-child {
   text-align: end;
 }
+
 tr th:last-child {
   padding-right: 44px;
 }
+
 table {
   border-collapse: collapse;
   border-color: $gis-white;
 }
+
 thead tr th {
   background-color: $gis-gray !important;
 }
+
 tbody tr td {
   background-color: $gis-primary !important;
   color: $gis-white !important;
   border: 1px solid $gis-white;
   vertical-align: middle;
 }
+
 .text-blue {
   color: $gis-primary;
 }
+
 .fs-20 {
   font-size: 20px;
 }
+
 .kon {
   position: relative;
   width: 100%;
   height: 200px;
   border-radius: 10px;
   background: rgb(2, 0, 36);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 48, 120, 1) 0%,
-    rgba(9, 139, 230, 1) 100%,
-    rgba(0, 196, 242, 1) 100%,
-    rgba(0, 212, 255, 1) 100%
-  );
+  background: linear-gradient(90deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(0, 48, 120, 1) 0%,
+      rgba(0, 50, 125, 1) 100%,
+      rgba(0, 48, 120, 1) 100%,
+      rgba(2, 0, 36, 1) 100%);
+  -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 
   svg {
     font-size: 35px;
     color: $gis-white;
     filter: drop-shadow(1px 1px 3px rgba(255, 255, 255, 0.5));
   }
+
   &__name {
     color: $gis-white;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600px;
     text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.5);
     user-select: none;
   }
+
   .adminDashboardChart {
     position: absolute;
-    bottom: 0;
+    bottom: -6px;
     left: 0;
     right: 0;
     width: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgb(5, 38, 87) 0%,
-      rgb(22, 119, 188) 100%,
-      rgbrgb(5, 130, 158) 0%,
-      rgbargb(4, 150, 180) 100%
-    );
   }
 }

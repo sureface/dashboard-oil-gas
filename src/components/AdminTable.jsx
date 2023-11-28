@@ -1,22 +1,27 @@
 import React, { useEffect, useState } from "react";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Table } from "react-bootstrap";
+import { Table, Modal, Button } from "react-bootstrap";
 
 const AdminTable = ({ data, onDelete, onEdit, users }) => {
   const [tableData, setTableData] = useState([]);
+  const [show, setShow] = useState(false);
+  const [showSelectedItem, setShowSelectedItem] = useState(null)
 
-  useEffect(() => {
-    console.log(tableData);
-    setTableData(data);
-    updateModal(data);
-  }, [data]);
-
-  // console.log(tableData);
+  const handleClose = () => setShow(false);
 
   const handleShow = (id) => {
-    // Handle show action
-  };
+    setShow(true)
+    const shownItem = tableData.find(item => item.id === id)
+    console.log(shownItem);
+    setShowSelectedItem(shownItem)
+  }
+
+  useEffect(() => {
+    setTableData(data);
+    updateModal(data);
+    console.log(showSelectedItem);
+  }, [data]);
 
   const handleDelete = (id) => {
     onDelete(id);
@@ -37,6 +42,8 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
       selectedItem.permissions
     );
   };
+
+
 
   return (
     <div className="container-fluid">
@@ -89,6 +96,30 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
           )}
         </tbody>
       </Table>
+      <Modal show={show} onHide={handleClose} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal Title</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+
+          {
+            showSelectedItem && Object.keys(showSelectedItem).length > 0  ?
+              (
+                <div>
+                  <ul>
+                    <li><span className="text-blue"> roli: </span> &nbsp; {showSelectedItem.role}</li>
+                    <li><span className="text-blue"> Malumot: </span> &nbsp; {showSelectedItem.description}</li>
+                    <li><span className="text-blue"> login: </span>  &nbsp; {showSelectedItem.adminLogin}</li>
+                    <li><span className="text-blue"> paro'l: </span> &nbsp; {showSelectedItem.adminPassword}</li>
+                  </ul>
+                </div>
+              ) : (
+                <p>im really sorry</p>
+              )
+          }
+
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };

@@ -14,6 +14,7 @@ import {
   LineController,
   BarController,
   Filler,
+  Title,
 } from "chart.js";
 import { useState } from "react";
 import { Line, Bar } from "react-chartjs-2";
@@ -29,7 +30,8 @@ ChartJS.register(
   BarElement,
   LineController,
   BarController,
-  Filler
+  Filler,
+  Title
 );
 
 export const LineChartSimple = () => {
@@ -3935,3 +3937,93 @@ export const ExampleSChart17 = () => {
 
 // admin Chart
 
+export function LineChartGradient() {
+
+  let delayed;
+
+  const data = () => {
+    return {
+      labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+      datasets: [
+        {
+          label: "First dataset",
+          data: [33, 53, 85, 41, 44, 65],
+          fill: "start",
+          backgroundColor: (context) => {
+            const ctx = context.chart.ctx;
+            const gradient = ctx.createLinearGradient(0, 0, 0, 200);
+            gradient.addColorStop(0, "rgba(2, 0, 36, 1)");
+            gradient.addColorStop(0, "rgba(0, 48, 120, 1)");
+            gradient.addColorStop(1, "rgba(9, 139, 230, 1)");
+            gradient.addColorStop(1, "rgba(0, 196, 242, 0)");
+            gradient.addColorStop(1, "rgba(0, 212, 255, 0)");
+            return gradient;
+          },
+          borderColor: "rgba(9, 139, 230, 1)",
+          pointBackgroundColor: '#fff',
+          tension: 0.4,
+        }
+      ]
+    };
+  };
+
+  const options = {
+    radius: 4,
+    hitRadius: 10,
+    hoverRadius: 5,
+    animation: {
+      onComplete: () => {
+        delayed = true;
+      },
+      delay: (context) => {
+        let delay = 0;
+        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+          delay = context.dataIndex * 300 + context.datasetIndex * 100;
+        }
+        return delay;
+      },
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+    plugins: {
+      legend: {
+        display: false, // Hide the legend
+      },
+      filler: {
+        propagate: false,
+      },
+    },
+    scales: {
+      x: {
+        display: false, // Hide the x-axis
+        stacked: true,
+      },
+      y: {
+        display: false, // Hide the y-axis
+        stacked: true,
+      },
+    },
+    layout: {
+      padding: {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+      },
+    },
+    elements: {
+      line: {
+        tension: 0.35,
+      },
+    },
+    interaction: {
+      intersect: true,
+    },
+  };
+
+  return (
+    <div className="adminDashboardChart">
+      <Line data={data()} options={options} />
+    </div>
+  );
+}
