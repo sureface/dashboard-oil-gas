@@ -58,21 +58,11 @@ const AdminPermission = () => {
 
   const handleCloseModal = () => {
     setShowModal(false);
-    setRole("");
-    setDescription("");
-    setadminLogin("");
-    setadminPassword("");
-    setPermissions({
-      konlar: false,
-      monitoring: false,
-      kartateka: false,
-      orografiya: false,
-      masalaniTanlash: false,
-    });
   };
 
   const handleSave = (e) => {
     e.preventDefault();
+    console.log(selectedId, "selectedId");
 
     if (selectedId !== null) {
       const updatedData = data.map((item) =>
@@ -88,6 +78,7 @@ const AdminPermission = () => {
           : item
       );
       setData(updatedData);
+
     } else {
       setData([
         ...data,
@@ -100,22 +91,12 @@ const AdminPermission = () => {
           permissions,
         },
       ]);
-      dispatch(
-        ...data,
-        {
-          id: incrementId,
-          role,
-          description,
-          adminLogin,
-          adminPassword,
-          permissions,
-        }
-      )
+      // dispatch(data)
       setIncrementId(incrementId + 1);
     }
+    setShowModal(false)
     setRole("");
     setDescription("");
-    setShowModal(false);
     setadminLogin("");
     setadminPassword("");
     setPermissions({

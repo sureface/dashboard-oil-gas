@@ -45,7 +45,6 @@ function App() {
   }
 
   return (
-    <>
       <Router>
         <Routes>
           <Route element={<PrivetateRoute />}>
@@ -73,7 +72,6 @@ function App() {
           <Route element={<SignUp />} path="/signup" />
         </Routes>
       </Router>
-    </>
   );
 }
 

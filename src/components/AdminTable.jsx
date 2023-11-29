@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { faEye, faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Table, Modal, Button } from "react-bootstrap";
+import { Table, Modal, Button, Form } from "react-bootstrap";
 
 const AdminTable = ({ data, onDelete, onEdit, users }) => {
   const [tableData, setTableData] = useState([]);
   const [show, setShow] = useState(false);
   const [showSelectedItem, setShowSelectedItem] = useState(null)
+  const [selectedCheckbox, setSelectedCheckbox] = useState([])
 
   const handleClose = () => setShow(false);
 
@@ -20,7 +21,6 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
   useEffect(() => {
     setTableData(data);
     updateModal(data);
-    console.log(showSelectedItem);
   }, [data]);
 
   const handleDelete = (id) => {
@@ -43,10 +43,37 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
     );
   };
 
+  const handleCheckboxChange = (itemId) => {
+    if (selectedCheckbox.includes(itemId)) {
+      setSelectedCheckbox(selectedCheckbox.filter((id) => id !== itemId))
+    } else {
+      setSelectedCheckbox([...selectedCheckbox, itemId])
+    }
+  }
+
+  const handleSelectedAll = (event) => {
+    if (event.target.checked) {
+      const allItemIds = tableData.map(item => item.id)
+      setSelectedCheckbox(allItemIds)
+    } else {
+      setSelectedCheckbox([])
+    }
+  }
+
+  const handleDeleteSelectedCheckboxes = () => {
+    const updatedItems = tableData.filter(
+      (item) => !selectedCheckbox.includes(item.id)
+    )
+    setTableData(updatedItems)
+  }
+
 
 
   return (
     <div className="container-fluid">
+      <Button variant="danger" onClick={handleDeleteSelectedCheckboxes}>
+        Delete Selected Checkboxes
+      </Button>
       <Table border={1} >
         <thead>
           <tr>
@@ -56,6 +83,13 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
             <th>Login</th>
             <th>Password</th>
             <th>Actions</th>
+            <th>
+              <Form.Check
+                type="checkbox"
+                onChange={handleSelectedAll}
+                checked={selectedCheckbox.length === tableData.length}
+              />
+            </th>
           </tr>
         </thead>
         <tbody>
@@ -87,6 +121,13 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
                     <FontAwesomeIcon icon={faTrash} style={{ color: "#fff" }} />
                   </span>
                 </td>
+                <td>
+                  <Form.Check
+                    type="checkbox"
+                    onChange={() => handleCheckboxChange(item.id)}
+                    checked={selectedCheckbox.includes(item.id)}
+                  />
+                </td>
               </tr>
             ))
           ) : (
@@ -103,7 +144,7 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
         <Modal.Body>
 
           {
-            showSelectedItem && Object.keys(showSelectedItem).length > 0  ?
+            showSelectedItem && Object.keys(showSelectedItem).length > 0 ?
               (
                 <div>
                   <ul>
