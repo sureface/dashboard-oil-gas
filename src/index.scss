@@ -2,6 +2,7 @@
 $gis-primary: #003078;
 $gis-white: #ffffff;
 $gis-hover-white: #f4f4f5;
+$gis-body-bg: #eff1f3;
 * {
   padding: 0;
   margin: 0;
@@ -9,6 +10,9 @@ $gis-hover-white: #f4f4f5;
   text-decoration: none;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: $gis-body-bg !important;
 }
 .text-main {
   color: $gis-primary;

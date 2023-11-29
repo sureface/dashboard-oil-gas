@@ -1,6 +1,11 @@
 import React from "react";
 import AdminLayout from "../layout/AdminLayout";
-import { faFireFlameSimple, faOilWell } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowUp,
+  faFireFlameSimple,
+  faOilWell,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { LineChartGradient } from "../components/Chart";
 import { Table } from "react-bootstrap";
@@ -10,40 +15,52 @@ const SuperAdminDefaultView = () => {
     {
       id: 1,
       name: "Shimoliy Berdaq",
-      icon: faOilWell,
-      chart: <LineChartGradient />
+      icon: faArrowDown,
+      status: false,
+      info: "Bu Oy",
+      chart: <LineChartGradient />,
     },
     {
       id: 2,
       name: "Usyurt Gaz",
-      icon: faFireFlameSimple,
-      chart: <LineChartGradient />
+      icon: faArrowUp,
+      status: true,
+      info: "Bu Oy",
+      chart: <LineChartGradient />,
     },
     {
       id: 3,
       name: "Usyurt Neft",
-      icon: faOilWell,
-      chart: <LineChartGradient />
+      icon: faArrowUp,
+      status: true,
+      info: "Bu Oy",
+      chart: <LineChartGradient />,
     },
     {
       id: 4,
       name: "Muborak Gaz",
-      icon: faFireFlameSimple,
-      chart: <LineChartGradient />
+      icon: faArrowDown,
+      status: false,
+      info: "Bu Oy",
+      chart: <LineChartGradient />,
     },
     {
       id: 5,
       name: "Muborak Neft",
-      icon: faOilWell,
-      chart: <LineChartGradient />
+      icon: faArrowUp,
+      status: true,
+      info: "Bu Oy ",
+      chart: <LineChartGradient />,
     },
     {
       id: 6,
       name: "Sho'rtan Gaz",
-      icon: faFireFlameSimple,
-      chart: <LineChartGradient />
+      icon: faArrowDown,
+      status: false,
+      info: "Bu Oy",
+      chart: <LineChartGradient />,
     },
-  ]
+  ];
 
   const allUsers = [
     {
@@ -76,34 +93,38 @@ const SuperAdminDefaultView = () => {
       role: "Labaratoriya",
       description: "bu foydalanuvchi hamma narsa qila oladi !",
     },
-  ]
+  ];
 
   return (
     <AdminLayout>
-      <div className="container-fluid">
+      <div className="container-fluid pb-5">
         <h3 className="text-blue text-center mt-3 mb-3">
           Welcome as Super Admin
         </h3>
         <div className="text-blue fs-20 mb-3">Barcha Konlar</div>
         <div className="row row-gap-4">
-          {
-            data.map(item => (
-              <div className="col-md-3" key={item.id}>
-                <div className="kon">
-                  <div className="d-flex align-items-center justify-content-between p-3">
-                    <div className="kon__name">{item.name}</div>
-                    <FontAwesomeIcon icon={item.icon} />
+          {data.map((item) => (
+            <div className="col-md-4" key={item.id}>
+              <div className="kon">
+                <div className="d-flex align-items-center justify-content-between p-3">
+                  <div className="kon__name text-unusual-blue">{item.name}</div>
+                  <div className="kon__info">
+                    <FontAwesomeIcon
+                      icon={item.icon}
+                      className={item.status === true ? "rise" : "down"}
+                    />
+                    <div>{item.info}</div>
                   </div>
-                  {item.chart}
                 </div>
+                {item.chart}
               </div>
-            ))
-          }
+            </div>
+          ))}
         </div>
         <hr className="mt-5 mb-5" />
         <div className="text-blue fs-20 mb-3">Barcha Foydalanuvchilar</div>
 
-        <Table border={1} >
+        <Table>
           <thead>
             <tr>
               <th>№</th>
@@ -113,7 +134,7 @@ const SuperAdminDefaultView = () => {
           </thead>
           <tbody>
             {allUsers.length > 0 ? (
-              allUsers.map(item => (
+              allUsers.map((item) => (
                 <tr key={item.id}>
                   <td>{item.id}</td>
                   <td>{item.role}</td>
@@ -127,7 +148,6 @@ const SuperAdminDefaultView = () => {
             )}
           </tbody>
         </Table>
-
       </div>
     </AdminLayout>
   );

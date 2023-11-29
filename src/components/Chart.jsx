@@ -3938,7 +3938,6 @@ export const ExampleSChart17 = () => {
 // admin Chart
 
 export function LineChartGradient() {
-
   let delayed;
 
   const data = () => {
@@ -3952,18 +3951,16 @@ export function LineChartGradient() {
           backgroundColor: (context) => {
             const ctx = context.chart.ctx;
             const gradient = ctx.createLinearGradient(0, 0, 0, 200);
-            gradient.addColorStop(0, "rgba(2, 0, 36, 1)");
-            gradient.addColorStop(0, "rgba(0, 48, 120, 1)");
-            gradient.addColorStop(1, "rgba(9, 139, 230, 1)");
+            gradient.addColorStop(0, "rgba(0, 48, 120, 0.4)");
             gradient.addColorStop(1, "rgba(0, 196, 242, 0)");
             gradient.addColorStop(1, "rgba(0, 212, 255, 0)");
             return gradient;
           },
-          borderColor: "rgba(9, 139, 230, 1)",
-          pointBackgroundColor: '#fff',
+          borderColor: "rgba(0, 49, 122, 0.8)",
+          pointBackgroundColor: "#fff",
           tension: 0.4,
-        }
-      ]
+        },
+      ],
     };
   };
 
@@ -3977,7 +3974,7 @@ export function LineChartGradient() {
       },
       delay: (context) => {
         let delay = 0;
-        if (context.type === 'data' && context.mode === 'default' && !delayed) {
+        if (context.type === "data" && context.mode === "default" && !delayed) {
           delay = context.dataIndex * 300 + context.datasetIndex * 100;
         }
         return delay;

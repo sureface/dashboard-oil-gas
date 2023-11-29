@@ -6,17 +6,17 @@ import { Table, Modal, Button, Form } from "react-bootstrap";
 const AdminTable = ({ data, onDelete, onEdit, users }) => {
   const [tableData, setTableData] = useState([]);
   const [show, setShow] = useState(false);
-  const [showSelectedItem, setShowSelectedItem] = useState(null)
-  const [selectedCheckbox, setSelectedCheckbox] = useState([])
+  const [showSelectedItem, setShowSelectedItem] = useState(null);
+  const [selectedCheckbox, setSelectedCheckbox] = useState([]);
 
   const handleClose = () => setShow(false);
 
   const handleShow = (id) => {
-    setShow(true)
-    const shownItem = tableData.find(item => item.id === id)
+    setShow(true);
+    const shownItem = tableData.find((item) => item.id === id);
     console.log(shownItem);
-    setShowSelectedItem(shownItem)
-  }
+    setShowSelectedItem(shownItem);
+  };
 
   useEffect(() => {
     setTableData(data);
@@ -45,36 +45,31 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
 
   const handleCheckboxChange = (itemId) => {
     if (selectedCheckbox.includes(itemId)) {
-      setSelectedCheckbox(selectedCheckbox.filter((id) => id !== itemId))
+      setSelectedCheckbox(selectedCheckbox.filter((id) => id !== itemId));
     } else {
-      setSelectedCheckbox([...selectedCheckbox, itemId])
+      setSelectedCheckbox([...selectedCheckbox, itemId]);
     }
-  }
+  };
 
   const handleSelectedAll = (event) => {
     if (event.target.checked) {
-      const allItemIds = tableData.map(item => item.id)
-      setSelectedCheckbox(allItemIds)
+      const allItemIds = tableData.map((item) => item.id);
+      setSelectedCheckbox(allItemIds);
     } else {
-      setSelectedCheckbox([])
+      setSelectedCheckbox([]);
     }
-  }
+  };
 
   const handleDeleteSelectedCheckboxes = () => {
     const updatedItems = tableData.filter(
       (item) => !selectedCheckbox.includes(item.id)
-    )
-    setTableData(updatedItems)
-  }
-
-
+    );
+    setTableData(updatedItems);
+  };
 
   return (
     <div className="container-fluid">
-      <Button variant="danger" onClick={handleDeleteSelectedCheckboxes}>
-        Delete Selected Checkboxes
-      </Button>
-      <Table border={1} >
+      <Table>
         <thead>
           <tr>
             <th>№</th>
@@ -83,12 +78,21 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
             <th>Login</th>
             <th>Password</th>
             <th>Actions</th>
-            <th>
+            <th className="d-flex align-items-center justify-content-end">
               <Form.Check
                 type="checkbox"
                 onChange={handleSelectedAll}
                 checked={selectedCheckbox.length === tableData.length}
               />
+              <span
+                className="cursor-pointer ms-2"
+                onClick={handleDeleteSelectedCheckboxes}
+              >
+                <FontAwesomeIcon
+                  icon={faTrash}
+                  style={{ color: "rgb(224, 7, 7)" }}
+                />
+              </span>
             </th>
           </tr>
         </thead>
@@ -106,19 +110,28 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
                     className="cursor-pointer p-2"
                     onClick={() => handleShow(item.id)}
                   >
-                    <FontAwesomeIcon icon={faEye} style={{ color: "#fff" }} />
+                    <FontAwesomeIcon
+                      icon={faEye}
+                      style={{ color: "#003078" }}
+                    />
                   </span>{" "}
                   <span
                     className="cursor-pointer p-2"
                     onClick={() => handleEdit(item.id)}
                   >
-                    <FontAwesomeIcon icon={faPen} style={{ color: "#fff" }} />
+                    <FontAwesomeIcon
+                      icon={faPen}
+                      style={{ color: "#2bb673" }}
+                    />
                   </span>
                   <span
                     className="cursor-pointer p-2"
                     onClick={() => handleDelete(item.id)}
                   >
-                    <FontAwesomeIcon icon={faTrash} style={{ color: "#fff" }} />
+                    <FontAwesomeIcon
+                      icon={faTrash}
+                      style={{ color: "rgb(224, 7, 7)" }}
+                    />
                   </span>
                 </td>
                 <td>
@@ -142,23 +155,30 @@ const AdminTable = ({ data, onDelete, onEdit, users }) => {
           <Modal.Title>Modal Title</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-
-          {
-            showSelectedItem && Object.keys(showSelectedItem).length > 0 ?
-              (
-                <div>
-                  <ul>
-                    <li><span className="text-blue"> roli: </span> &nbsp; {showSelectedItem.role}</li>
-                    <li><span className="text-blue"> Malumot: </span> &nbsp; {showSelectedItem.description}</li>
-                    <li><span className="text-blue"> login: </span>  &nbsp; {showSelectedItem.adminLogin}</li>
-                    <li><span className="text-blue"> paro'l: </span> &nbsp; {showSelectedItem.adminPassword}</li>
-                  </ul>
-                </div>
-              ) : (
-                <p>im really sorry</p>
-              )
-          }
-
+          {showSelectedItem && Object.keys(showSelectedItem).length > 0 ? (
+            <div>
+              <ul>
+                <li>
+                  <span className="text-blue"> roli: </span> &nbsp;{" "}
+                  {showSelectedItem.role}
+                </li>
+                <li>
+                  <span className="text-blue"> Malumot: </span> &nbsp;{" "}
+                  {showSelectedItem.description}
+                </li>
+                <li>
+                  <span className="text-blue"> login: </span> &nbsp;{" "}
+                  {showSelectedItem.adminLogin}
+                </li>
+                <li>
+                  <span className="text-blue"> paro'l: </span> &nbsp;{" "}
+                  {showSelectedItem.adminPassword}
+                </li>
+              </ul>
+            </div>
+          ) : (
+            <p>im really sorry</p>
+          )}
         </Modal.Body>
       </Modal>
     </div>
