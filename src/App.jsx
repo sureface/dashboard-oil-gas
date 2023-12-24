@@ -21,7 +21,6 @@ import OrografiyaMuborak from "./views/OrografiyaMuborak";
 import { useSelector } from "react-redux";
 import SuperAdminDefaultView from "./adminViews/SuperAdminDefaultView";
 import BarchaKonlar from "./adminViews/BarchaKonlar";
-import AdminPermission from "./adminViews/AdminPermission";
 
 function App() {
   const loggedInCompany = useSelector((state) => state.auth.loggedInCompany);
@@ -45,33 +44,32 @@ function App() {
   }
 
   return (
-      <Router>
-        <Routes>
-          <Route element={<PrivetateRoute />}>
-            <Route element={<Logchacker />} path="/" exact />
-            <Route element={<BarchaKonlar />} path="/barcha-konlar" />
-            <Route element={<AdminPermission />} path="/permission" />
-            <Route element={<Kartateka />} path="/kartateka" />
-            <Route element={<Monitoring />} path="/monitoring" />
-            <Route
-              element={
-                loggedInCompany.login.length > 0 ? (
-                  <OrografiyaMuborak />
-                ) : (
-                  <Orografiya />
-                )
-              }
-              path="/orografiya"
-            />
-            <Route element={<FirstLayer />} path="/1" />
-            <Route element={<SecondLayer />} path="/s1" />
-            <Route element={<Mines />} path="/mines" />
-            <Route element={<UserInfo />} path="/user-info" />
-          </Route>
-          <Route element={<Login />} path="/login" />
-          <Route element={<SignUp />} path="/signup" />
-        </Routes>
-      </Router>
+    <Router>
+      <Routes>
+        <Route element={<PrivetateRoute />}>
+          <Route element={<Logchacker />} path="/" exact />
+          <Route element={<BarchaKonlar />} path="/barcha-konlar" />
+          <Route element={<Kartateka />} path="/kartateka" />
+          <Route element={<Monitoring />} path="/monitoring" />
+          <Route
+            element={
+              loggedInCompany.login.length > 0 ? (
+                <OrografiyaMuborak />
+              ) : (
+                <Orografiya />
+              )
+            }
+            path="/orografiya"
+          />
+          <Route element={<FirstLayer />} path="/1" />
+          <Route element={<SecondLayer />} path="/s1" />
+          <Route element={<Mines />} path="/mines" />
+          <Route element={<UserInfo />} path="/user-info" />
+        </Route>
+        <Route element={<Login />} path="/login" />
+        <Route element={<SignUp />} path="/signup" />
+      </Routes>
+    </Router>
   );
 }
 

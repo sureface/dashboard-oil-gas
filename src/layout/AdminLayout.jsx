@@ -16,12 +16,6 @@ const AdminLayout = ({ children }) => {
       link: "/barcha-konlar",
       disabled: false,
     },
-    {
-      icon: faKey,
-      title: "ruhsatnoma",
-      link: "/permission",
-      disabled: false,
-    },
   ];
 
   return (

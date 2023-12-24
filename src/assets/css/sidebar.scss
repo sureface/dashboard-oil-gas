@@ -7,15 +7,35 @@ $gis-hover-white: #f8f9fa;
   top: 0;
   left: 0;
   height: 100vh;
-  min-width: 260px;
-  background: linear-gradient(180deg,
-      rgba(2, 0, 36, 1) 0%,
-      rgba(0, 48, 120, 1) 0%,
-      rgba(0, 50, 125, 1) 100%,
-      rgba(0, 48, 120, 1) 100%,
-      rgba(0, 212, 255, 1) 100%);
-  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+  width: 260px;
+  background: linear-gradient(
+    180deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 48, 120, 1) 0%,
+    rgba(0, 50, 125, 1) 100%,
+    rgba(0, 48, 120, 1) 100%,
+    rgba(0, 212, 255, 1) 100%
+  );
   z-index: 10;
+  transition: width 0.3s;
+
+  .gis-sidebar__menu-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+  }
+
+  &__menu_inrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+  }
+  &__nav {
+    flex: 1;
+  }
 
   &__bgImg {
     position: absolute;
@@ -33,11 +53,7 @@ $gis-hover-white: #f8f9fa;
   }
 
   &.gis-sidebar--mini {
-    min-width: 70px;
-
-    .gis-sidebar__drawer {
-      transition: ease-out 0.5s;
-    }
+    width: 70px;
 
     .gis-sidebar__company_name,
     .gis-sidebar__title,
@@ -46,18 +62,11 @@ $gis-hover-white: #f8f9fa;
       display: none;
     }
 
-    .gis-sidebar__menu-wrapper {
-      width: 70px !important;
-
-      .menu__overflow {
-        overflow: visible !important;
-      }
+    .gis-sidebar__menu_inrapper {
+      overflow: unset;
     }
 
     .gis-sidebar__item:hover {
-      overflow: unset;
-      transition: all 0.5s cubic-bezier(1, 0, 1, 0);
-
       .gis-sidebar__dropdown {
         left: 70px;
       }
@@ -94,6 +103,7 @@ $gis-hover-white: #f8f9fa;
     background-color: #003078;
     border: 2px solid #ffffff;
     cursor: pointer;
+    z-index: 10;
 
     svg {
       color: $gis-white;
@@ -106,11 +116,12 @@ $gis-hover-white: #f8f9fa;
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 10px;
   }
 
   &__logo {
     height: 50px;
-    min-width: 70px;
+    width: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -122,9 +133,10 @@ $gis-hover-white: #f8f9fa;
   }
 
   &__company_name {
-    font-size: 22px;
+    font-size: 18px;
     color: $gis-white;
     text-transform: capitalize;
+    flex: 1;
   }
 
   &__item {
@@ -158,6 +170,7 @@ $gis-hover-white: #f8f9fa;
   &__link {
     display: flex;
     align-items: center;
+    gap: 10px;
     height: 50px;
     transition: color 0.5s ease;
 
@@ -192,9 +205,10 @@ $gis-hover-white: #f8f9fa;
   }
 
   &__title {
-    font-size: 16px;
+    font-size: 14px;
     text-transform: capitalize;
     color: $gis-white;
+    flex: 1;
   }
 
   &__arrowDown-icon {
@@ -243,8 +257,23 @@ $gis-hover-white: #f8f9fa;
   }
 
   &__userInfos {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: $gis-primary;
     display: flex;
     align-items: center;
+    gap: 10px;
+    -webkit-box-shadow: -13px -5px 20px 3px #003078;
+    -moz-box-shadow: -13px -5px 20px 3px #003078;
+    box-shadow: -13px -5px 20px 3px #003078;
+    z-index: 10;
+  }
+
+  &__userDetails {
+    flex: 1;
   }
 
   &__userName {

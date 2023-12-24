@@ -71,58 +71,49 @@ const SidebarLeft = ({ menu }) => {
 
   return (
     <>
-      <div
-        className={drawing ? "gis-sidebar gis-sidebar--mini" : "gis-sidebar"}
-      >
-        <div className="gis-sidebar__menu-wrapper w-100 h-100 position-relative">
+      <div className={`gis-sidebar ${drawing ? "gis-sidebar--mini" : ""}`}>
+        <div className="gis-sidebar__menu-wrapper">
           <div
-            className="gis-sidebar__drawer z-1"
+            className="gis-sidebar__drawer"
             onClick={() => setIsDrawing(!drawing)}
           >
             <FontAwesomeIcon icon={faBarsStaggered} />
           </div>
-          <div className="gis-sidebar__menu-wrapper menu__overflow overflow-auto w-100 h-100 d-flex flex-column justify-content-between z-1">
-            <div>
-              <div className="gis-sidebar__logo_details">
-                <a href="#" target="_blank" className="gis-sidebar__logo">
-                  <img src={Logo1} alt="err" style={{ width: "35px" }} />
-                </a>
-                <div className="gis-sidebar__company_name">
-                  {loggedInCompany.login.length > 0
-                    ? "Muborak"
-                    : "Oʻzbekneftgaz"}
-                </div>
-              </div>
-              <ul className="gis-sidebar__nav">
-                {menu.map((item, index) => (
-                  <SidebarMenuItem key={index} catchItem={index} item={item} />
-                ))}
-                <div
-                  className="gis-sidebar__link cursor-pointer"
-                  onClick={logout}
-                >
-                  <div className="gis-sidebar__icon">
-                    <FontAwesomeIcon icon={faRightFromBracket} />
-                  </div>
-                  <div className="gis-sidebar__title">chiqish</div>
-                </div>
-              </ul>
-            </div>
-
-            <div className="gis-sidebar__userInfos">
-              <a href={Avatar} target="_blank" className="gis-sidebar__userPic">
-                <img src={Avatar} />
+          <div className="gis-sidebar__menu_inrapper">
+            <div className="gis-sidebar__logo_details">
+              <a href="#" target="_blank" className="gis-sidebar__logo">
+                <img src={Logo1} alt="err" style={{ width: "35px" }} />
               </a>
-              <div className="gis-sidebar__userDetails">
-                <div className="gis-sidebar__userName">Xamid Olimjon</div>
-                <div className="gis-sidebar__userStatus">
-                  tizim adminstratori
-                </div>
+              <div className="gis-sidebar__company_name">
+                {loggedInCompany.login.length > 0 ? "Muborak" : "Oʻzbekneftgaz"}
               </div>
             </div>
+            <ul className="gis-sidebar__nav">
+              {menu.map((item, index) => (
+                <SidebarMenuItem key={index} catchItem={index} item={item} />
+              ))}
+              <div
+                className="gis-sidebar__link cursor-pointer"
+                onClick={logout}
+              >
+                <div className="gis-sidebar__icon">
+                  <FontAwesomeIcon icon={faRightFromBracket} />
+                </div>
+                <div className="gis-sidebar__title">chiqish</div>
+              </div>
+            </ul>
           </div>
           <div className="gis-sidebar__bgImg z-n1">
             <img src={gisBg1} alt="err" />
+          </div>
+          <div className="gis-sidebar__userInfos">
+            <a href={Avatar} target="_blank" className="gis-sidebar__userPic">
+              <img src={Avatar} />
+            </a>
+            <div className="gis-sidebar__userDetails">
+              <div className="gis-sidebar__userName">Xamid Olimjon</div>
+              <div className="gis-sidebar__userStatus">tizim adminstratori</div>
+            </div>
           </div>
         </div>
       </div>
